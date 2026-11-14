@@ -1,26 +1,213 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * PawConnect · lenguaje de diseño v0.1
+ *
+ * Two layers:
+ * 1. The brand tokens (ink, magenta, ground, case states…) under :root.
+ * 2. shadcn's semantic variables (--primary, --muted…) pointed at those tokens,
+ *    so every primitive from src/components/ui already speaks the brand.
+ *
+ * Light only for now: the design has no dark theme yet.
+ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Ground and text */
+  --ground: #fbf9f7;
+  --surface: #efedef;
+  --surface-hover: #e5e2e6;
+  --paper: #ffffff;
+  --ink: #2d1659;
+  --soft: #6d6290;
+  --meta: #574b7d;
+  --line: rgb(45 22 89 / 0.14);
+  --line-strong: rgb(45 22 89 / 0.28);
+
+  /* One action colour, used once per view */
+  --action: #cc2f70;
+  --action-hover: #b8285f;
+  --action-ink: #fbf9f7;
+
+  /* Report type: lost is magenta, found is ink, seen is an ink outline */
+  --lost: #cc2f70;
+  --found: #2d1659;
+
+  /* Case state (never used for report type) */
+  --st-active: #1f4f99;
+  --st-active-bg: #e6eefa;
+  --st-follow: #7a4f00;
+  --st-follow-bg: #f8ecd2;
+  --st-solved: #1b6b43;
+  --st-solved-bg: #e1f0e6;
+  --st-closed: #57525e;
+  --st-closed-bg: #ebe9ee;
+
+  /* Red only for errors and 24 h emergencies */
+  --danger: #a8231b;
+  --danger-bg: #fbe6e3;
+
+  /* Map */
+  --map-ground: #f1eee9;
+  --map-block: #e7e2db;
+  --map-park: #dfe8da;
+
+  /* shadcn semantic variables → brand */
+  --background: var(--ground);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--action);
+  --primary-foreground: var(--action-ink);
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface);
+  --muted-foreground: var(--meta);
+  --accent: var(--surface);
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--ink);
+  --radius: 1rem;
 }
 
 @theme inline {
+  /* shadcn semantic colours */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand colours as utilities: bg-ink, text-meta, border-line-strong… */
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-soft: var(--soft);
+  --color-meta: var(--meta);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-ink: var(--action-ink);
+  --color-lost: var(--lost);
+  --color-found: var(--found);
+  --color-st-active: var(--st-active);
+  --color-st-active-bg: var(--st-active-bg);
+  --color-st-follow: var(--st-follow);
+  --color-st-follow-bg: var(--st-follow-bg);
+  --color-st-solved: var(--st-solved);
+  --color-st-solved-bg: var(--st-solved-bg);
+  --color-st-closed: var(--st-closed);
+  --color-st-closed-bg: var(--st-closed-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-map-ground: var(--map-ground);
+  --color-map-block: var(--map-block);
+  --color-map-park: var(--map-park);
+
+  /* Type: Funnel Display for headings, Funnel Sans for text, DM Mono for data */
+  --font-sans: var(--font-funnel-sans), system-ui, sans-serif;
+  --font-heading: var(--font-funnel-display), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, Menlo, monospace;
+
+  /* Radii: field 10, tile 16, panel 24, pill */
+  --radius-sm: 0.625rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 1.75rem;
+  --radius-field: 10px;
+  --radius-tile: 16px;
+  --radius-panel: 24px;
+
+  /* Breakpoint where the web header replaces the phone tab bar */
+  --breakpoint-desk: 60rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Crop frame: four corners over the photo. Says "we keep only the crop". */
+  .pc-frame {
+    --c: 14px;
+    --w: 2px;
+    position: absolute;
+    inset: 12%;
+    color: #fff;
+    pointer-events: none;
+    background:
+      linear-gradient(currentColor, currentColor) top left / var(--c) var(--w),
+      linear-gradient(currentColor, currentColor) top left / var(--w) var(--c),
+      linear-gradient(currentColor, currentColor) top right / var(--c) var(--w),
+      linear-gradient(currentColor, currentColor) top right / var(--w) var(--c),
+      linear-gradient(currentColor, currentColor) bottom left / var(--c) var(--w),
+      linear-gradient(currentColor, currentColor) bottom left / var(--w) var(--c),
+      linear-gradient(currentColor, currentColor) bottom right / var(--c) var(--w),
+      linear-gradient(currentColor, currentColor) bottom right / var(--w) var(--c);
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 1px rgb(0 0 0 / 0.5));
+  }
+  .pc-frame-lg {
+    --c: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
