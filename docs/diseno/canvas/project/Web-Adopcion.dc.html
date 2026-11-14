@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Adopción (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a class="here" href="Web-Adopcion.dc.html" aria-current="page">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="btn btn-tonal hide-phone" href="Movil-Ingreso.dc.html">Ingresar</a>
+<a class="btn btn-primary" href="Web-Publicar.dc.html">Publicar reporte</a>
+</div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 40px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px; max-width: 720px">
+<h1 style="font-size: clamp(32px, 1.6vw + 22px, 52px)">Perros y gatos en adopción en Bogotá y la Sabana</h1>
+<p style="font-size: 18px">Los publican fundaciones y refugios con sello de verificación. Cada ficha muestra los requisitos antes de que escribas.</p>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 14px; border-radius: 20px; background: #efedef" role="group" aria-label="Filtros">
+<span style="display: inline-flex; gap: 6px; align-items: center; font-weight: 500; padding: 0 6px"><svg class="ico ico-s"><use href="#sliders"></use></svg>Filtrar</span>
+<button class="chip chip-on" type="button" aria-pressed="true">Perros y gatos</button>
+<button class="chip" type="button" style="background: #fff">Solo perros</button>
+<button class="chip" type="button" style="background: #fff">Solo gatos</button>
+<span style="width: 1px; height: 24px; background: rgba(45,22,89,.28)"></span>
+<button class="chip" type="button" style="background: #fff">Cachorro</button>
+<button class="chip" type="button" style="background: #fff">Adulto</button>
+<button class="chip" type="button" style="background: #fff">Pequeño o mediano</button>
+<button class="chip" type="button" style="background: #fff">Norte de Bogotá</button>
+<span class="meta" style="margin-left: auto; padding: 0 6px">7 animales</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px">
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/5f487a2104dbfd039514b7d404beb41c" alt="Rocky, perro blanco con manchas cafés, sonriendo" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Rocky</span><span class="meta">Perro · 2 años · mediano</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Refugio Cerro Verde · Suba</span></span>
+</a>
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/117c64946619f4ebc57f4c6c31f06292" alt="Pepa, gatita blanca con manchas negras en la cara" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Pepa</span><span class="meta">Gata · 4 meses · pequeña</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Fundación Calle 80 · Engativá</span></span>
+</a>
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/3624a9f4e5dbd04ab02d0fb6a942e606" alt="Lupe, perra clara mirando a través de una reja" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Lupe</span><span class="meta">Perra · 4 años · grande</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Refugio Cerro Verde · Suba</span></span>
+</a>
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/e3e69a171a8c4ba82f38af456e22dcf9" alt="Nube, gato de ojos azules" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Nube</span><span class="meta">Gato · 1 año · mediano</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Fundación Calle 80 · Engativá</span></span>
+</a>
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/dd1481024cc93e5b2bbca321edb3e59c" alt="Sombra, gato negro de ojos amarillos" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Sombra</span><span class="meta">Gato · 2 años · mediano</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Hogar Gatuno Chía · Chía</span></span>
+</a>
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/44539f12698e28e46591211167d4e413" alt="Canela, gata atigrada sentada en el pasto" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Canela</span><span class="meta">Gata · 3 años · mediana</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Hogar Gatuno Chía · Chía</span></span>
+</a>
+<a href="Web-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<img src="/_blob/ed97afb3f7ec55a8031baf6edd216c66" alt="Mostaza, gatita tricolor en unas manos" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover">
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 22px/1.15 'Funnel Display', sans-serif">Mostaza</span><span class="meta">Gata · 2 meses · pequeña</span><span style="display: inline-flex; gap: 6px; align-items: center; font: 500 13px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Fundación Calle 80 · Engativá</span></span>
+</a>
+<a href="Web-Fundacion.dc.html" class="card" style="text-decoration: none; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 24px; background: #efedef; border-color: transparent">
+<svg class="ico ico-l"><use href="#seal"></use></svg>
+<span style="font: 400 22px/1.2 'Funnel Display', sans-serif">¿Eres una fundación o un refugio?</span>
+<span style="font-size: 15px">Pide el sello con tu certificado de existencia o RUT y publica tus animales aquí.</span>
+<span class="link" style="font-weight: 500">Pedir verificación</span>
+</a>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

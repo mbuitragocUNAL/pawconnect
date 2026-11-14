@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Reportar un animal encontrado o visto (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"></path></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v5.2M12 16.3h.01"></path></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end"><a class="icon-btn" href="Web-Caso.dc.html" aria-label="Notificaciones"><svg class="ico"><use href="#bell"></use></svg></a><a class="avatar" href="Web-Caso.dc.html" aria-label="Mi cuenta, Andrés R.">AR</a></div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 40px; padding-bottom: 56px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<a class="link meta" href="Main.dc.html" style="align-self: flex-start">Inicio</a>
+<h1 style="font-size: clamp(32px, 1.6vw + 22px, 48px)">Reportar un animal que encontraste o viste</h1>
+<div role="group" aria-label="Qué pasó" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+<button type="button" onClick="{{ pickConmigo }}" class="card" style="{{ conmigoCard }}"><span style="width: 44px; height: 44px; border-radius: 14px; background: #2d1659; color: #fff; display: grid; place-items: center; flex: none"><svg class="ico"><use href="#heart"></use></svg></span><span><strong style="display: block; font: 400 19px/1.2 'Funnel Display', sans-serif">Lo tengo conmigo</strong><span class="meta">Está a salvo</span></span></button>
+<button type="button" onClick="{{ pickCalle }}" class="card" style="{{ calleCard }}"><span style="width: 44px; height: 44px; border-radius: 14px; box-shadow: inset 0 0 0 1.5px #2d1659; display: grid; place-items: center; flex: none"><svg class="ico"><use href="#eye"></use></svg></span><span><strong style="display: block; font: 400 19px/1.2 'Funnel Display', sans-serif">Lo vi solo en la calle</strong><span class="meta">No lo pude agarrar</span></span></button>
+</div>
+</div>
+
+<section class="card" style="padding: 28px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-f">
+<h2 id="h-f" style="font-size: 26px">1 · Foto</h2>
+<p>{{ fotoLead }}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start">
+<span class="crop" style="width: 200px; height: 200px; border-radius: 18px"><img src="{{ petImg }}" alt="{{ petAlt }}"><span class="frame"></span><span class="on-photo"><svg class="ico ico-s"><use href="#check"></use></svg>Perro</span></span>
+<div class="notice notice-plain" style="flex: 1 1 240px"><svg class="ico"><use href="#check"></use></svg><div><strong>Perro detectado</strong><p>Guardamos solo el recorte. Con la foto lo comparamos con los perros reportados como perdidos.</p></div></div>
+</div>
+</section>
+
+<section class="card" style="padding: 28px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-l">
+<h2 id="h-l" style="font-size: 26px">2 · {{ lugarTitle }}</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+<div class="map" style="flex: 1 1 320px; min-height: 220px; border-radius: 20px">
+<svg viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="500" height="300" fill="#f1eee9"></rect><g fill="#e7e2db"><rect x="12" y="12" width="100" height="70" rx="3"></rect><rect x="126" y="12" width="120" height="70" rx="3"></rect><rect x="260" y="12" width="100" height="70" rx="3"></rect><rect x="374" y="12" width="114" height="70" rx="3"></rect><rect x="12" y="96" width="100" height="90" rx="3"></rect><rect x="260" y="96" width="100" height="90" rx="3"></rect><rect x="374" y="96" width="114" height="90" rx="3"></rect><rect x="12" y="200" width="100" height="88" rx="3"></rect><rect x="126" y="200" width="120" height="88" rx="3"></rect><rect x="260" y="200" width="100" height="88" rx="3"></rect></g><rect x="126" y="96" width="120" height="90" rx="3" fill="#dfe8da"></rect><path d="M0 280 L500 60" stroke="#fff" stroke-width="10"></path><circle cx="240" cy="150" r="88" fill="rgba(45,22,89,.10)" stroke="rgba(45,22,89,.5)" stroke-width="1.5" stroke-dasharray="5 5"></circle><circle cx="240" cy="150" r="5" fill="#2d1659"></circle></svg>
+<span style="position: absolute; left: 12px; bottom: 12px; display: inline-flex; gap: 6px; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; background: #fbf9f7; font: 500 13px/1 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#zone"></use></svg>Engativá, Calle 72</span>
+</div>
+<div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<sc-if value="{{ calle }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Cuándo lo viste?</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ whens }}" as="w" hint-placeholder-count="3"><button type="button" class="{{ w.cls }}" onClick="{{ w.pick }}">{{ w.label }}</button></sc-for></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Hacia dónde iba?</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ dirs }}" as="d" hint-placeholder-count="5"><button type="button" class="{{ d.cls }}" onClick="{{ d.pick }}">{{ d.label }}</button></sc-for></div></div>
+</sc-if>
+<sc-if value="{{ conmigo }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Cuánto tiempo puedes cuidarlo?</span><div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ cares }}" as="c" hint-placeholder-count="3"><button type="button" class="{{ c.cls }}" onClick="{{ c.pick }}">{{ c.label }}</button></sc-for></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Está herido?</span><div style="display: flex; gap: 6px"><button type="button" class="{{ heridoSiCls }}" onClick="{{ heridoSi }}">Sí</button><button type="button" class="{{ heridoNoCls }}" onClick="{{ heridoNo }}">No</button></div></div>
+<sc-if value="{{ herido }}" hint-placeholder-val="{{ false }}"><div class="notice notice-danger"><svg class="ico"><use href="#alert"></use></svg><div><strong>Llévalo a urgencias primero</strong><p><a class="link" href="Web-Servicios.dc.html">Veterinarias 24 horas cerca de Engativá</a></p></div></div></sc-if>
+</sc-if>
+<label class="consent"><input type="checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}"><span><strong>Mostrar esta zona en el reporte</strong><small>Un círculo de 500 m, nunca el punto exacto.</small></span></label>
+</div>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<a class="btn btn-primary" href="Flujo-Encontre.dc.html">Publicar y buscar a su familia</a>
+<span class="meta">Lo comparamos con perros perdidos a menos de 15 km en los últimos 60 días.</span>
+</div>
+</div>
+
+<aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px" aria-label="Vista previa del reporte">
+<span class="label">Así lo verán otras personas</span>
+<div class="card" style="overflow: hidden">
+<span class="crop" style="height: 240px; border-radius: 0"><img src="{{ petImg }}" alt="{{ petAlt }}"><span class="frame frame-l"></span></span>
+<div style="padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<span><span class="{{ tagCls }}">{{ tag }}</span></span>
+<h3 style="font-size: 22px">{{ previewTitle }}</h3>
+<span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Engativá, zona de 500 m · {{ previewWhen }}</span>
+<p class="meta">Sin teléfono a la vista: la familia pide el contacto por PawConnect.</p>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { mode: 'conmigo', consent: false, when: 'Ahora', dir: 'No sé', care: 'Unos días', herido: false };
+}
+renderVals() {
+const s = this.state;
+const calle = s.mode === 'calle';
+const chips = (list, key) => list.map((label) => ({ label: label, cls: s[key] === label ? 'chip chip-on' : 'chip', pick: () => this.setState({ [key]: label }) }));
+const card = (on) => 'display: flex; gap: 14px; align-items: center; padding: 16px; text-align: left; cursor: pointer; font: inherit; color: inherit; ' + (on ? 'border-color: #2d1659; box-shadow: 0 0 0 1px #2d1659' : '');
+return {
+calle: calle, conmigo: !calle,
+pickConmigo: () => this.setState({ mode: 'conmigo' }), pickCalle: () => this.setState({ mode: 'calle' }),
+conmigoCard: card(!calle), calleCard: card(calle),
+fotoLead: calle ? 'Aunque sea de lejos. Sin foto avisamos por zona, pero no podemos comparar.' : 'De cerca, con la cara y el pelaje a la vista.',
+petImg: calle ? '/_blob/6cfd1ed8d9b828e5c68726fc06fc0e71' : '/_blob/926df80318826a21ae1262cbed0be175',
+petAlt: calle ? 'Perro canela caminando solo por la calle' : 'Perro dorado de pelo largo, encontrado',
+lugarTitle: calle ? 'Dónde y cuándo lo viste' : 'Dónde lo encontraste',
+whens: chips(['Ahora', 'Hace 1 hora', 'Hoy más temprano'], 'when'),
+dirs: chips(['Norte', 'Sur', 'Oriente', 'Occidente', 'No sé'], 'dir'),
+cares: chips(['Solo hoy', 'Unos días', 'Hasta que aparezca su familia'], 'care'),
+herido: s.herido, heridoSi: () => this.setState({ herido: true }), heridoNo: () => this.setState({ herido: false }),
+heridoSiCls: s.herido ? 'chip chip-on' : 'chip', heridoNoCls: s.herido ? 'chip' : 'chip chip-on',
+consent: s.consent, toggleConsent: () => this.setState({ consent: !s.consent }),
+tag: calle ? 'Visto en la calle' : 'Encontrado', tagCls: calle ? 'tag tag-seen' : 'tag tag-found',
+previewTitle: calle ? 'Perro canela, solo en la calle' : 'Perro dorado de pelo largo',
+previewWhen: calle ? s.when.toLowerCase() + ', iba hacia: ' + s.dir.toLowerCase() : 'está a salvo'
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Rocky en adopción (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+<symbol id="flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a class="here" href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="btn btn-tonal hide-phone" href="Movil-Ingreso.dc.html">Ingresar</a>
+<a class="btn btn-primary" href="Web-Publicar.dc.html">Publicar reporte</a>
+</div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 32px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 20px">
+<a class="link meta" href="Web-Adopcion.dc.html">Adopción</a>
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<img src="/_blob/05ad2c0572f2b3d700f01d33359ab18e" alt="Rocky, perro blanco con manchas cafés, sonriendo" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 24px">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<img src="/_blob/5f487a2104dbfd039514b7d404beb41c" alt="Rocky de cerca" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; outline: 2px solid #2d1659; outline-offset: 2px">
+<img src="/_blob/f988fdba4eadf72f1c2d67f6efb1ce58" alt="El refugio, visto desde la reja" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px">
+<img src="/_blob/47e6d46339b7a778c067bbfcf73540e3" alt="Fachada del Refugio Cerro Verde" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px">
+</div>
+</div>
+
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="state st-active" style="align-self: flex-start">Disponible</span>
+<h1 style="font-size: clamp(36px, 2vw + 24px, 60px)">Rocky</h1>
+<p style="font-size: 18px">Perro mestizo de 2 años, mediano. Vacunado y esterilizado. Le gustan las caminatas largas y convive bien con otros perros.</p>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); border-top: 1px solid rgba(45,22,89,.14)">
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Edad</dt><dd style="margin: 4px 0 0">2 años</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Tamaño</dt><dd style="margin: 4px 0 0">Mediano</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Con niños</dt><dd style="margin: 4px 0 0">Sí, mayores de 6</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Con gatos</dt><dd style="margin: 4px 0 0">No probado</dd></div>
+</dl>
+<section class="card" style="padding: 20px; display: flex; flex-direction: column; gap: 12px" aria-labelledby="h-req">
+<h2 id="h-req" style="font-size: 22px">Requisitos del refugio</h2>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; gap: 10px"><svg class="ico ico-s" style="margin-top: 4px"><use href="#check"></use></svg>Ser mayor de edad y vivir en Bogotá o la Sabana.</li>
+<li style="display: flex; gap: 10px"><svg class="ico ico-s" style="margin-top: 4px"><use href="#check"></use></svg>Una visita al hogar antes de la entrega.</li>
+<li style="display: flex; gap: 10px"><svg class="ico ico-s" style="margin-top: 4px"><use href="#check"></use></svg>Firmar el contrato de adopción del refugio.</li>
+<li style="display: flex; gap: 10px"><svg class="ico ico-s" style="margin-top: 4px"><use href="#check"></use></svg>Seguimiento a los 1, 3 y 6 meses.</li>
+</ul>
+</section>
+<a href="Web-Fundacion.dc.html" class="card" style="display: flex; gap: 14px; align-items: center; padding: 14px; text-decoration: none">
+<img src="/_blob/47e6d46339b7a778c067bbfcf73540e3" alt="" style="width: 56px; height: 56px; border-radius: 14px; object-fit: cover">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><strong style="font-weight: 500">Refugio Cerro Verde</strong><span class="seal" style="align-self: flex-start"><svg class="ico ico-s"><use href="#seal"></use></svg>Fundación verificada · nivel 2</span></span>
+</a>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a class="btn btn-primary" href="Movil-Contacto.dc.html">Quiero adoptar a Rocky</a>
+<a class="btn btn-tonal" href="Web-Adopcion.dc.html">Ver más animales</a>
+</div>
+<p class="meta" style="display: flex; gap: 8px; align-items: flex-start"><svg class="ico ico-s" style="margin-top: 3px"><use href="#lock"></use></svg>El refugio recibe tu solicitud por PawConnect. Tu número se comparte solo si los dos aceptan.</p>
+<a class="link meta" href="Web-Animal.dc.html" style="display: inline-flex; gap: 6px; align-items: center; align-self: flex-start"><svg class="ico ico-s"><use href="#flag"></use></svg>Reportar esta publicación</a>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

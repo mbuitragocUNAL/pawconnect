@@ -1,0 +1,26 @@
+[project]
+name = "pawmatch"
+version = "0.1.0"
+description = "PawConnect: prototipo de reidentificación de mascotas (recorte + DINOv2 + búsqueda por similitud)"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.3",
+    "transformers>=4.45",
+    "pillow>=10",
+    "pillow-heif>=0.16",
+    "numpy>=1.26",
+    "torchvision>=0.29.2",
+    "fastapi>=0.162.7",
+    "uvicorn[standard]>=0.54.0",
+    "python-multipart>=0.0.33",
+]
+
+[project.scripts]
+pawmatch = "pawmatch:main"
+
+[tool.hatch.build.targets.wheel]
+only-include = ["pawmatch.py", "servicio.py"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

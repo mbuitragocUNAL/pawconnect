@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Coincidencias (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a class="here" href="Web-Coincidencias.dc.html" aria-current="page">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="icon-btn" href="Web-Caso.dc.html" aria-label="Notificaciones"><svg class="ico"><use href="#bell"></use></svg></a>
+<a class="btn btn-primary hide-phone" href="Web-Publicar.dc.html">Publicar reporte</a>
+<a class="avatar" href="Web-Caso.dc.html" aria-label="Mi cuenta, Sofía M.">SM</a>
+</div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 32px; padding-bottom: 48px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px">
+<div style="display: flex; gap: 16px; align-items: center">
+<span class="crop" style="width: 64px; height: 64px; border-radius: 14px"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby, la foto de tu reporte"><span class="frame"></span></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><span class="label">Toby · caso <span class="mono">PC-2048</span></span><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">5 posibles coincidencias</h1></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Filtros de la búsqueda">
+<button class="chip chip-on" type="button" aria-pressed="true">Perros</button>
+<button class="chip" type="button">15 km de Suba</button>
+<button class="chip" type="button">Últimos 60 días</button>
+<button class="chip" type="button">Solo encontrados</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="card" style="flex: 1 1 360px; max-width: 440px; min-width: 0; padding: 12px 12px 4px" aria-label="Candidatos en orden de parecido">
+<div class="axis" style="padding: 8px 8px 12px">Más parecido <span></span> menos</div>
+<a class="cand cand-on" href="Web-Coincidencias.dc.html" aria-current="true"><span class="pos">01</span><span class="crop"><img src="/_blob/926df80318826a21ae1262cbed0be175" alt="Perro dorado de pelo largo, encontrado en Engativá"><span class="frame"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><h3>Sin nombre</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Engativá · hace 2 días</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a class="cand" href="Web-Coincidencias.dc.html"><span class="pos">02</span><span class="crop"><img src="/_blob/ae93aa3ac3a828b66a652dc464d2da95" alt="Perra mestiza color canela sentada"><span class="frame"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><h3>Sin nombre</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Suba Rincón · hace 4 días</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a class="cand" href="Web-Coincidencias.dc.html"><span class="pos">03</span><span class="crop"><img src="/_blob/6cfd1ed8d9b828e5c68726fc06fc0e71" alt="Perro canela caminando por la calle"><span class="frame"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><h3>Lucas</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Niza · hace 6 días</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a class="cand" href="Web-Coincidencias.dc.html"><span class="pos">04</span><span class="crop"><img src="/_blob/8e2394a664533690efb844f820949d15" alt="Perro joven mestizo acostado en el pasto"><span class="frame"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><h3>Sin nombre</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Cota · hace 9 días</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a class="cand" href="Web-Coincidencias.dc.html" style="border-bottom: 0"><span class="pos">05</span><span class="crop"><img src="/_blob/9f67d3f6375a0310fffbd5a3d55dad8c" alt="Perro blanco con manchas oscuras en un parque"><span class="frame"></span></span><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><h3>Sin nombre</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Usaquén · hace 12 días</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<p class="meta" style="padding: 12px 8px">Sin porcentajes: el orden es la única señal. Los que descartes salen de la lista.</p>
+</section>
+
+<section class="card" style="flex: 999 1 560px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 20px" aria-labelledby="h-cand">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap"><h2 id="h-cand" style="font-size: 30px">Candidato <span class="mono">01</span> de 5</h2><span class="tag tag-found">Encontrado</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 8px"><span class="crop" style="aspect-ratio: 4 / 5; border-radius: 20px"><img src="/_blob/67613a4f6ef8ef51204d5dae0f572ee0" alt="Toby, la foto de tu reporte"><span class="frame frame-l"></span></span><span class="label">Toby, tu reporte</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span class="crop" style="aspect-ratio: 4 / 5; border-radius: 20px"><img src="/_blob/8a6ae47ff5164b1a85012b03445aa368" alt="Perro encontrado en Engativá"><span class="frame frame-l"></span></span><span class="label">Encontrado en Engativá</span></div>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); border-top: 1px solid rgba(45,22,89,.14)">
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Zona</dt><dd style="margin: 4px 0 0">Engativá, 500 m</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Fecha</dt><dd class="mono" style="margin: 4px 0 0">10 nov 2026</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Tamaño</dt><dd style="margin: 4px 0 0">Mediano</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Rasgos</dt><dd style="margin: 4px 0 0">Pelo largo dorado, sin collar</dd></div>
+</dl>
+<p style="display: flex; gap: 8px; align-items: center"><span class="seal"><svg class="ico ico-s"><use href="#check"></use></svg>Celular verificado</span><span class="meta">Quien lo reportó lo tiene en un hogar temporal.</span></p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px; border-radius: 20px; background: #efedef">
+<div style="flex: 1 1 260px; min-width: 0"><strong style="display: block; font: 400 22px/1.2 'Funnel Display', sans-serif">¿Es Toby?</strong><span class="meta" style="display: inline-flex; gap: 6px; align-items: center"><svg class="ico ico-s"><use href="#lock"></use></svg>Si dices que sí, pedimos el contacto. Tu número sigue oculto.</span></div>
+<a class="btn btn-tonal" href="Web-Coincidencias.dc.html" style="background: #fff">No es</a>
+<a class="btn btn-primary" href="Web-Caso.dc.html">Sí, puede ser</a>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

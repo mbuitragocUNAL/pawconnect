@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Panel de fundación (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1Z"></path></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"></path></symbol>
+<symbol id="inbox" viewBox="0 0 24 24"><path d="M4 13.5 6.5 5h11l2.5 8.5V19a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"></path><path d="M4 13.5h5l1 2h4l1-2h5"></path></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<span class="label hide-phone" style="padding-left: 16px; border-left: 1px solid rgba(45,22,89,.28)">Panel de fundación</span>
+<div class="hdr-end">
+<a class="btn btn-tonal hide-phone" href="Web-Animal.dc.html">Ver perfil público</a>
+<span style="display: inline-flex; gap: 10px; align-items: center"><img src="/_blob/47e6d46339b7a778c067bbfcf73540e3" alt="" style="width: 40px; height: 40px; border-radius: 12px; object-fit: cover"><span class="hide-phone" style="font-weight: 500">Refugio Cerro Verde</span></span>
+</div>
+</div>
+</header>
+
+<div class="wrap" style="padding-top: 28px; padding-bottom: 48px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<nav style="flex: 1 1 220px; max-width: 240px; display: flex; flex-direction: column; gap: 4px" aria-label="Panel">
+<a href="Web-Fundacion.dc.html" aria-current="page" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; background: #efedef; font-weight: 500; text-decoration: none"><svg class="ico"><use href="#home"></use></svg>Resumen</a>
+<a href="Web-Fundacion.dc.html" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; text-decoration: none"><svg class="ico"><use href="#heart"></use></svg>Animales<span class="mono" style="margin-left: auto; color: #574b7d">7</span></a>
+<a href="Web-Fundacion.dc.html" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; text-decoration: none"><svg class="ico"><use href="#inbox"></use></svg>Solicitudes<span class="tag tag-lost" style="margin-left: auto">3</span></a>
+<a href="Web-Fundacion.dc.html" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; text-decoration: none"><svg class="ico"><use href="#seal"></use></svg>Verificación</a>
+</nav>
+
+<main style="flex: 999 1 720px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 8px"><span class="seal" style="align-self: flex-start"><svg class="ico ico-s"><use href="#seal"></use></svg>Fundación verificada · nivel 2</span><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Refugio Cerro Verde</h1></div>
+<span class="meta">Sello aprobado el <span class="mono">14 sep 2026</span> con aval de la Fundación Calle 80</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="card" style="flex: 999 1 440px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-pub">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px"><h2 id="h-pub" style="font-size: 24px">Publicar un animal en adopción</h2><a class="btn btn-tonal" href="Flujo-Fundacion-Carga.dc.html" style="min-height: 40px; font-size: 14px">Subir varios a la vez</a></div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<img src="/_blob/3624a9f4e5dbd04ab02d0fb6a942e606" alt="Lupe mirando a través de la reja" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px">
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 4px"><svg class="ico"><use href="#camera"></use></svg>Agregar</span></button>
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 4px"><svg class="ico"><use href="#camera"></use></svg>Agregar</span></button>
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 4px"><svg class="ico"><use href="#camera"></use></svg>Agregar</span></button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px">
+<div class="field"><label for="an">Nombre</label><input class="input" id="an" value="Lupe"></div>
+<div class="field"><label for="ae">Especie</label><select class="input" id="ae"><option>Perro</option><option>Gato</option></select></div>
+<div class="field"><label for="ad">Edad</label><input class="input" id="ad" value="4 años"></div>
+<div class="field"><label for="at">Tamaño</label><select class="input" id="at"><option>Grande</option><option>Mediano</option><option>Pequeño</option></select></div>
+</div>
+<div class="field"><label for="ax">Cómo es</label><textarea class="input" id="ax">Tranquila, le gusta dormir al sol. Necesita casa con patio o paseos largos.</textarea></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">Requisitos</span><span class="meta">Usamos los del perfil del refugio. Puedes cambiarlos para este animal.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="chip chip-on">Mayor de edad</span><span class="chip chip-on">Visita al hogar</span><span class="chip chip-on">Contrato</span><span class="chip">Casa con patio</span></div></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn btn-primary" href="Web-Adopcion.dc.html">Publicar a Lupe</a><a class="btn btn-tonal" href="Web-Fundacion.dc.html">Guardar borrador</a></div>
+</section>
+
+<section class="card" style="flex: 1 1 300px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 12px" aria-labelledby="h-sol">
+<h2 id="h-sol" style="font-size: 24px">Solicitudes nuevas</h2>
+<a href="Web-Caso.dc.html" style="display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><img src="/_blob/5f487a2104dbfd039514b7d404beb41c" alt="" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover"><span style="flex: 1; min-width: 0"><strong style="font-weight: 500; display: block">Rocky · Andrés P.</strong><span class="meta">Celular verificado · hace 2 h</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a href="Web-Caso.dc.html" style="display: flex; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><img src="/_blob/5f487a2104dbfd039514b7d404beb41c" alt="" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover"><span style="flex: 1; min-width: 0"><strong style="font-weight: 500; display: block">Rocky · Laura G.</strong><span class="meta">Celular verificado · ayer</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a href="Web-Caso.dc.html" style="display: flex; gap: 12px; align-items: center; padding: 10px 0; text-decoration: none"><img src="/_blob/3624a9f4e5dbd04ab02d0fb6a942e606" alt="" style="width: 48px; height: 48px; border-radius: 12px; object-fit: cover"><span style="flex: 1; min-width: 0"><strong style="font-weight: 500; display: block">Lupe · Camilo R.</strong><span class="meta">Celular verificado · 8 nov</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<p class="meta">Ves el nombre y el mensaje. El número se comparte cuando aceptas la solicitud y la persona confirma.</p>
+</section>
+</div>
+
+<section class="card" style="padding: 8px 24px 16px" aria-labelledby="h-anim">
+<h2 id="h-anim" style="font-size: 24px; padding: 16px 0 8px">Tus animales</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; min-width: 560px; font-size: 15px">
+<thead><tr style="text-align: left"><th class="label" style="padding: 10px 0; font-weight: 500">Animal</th><th class="label" style="padding: 10px 0; font-weight: 500">Estado</th><th class="label" style="padding: 10px 0; font-weight: 500">Solicitudes</th><th class="label" style="padding: 10px 0; font-weight: 500">Publicado</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid rgba(45,22,89,.14)"><td style="padding: 12px 0"><span style="display: inline-flex; gap: 10px; align-items: center"><img src="/_blob/5f487a2104dbfd039514b7d404beb41c" alt="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover">Rocky</span></td><td><span class="state st-follow">En proceso</span></td><td class="mono">2</td><td class="mono">20 oct 2026</td></tr>
+<tr style="border-top: 1px solid rgba(45,22,89,.14)"><td style="padding: 12px 0"><span style="display: inline-flex; gap: 10px; align-items: center"><img src="/_blob/3624a9f4e5dbd04ab02d0fb6a942e606" alt="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover">Lupe</span></td><td><span class="state st-active">Disponible</span></td><td class="mono">1</td><td class="mono">2 nov 2026</td></tr>
+<tr style="border-top: 1px solid rgba(45,22,89,.14)"><td style="padding: 12px 0"><span style="display: inline-flex; gap: 10px; align-items: center"><img src="/_blob/44539f12698e28e46591211167d4e413" alt="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover">Canela</span></td><td><span class="state st-solved">Adoptada</span></td><td class="mono">0</td><td class="mono">1 sep 2026</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

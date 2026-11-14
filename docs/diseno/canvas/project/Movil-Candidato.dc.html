@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Candidato (móvil)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div class="phone" style="font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+</svg>
+<div class="appbar">
+<a class="icon-btn" href="Movil-Resultados.dc.html" aria-label="Volver a las coincidencias"><svg class="ico"><use href="#back"></use></svg></a>
+<span class="title">Candidato <span class="mono">01</span> de 5</span>
+<span class="tag tag-found">Encontrado</span>
+</div>
+<div class="body" style="gap: 12px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="crop" style="aspect-ratio: 4 / 5; border-radius: 18px"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby, la foto de tu reporte"><span class="frame"></span></span><span class="label">Toby, tu reporte</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><span class="crop" style="aspect-ratio: 4 / 5; border-radius: 18px"><img src="/_blob/926df80318826a21ae1262cbed0be175" alt="Perro encontrado en Engativá"><span class="frame"></span></span><span class="label">Encontrado en Engativá</span></div>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid rgba(45,22,89,.14)">
+<div style="padding: 10px 10px 10px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Zona</dt><dd style="margin: 2px 0 0; font-size: 15px">Engativá, 500 m</dd></div>
+<div style="padding: 10px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Fecha</dt><dd class="mono" style="margin: 2px 0 0; font-size: 15px">10 nov 2026</dd></div>
+<div style="padding: 10px 10px 10px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Tamaño</dt><dd style="margin: 2px 0 0; font-size: 15px">Mediano</dd></div>
+<div style="padding: 10px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Rasgos</dt><dd style="margin: 2px 0 0; font-size: 15px">Pelo largo dorado, sin collar</dd></div>
+</dl>
+<p style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"><span class="seal"><svg class="ico ico-s"><use href="#check"></use></svg>Celular verificado</span><span class="meta">Está en un hogar temporal.</span></p>
+</div>
+<div class="foot">
+<strong style="font: 400 20px/1.2 'Funnel Display', sans-serif">¿Es Toby?</strong>
+<div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px">
+<a class="btn btn-tonal" href="Movil-Resultados.dc.html">No es</a>
+<a class="btn btn-primary" href="Movil-Contacto.dc.html">Sí, puede ser</a>
+</div>
+<span class="meta" style="display: inline-flex; gap: 6px; align-items: center"><svg class="ico ico-s"><use href="#lock"></use></svg>Si dices que sí, pedimos el contacto. Tu número sigue oculto.</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Caso (móvil)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div class="phone" style="font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+</svg>
+<div class="appbar">
+<a class="icon-btn" href="Movil-Inicio.dc.html" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></a>
+<span class="title">Caso <span class="mono">PC-2048</span></span>
+</div>
+<div class="body">
+<div style="display: flex; gap: 14px; align-items: center">
+<span class="crop" style="width: 92px; height: 92px; border-radius: 18px"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby"><span class="frame" style="--c: 10px"></span></span>
+<div style="display: flex; flex-direction: column; gap: 6px; align-items: flex-start"><span class="tag tag-lost">Perdido</span><h1 style="font-size: 28px">Toby</h1><span class="state st-follow">En seguimiento</span></div>
+</div>
+<a href="Movil-Resultados.dc.html" class="card" style="display: flex; align-items: center; gap: 12px; padding: 14px; text-decoration: none"><span style="flex: 1"><strong style="font-weight: 500; display: block">3 candidatos por revisar</strong><span class="meta">Descartaste 2 · pediste contacto por el 01</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<ol class="tl" style="margin-top: 4px">
+<li style="color: #7a4f00"><span class="dot dot-fill"></span><span><strong>Pediste contacto por el candidato 01</strong><time>11 nov · 10:12</time></span></li>
+<li style="color: #574b7d"><span class="dot"></span><span><strong>Descartaste los candidatos 04 y 05</strong><time>11 nov · 10:05</time></span></li>
+<li style="color: #1f4f99"><span class="dot dot-fill"></span><span><strong>Caso activo, 5 candidatos</strong><time>9 nov · 19:40</time></span></li>
+<li style="color: #574b7d"><span class="dot"></span><span><strong>Reporte publicado con 2 fotos</strong><time>9 nov · 19:38</time></span></li>
+</ol>
+</div>
+<div class="foot">
+<a class="btn btn-primary btn-block" href="Movil-Caso.dc.html">Marcar a Toby como reencontrado</a>
+<a class="btn btn-tonal btn-block" href="Movil-Caso.dc.html">Cerrar sin reencuentro</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

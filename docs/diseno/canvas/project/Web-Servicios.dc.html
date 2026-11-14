@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Mapa de servicios (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif; display: flex; flex-direction: column">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+<symbol id="place" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="9"></circle></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a class="here" href="Web-Servicios.dc.html" aria-current="page">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="btn btn-tonal hide-phone" href="Movil-Ingreso.dc.html">Ingresar</a>
+<a class="btn btn-primary" href="Web-Publicar.dc.html">Publicar reporte</a>
+</div>
+</div>
+</header>
+
+<main style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch">
+<section style="flex: 1 1 420px; max-width: 520px; min-width: 0; padding: 28px 24px 28px 32px; display: flex; flex-direction: column; gap: 16px; border-right: 1px solid rgba(45,22,89,.14)">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="font-size: 34px">Servicios para tu animal cerca de ti</h1>
+<p class="meta">Solo aparecen con sello los prestadores que mostraron su matrícula en el RUES y su RUT.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Categorías">
+<button class="chip" type="button" style="border-color: #a8231b; color: #a8231b"><svg class="ico ico-s"><use href="#clock"></use></svg>Urgencias 24 h</button>
+<button class="chip chip-on" type="button" aria-pressed="true">Veterinarias</button>
+<button class="chip" type="button">Guarderías</button>
+<button class="chip" type="button">Paseadores</button>
+<button class="chip" type="button">Entrenadores</button>
+<button class="chip" type="button">Tiendas</button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font: 400 20px/1.2 'Funnel Display', sans-serif">4 veterinarias en Usaquén</span><span class="label">Más cercanas</span></div>
+<a href="Web-Prestador.dc.html" class="card" style="display: flex; gap: 12px; padding: 12px; text-decoration: none; border-color: #2d1659; box-shadow: 0 0 0 1px #2d1659">
+<img src="/_blob/45574237de3d956506f92c5c0f766db8" alt="Fachada de la Veterinaria Los Cerezos" style="width: 84px; height: 84px; border-radius: 14px; object-fit: cover; flex: none">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font: 400 18px/1.2 'Funnel Display', sans-serif">Veterinaria Los Cerezos</span><span style="display: flex; gap: 6px; flex-wrap: wrap"><span class="state st-danger">Urgencias 24 h</span><span class="seal" style="height: 26px"><svg class="ico ico-s"><use href="#seal"></use></svg>Verificado</span></span><span class="meta">Calle 140 · Usaquén</span></span>
+</a>
+<a href="Web-Prestador.dc.html" class="card" style="display: flex; gap: 12px; padding: 12px; text-decoration: none">
+<img src="/_blob/58851a76c58ced813d9cb99863d75073" alt="Veterinaria revisando a un bulldog" style="width: 84px; height: 84px; border-radius: 14px; object-fit: cover; flex: none">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font: 400 18px/1.2 'Funnel Display', sans-serif">Clínica Animal Santa Bárbara</span><span style="display: flex; gap: 6px; flex-wrap: wrap"><span class="seal" style="height: 26px"><svg class="ico ico-s"><use href="#seal"></use></svg>Verificado</span></span><span class="meta">Carrera 15 · Santa Bárbara · lun a sáb</span></span>
+</a>
+<a href="Web-Prestador.dc.html" class="card" style="display: flex; gap: 12px; padding: 12px; text-decoration: none">
+<img src="/_blob/ce36de7c6f0c6bc4d6f44e7b891f5d93" alt="Yorkshire sobre una mesa de consulta" style="width: 84px; height: 84px; border-radius: 14px; object-fit: cover; flex: none">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font: 400 18px/1.2 'Funnel Display', sans-serif">Consultorio Patitas del Norte</span><span style="display: flex; gap: 6px; flex-wrap: wrap"><span class="seal" style="height: 26px; color: #574b7d; border-style: dashed"><svg class="ico ico-s"><use href="#clock"></use></svg>Verificación en revisión</span></span><span class="meta">Calle 127 · Usaquén · lun a vie</span></span>
+</a>
+</section>
+
+<section class="map" style="flex: 999 1 560px; min-width: 0; min-height: 560px" aria-label="Mapa de servicios">
+<svg viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="1000" height="800" fill="#f1eee9"></rect>
+<g fill="#e7e2db"><rect x="20" y="20" width="170" height="130" rx="4"></rect><rect x="210" y="20" width="200" height="130" rx="4"></rect><rect x="430" y="20" width="160" height="130" rx="4"></rect><rect x="610" y="20" width="170" height="130" rx="4"></rect><rect x="800" y="20" width="180" height="130" rx="4"></rect><rect x="20" y="170" width="170" height="150" rx="4"></rect><rect x="210" y="170" width="200" height="150" rx="4"></rect><rect x="610" y="170" width="170" height="150" rx="4"></rect><rect x="800" y="170" width="180" height="150" rx="4"></rect><rect x="20" y="340" width="170" height="140" rx="4"></rect><rect x="430" y="340" width="160" height="140" rx="4"></rect><rect x="610" y="340" width="170" height="140" rx="4"></rect><rect x="800" y="340" width="180" height="140" rx="4"></rect><rect x="20" y="500" width="170" height="130" rx="4"></rect><rect x="210" y="500" width="200" height="130" rx="4"></rect><rect x="610" y="500" width="170" height="130" rx="4"></rect><rect x="800" y="500" width="180" height="130" rx="4"></rect><rect x="20" y="650" width="170" height="130" rx="4"></rect><rect x="210" y="650" width="200" height="130" rx="4"></rect><rect x="430" y="650" width="160" height="130" rx="4"></rect><rect x="610" y="650" width="170" height="130" rx="4"></rect><rect x="800" y="650" width="180" height="130" rx="4"></rect></g>
+<rect x="430" y="170" width="160" height="150" rx="4" fill="#dfe8da"></rect><rect x="210" y="340" width="200" height="140" rx="4" fill="#dfe8da"></rect><rect x="430" y="500" width="160" height="130" rx="4" fill="#dfe8da"></rect>
+<path d="M0 700 L1000 160" stroke="#fff" stroke-width="16"></path><path d="M600 0 V800" stroke="#fff" stroke-width="10"></path>
+<g><circle cx="700" cy="260" r="16" fill="#a8231b" stroke="#fff" stroke-width="4"></circle><circle cx="380" cy="420" r="13" fill="#2d1659" stroke="#fff" stroke-width="4"></circle><circle cx="860" cy="560" r="13" fill="#2d1659" stroke="#fff" stroke-width="4"></circle><circle cx="250" cy="200" r="13" fill="#fbf9f7" stroke="#2d1659" stroke-width="3" stroke-dasharray="4 3"></circle><circle cx="520" cy="610" r="13" fill="#2d1659" stroke="#fff" stroke-width="4"></circle></g>
+</svg>
+<div class="card" style="position: absolute; left: clamp(16px, calc(70% - 150px), calc(100% - 316px)); top: calc(32.5% + 28px); width: 300px; max-width: calc(100% - 32px); padding: 12px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 16px 32px -16px rgba(45,22,89,.35)">
+<span style="font: 400 17px/1.2 'Funnel Display', sans-serif">Veterinaria Los Cerezos</span>
+<span class="state st-danger" style="align-self: flex-start">Urgencias 24 h</span>
+<a class="link" href="Web-Prestador.dc.html" style="font: 500 14px/1.2 'Funnel Sans', sans-serif">Ver servicios y horario</a>
+</div>
+<div style="position: absolute; left: 20px; bottom: 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; padding: 10px 14px; border-radius: 999px; background: #fbf9f7; font: 500 13px/1 'Funnel Sans', sans-serif">
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 14px; height: 14px; border-radius: 50%; background: #a8231b; box-shadow: 0 0 0 2px #fff"></span>Urgencias 24 h</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 14px; height: 14px; border-radius: 50%; background: #2d1659; box-shadow: 0 0 0 2px #fff"></span>Con sello</span>
+<span style="display: inline-flex; gap: 6px; align-items: center"><span style="width: 14px; height: 14px; border-radius: 50%; background: #fbf9f7; border: 2px dashed #2d1659"></span>En revisión</span>
+<span style="color: #574b7d">Un lugar fijo es un punto; un reporte, un círculo</span>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

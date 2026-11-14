@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Crear cuenta (móvil)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div class="phone" style="font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+</svg>
+<div class="appbar">
+<a class="icon-btn" href="Movil-Inicio.dc.html" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></a>
+<span class="title">Crear cuenta</span>
+</div>
+<div class="body" style="gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="font-size: 30px">Para publicar, verifica tu celular</h1>
+<p style="font-size: 15px">Te mandamos un código de 6 dígitos por SMS. Una cuenta por número.</p>
+</div>
+<div class="field"><label for="n">Tu nombre</label><input class="input" id="n" value="Sofía Martínez" autocomplete="name"></div>
+<div class="field"><label for="cel">Número de celular</label><div style="display: flex; gap: 8px"><span style="height: 48px; display: grid; place-items: center; padding: 0 14px; border-radius: 10px; background: #efedef; font-weight: 500">+57</span><input class="input" id="cel" type="tel" inputmode="tel" autocomplete="tel-national" value="300 555 0141"></div></div>
+<label class="consent"><input type="checkbox"><span><strong>Acepto el tratamiento de mis datos</strong><small>Celular y mensajes, para publicar reportes y contactarte. <a class="link" href="Movil-Ingreso.dc.html">Leer la política</a> · <span class="mono" style="font-size: 12.5px">versión 1.2</span></small></span></label>
+<p class="meta" style="display: flex; gap: 8px; align-items: flex-start"><svg class="ico ico-s" style="margin-top: 3px"><use href="#lock"></use></svg>Puedes borrar tu cuenta y tus datos cuando quieras desde tu perfil.</p>
+</div>
+<div class="foot">
+<a class="btn btn-primary btn-block" href="Movil-Fotos.dc.html" aria-disabled="true" style="opacity: .45">Enviar código por SMS</a>
+<span class="meta" style="text-align: center">Marca la casilla para continuar. ¿Ya tienes cuenta? <a class="link" href="Movil-Ingreso.dc.html">Ingresar</a></span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

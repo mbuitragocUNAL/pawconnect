@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Caso y contacto (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="icon-btn" href="Web-Caso.dc.html" aria-label="Notificaciones"><svg class="ico"><use href="#bell"></use></svg></a>
+<a class="btn btn-primary hide-phone" href="Web-Publicar.dc.html">Publicar reporte</a>
+<a class="avatar" href="Web-Caso.dc.html" aria-label="Mi cuenta, Sofía M.">SM</a>
+</div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 32px; padding-bottom: 48px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<nav style="flex: 1 1 260px; max-width: 300px; display: flex; flex-direction: column; gap: 8px" aria-label="Mis casos">
+<span class="label" style="padding: 0 4px 4px">Mis casos</span>
+<a href="Web-Caso.dc.html" aria-current="page" class="card" style="display: flex; gap: 12px; align-items: center; padding: 10px; text-decoration: none; border-color: #2d1659; box-shadow: 0 0 0 1px #2d1659"><span class="crop" style="width: 52px; height: 52px; border-radius: 12px"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby"><span class="frame" style="--c: 9px"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><strong style="font-weight: 500">Toby</strong><span class="state st-follow">En seguimiento</span></span></a>
+<a href="Web-Caso.dc.html" class="card" style="display: flex; gap: 12px; align-items: center; padding: 10px; text-decoration: none"><span class="crop" style="width: 52px; height: 52px; border-radius: 12px"><img src="/_blob/14614839951ad5d264d899fb006139ba" alt="Gato encontrado"><span class="frame" style="--c: 9px"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><strong style="font-weight: 500">Gato encontrado</strong><span style="display: flex; gap: 6px; flex-wrap: wrap"><span class="state st-active">Activo</span><span class="tag tag-lost">1 solicitud</span></span></span></a>
+<a href="Web-Caso.dc.html" class="card" style="display: flex; gap: 12px; align-items: center; padding: 10px; text-decoration: none"><span class="crop" style="width: 52px; height: 52px; border-radius: 12px"><img src="/_blob/8e2394a664533690efb844f820949d15" alt="Luna"><span class="frame" style="--c: 9px"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><strong style="font-weight: 500">Luna</strong><span class="state st-solved">Resuelto</span></span></a>
+</nav>
+
+<div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center">
+<span class="crop" style="width: 112px; height: 112px; border-radius: 22px"><img src="/_blob/67613a4f6ef8ef51204d5dae0f572ee0" alt="Toby"><span class="frame"></span></span>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
+<span style="display: flex; gap: 8px; flex-wrap: wrap"><span class="tag tag-lost">Perdido</span><span class="state st-follow">En seguimiento</span></span>
+<h1 style="font-size: clamp(32px, 1.6vw + 22px, 48px)">Toby</h1>
+<span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Suba · caso <span class="mono">PC-2048</span> · publicado el 9 nov 2026</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<a class="btn btn-primary" href="Movil-Caso.dc.html">Marcar a Toby como reencontrado</a>
+<a class="btn btn-tonal" href="Web-Caso.dc.html">Cerrar sin reencuentro</a>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="card" style="flex: 1 1 340px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-contacto">
+<h2 id="h-contacto" style="font-size: 24px">Contacto por el candidato <span class="mono">01</span></h2>
+<div class="keyrow"><span class="key-on"><svg class="ico ico-s"><use href="#check"></use></svg></span><span style="flex: 1"><strong style="font-weight: 500; display: block">Tú aceptaste</strong><span class="meta">11 nov · 10:12</span></span></div>
+<div class="keyrow"><span class="key-wait"><svg class="ico ico-s"><use href="#clock"></use></svg></span><span style="flex: 1"><strong style="font-weight: 500; display: block">Quien lo encontró</strong><span class="meta">Todavía no responde</span></span></div>
+<div class="keyrow" style="justify-content: space-between"><span class="masked"><svg class="ico ico-s"><use href="#lock"></use></svg>+57 3•• ••• ••41</span><span class="meta">Se muestra cuando los dos acepten</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="label">Tu mensaje</span>
+<p style="padding: 12px 14px; border-radius: 16px 16px 16px 4px; background: #efedef; font-size: 15px">Hola, creo que es mi perro Toby. Se perdió el 9 de noviembre en Suba. ¿Tiene una mancha blanca en el pecho?</p>
+</div>
+</section>
+
+<section class="card" style="flex: 1 1 300px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-hist">
+<h2 id="h-hist" style="font-size: 24px">Historial del caso</h2>
+<ol class="tl">
+<li style="color: #7a4f00"><span class="dot dot-fill"></span><span><strong>Pediste contacto por el candidato 01</strong><time>11 nov 2026 · 10:12</time></span></li>
+<li style="color: #574b7d"><span class="dot"></span><span><strong>Descartaste los candidatos 04 y 05</strong><time>11 nov 2026 · 10:05</time></span></li>
+<li style="color: #1f4f99"><span class="dot dot-fill"></span><span><strong>Caso activo, 5 candidatos</strong><time>9 nov 2026 · 19:40</time></span></li>
+<li style="color: #574b7d"><span class="dot"></span><span><strong>Reporte publicado con 2 fotos</strong><time>9 nov 2026 · 19:38</time></span></li>
+</ol>
+<p class="meta">Un caso solo pasa a resuelto cuando tú lo marcas. Cada cambio queda con su fecha.</p>
+</section>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

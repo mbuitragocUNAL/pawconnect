@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Inicio (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H12v17H6.5A2.5 2.5 0 0 0 4 22.5Z"></path><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H12v17h5.5a2.5 2.5 0 0 1 2.5 2.5Z"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="btn btn-tonal hide-phone" href="Movil-Ingreso.dc.html">Ingresar</a>
+<a class="btn btn-primary" href="Web-Publicar.dc.html">Publicar reporte</a>
+</div>
+</div>
+</header>
+
+<main>
+<section class="wrap" style="display: flex; flex-wrap: wrap; gap: 48px; align-items: stretch; padding-top: 64px; padding-bottom: 72px">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; justify-content: center">
+<span class="label">Perros y gatos perdidos y encontrados · Bogotá y la Sabana</span>
+<h1 style="font-size: clamp(38px, 2.6vw + 22px, 64px); letter-spacing: -0.04em; line-height: 1.02">¿Perdiste o encontraste un perro o un gato?</h1>
+<p style="font-size: 19px; line-height: 1.55; max-width: 34em">Publica su foto. PawConnect la compara con los reportes de la zona y te muestra cinco posibles coincidencias. Tú decides si es tu animal.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+<a href="Web-Publicar.dc.html" class="card" style="display: flex; gap: 14px; align-items: center; padding: 18px; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #cc2f70; color: #fff; display: grid; place-items: center; flex: none"><svg class="ico ico-l"><use href="#search"></use></svg></span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font: 400 21px/1.15 'Funnel Display', sans-serif; letter-spacing: -0.02em">Perdí a mi mascota</strong><span class="meta">La comparamos con los animales encontrados</span></span>
+<svg class="ico"><use href="#chev"></use></svg>
+</a>
+<a href="Web-Encontre.dc.html" class="card" style="display: flex; gap: 14px; align-items: center; padding: 18px; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #2d1659; color: #fff; display: grid; place-items: center; flex: none"><svg class="ico ico-l"><use href="#heart"></use></svg></span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font: 400 21px/1.15 'Funnel Display', sans-serif; letter-spacing: -0.02em">Encontré un animal</strong><span class="meta">Lo tienes contigo o lo viste en la calle</span></span>
+<svg class="ico"><use href="#chev"></use></svg>
+</a>
+</div>
+<p class="meta" style="display: flex; gap: 8px; align-items: center"><svg class="ico ico-s"><use href="#lock"></use></svg>Tu teléfono no se muestra hasta que las dos partes aceptan el contacto.</p>
+</div>
+
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div class="map card" style="height: 420px; border-radius: 24px">
+<svg viewBox="0 0 600 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="600" height="420" fill="#f1eee9"></rect>
+<g fill="#e7e2db"><rect x="16" y="16" width="120" height="86" rx="4"></rect><rect x="152" y="16" width="140" height="86" rx="4"></rect><rect x="308" y="16" width="120" height="86" rx="4"></rect><rect x="444" y="16" width="140" height="86" rx="4"></rect><rect x="16" y="118" width="120" height="96" rx="4"></rect><rect x="308" y="118" width="120" height="96" rx="4"></rect><rect x="444" y="118" width="140" height="96" rx="4"></rect><rect x="16" y="230" width="120" height="86" rx="4"></rect><rect x="152" y="230" width="140" height="86" rx="4"></rect><rect x="444" y="230" width="140" height="86" rx="4"></rect><rect x="16" y="332" width="120" height="76" rx="4"></rect><rect x="152" y="332" width="140" height="76" rx="4"></rect><rect x="308" y="332" width="120" height="76" rx="4"></rect><rect x="444" y="332" width="140" height="76" rx="4"></rect></g>
+<rect x="152" y="118" width="140" height="96" rx="4" fill="#dfe8da"></rect><rect x="308" y="230" width="120" height="86" rx="4" fill="#dfe8da"></rect>
+<path d="M0 380 L600 70" stroke="#fff" stroke-width="12"></path>
+<g stroke-width="1.5" stroke-dasharray="5 5"><circle cx="150" cy="120" r="58" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)"></circle><circle cx="420" cy="180" r="58" fill="rgba(45,22,89,.10)" stroke="rgba(45,22,89,.5)"></circle><circle cx="260" cy="300" r="58" fill="rgba(45,22,89,.10)" stroke="rgba(45,22,89,.5)"></circle><circle cx="510" cy="340" r="58" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)"></circle></g>
+<g fill="#cc2f70"><circle cx="150" cy="120" r="5"></circle><circle cx="510" cy="340" r="5"></circle></g><g fill="#2d1659"><circle cx="420" cy="180" r="5"></circle><circle cx="260" cy="300" r="5"></circle></g>
+</svg>
+<div style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px">
+<a class="report" href="Web-Reportes.dc.html"><span class="crop" style="width: 72px; height: 72px"><img src="/_blob/8c63afd3a104dfc07b486089e4ac0d14" alt="Perro dormido en un andén con la cabeza sobre una piedra"><span class="frame"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span><span class="tag tag-found">Encontrado</span></span><span style="font: 400 17px/1.2 'Funnel Display', sans-serif">Perro café, collar negro</span><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Chapinero · hace 1 día</span></span></a>
+<a class="report hide-phone" href="Web-Reportes.dc.html"><span class="crop" style="width: 72px; height: 72px"><img src="/_blob/a6fd9fcb54c9cce35410b3e0381a887a" alt="Gata atigrada echada sobre adoquines"><span class="frame"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span><span class="tag tag-lost">Perdido</span></span><span style="font: 400 17px/1.2 'Funnel Display', sans-serif">Mora, gata atigrada</span><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Usaquén · hace 3 días</span></span></a>
+</div>
+<span style="position: absolute; top: 16px; left: 16px; display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 999px; background: #fbf9f7; font: 500 13px/1 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#zone"></use></svg>Cada reporte es un área de 500 m, nunca un punto</span>
+</div>
+</div>
+</section>
+
+<section class="wrap" style="padding-top: 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 28px">
+<h2 style="font-size: clamp(28px, 1.4vw + 20px, 42px)">Reportes recientes en Bogotá y la Sabana</h2>
+<a class="link" href="Web-Reportes.dc.html" style="font-weight: 500">Ver todos en el mapa</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px">
+<a href="Web-Reportes.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<span class="crop" style="height: 200px; border-radius: 0"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby, perro mestizo de pelo largo dorado"><span class="frame frame-l"></span></span>
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span><span class="tag tag-lost">Perdido</span></span><span style="font: 400 20px/1.2 'Funnel Display', sans-serif">Toby, mestizo dorado</span><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Suba · hace 2 días</span></span>
+</a>
+<a href="Web-Reportes.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<span class="crop" style="height: 200px; border-radius: 0"><img src="/_blob/14614839951ad5d264d899fb006139ba" alt="Gato blanco y negro sentado en la calle"><span class="frame frame-l"></span></span>
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span><span class="tag tag-found">Encontrado</span></span><span style="font: 400 20px/1.2 'Funnel Display', sans-serif">Gato blanco y negro</span><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Teusaquillo · hace 5 h</span></span>
+</a>
+<a href="Web-Reportes.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<span class="crop" style="height: 200px; border-radius: 0"><img src="/_blob/ccd8b36ec1dcc0dfeacab45f3f506ae7" alt="Perra negra caminando por el asfalto"><span class="frame frame-l"></span></span>
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span><span class="tag tag-lost">Perdido</span></span><span style="font: 400 20px/1.2 'Funnel Display', sans-serif">Negra, perra mestiza</span><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Galerías · hace 1 día</span></span>
+</a>
+<a href="Web-Reportes.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column">
+<span class="crop" style="height: 200px; border-radius: 0"><img src="/_blob/6cfd1ed8d9b828e5c68726fc06fc0e71" alt="Perro canela caminando por una calle"><span class="frame frame-l"></span></span>
+<span style="padding: 16px; display: flex; flex-direction: column; gap: 6px"><span><span class="tag tag-found">Encontrado</span></span><span style="font: 400 20px/1.2 'Funnel Display', sans-serif">Lucas, perro canela</span><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Niza · hace 6 días</span></span>
+</a>
+</div>
+</section>
+
+<section class="wrap" style="padding-top: 88px">
+<h2 style="font-size: clamp(28px, 1.4vw + 20px, 42px); margin-bottom: 28px">Cómo funciona la búsqueda por foto</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px">
+<li style="border-top: 2px solid #2d1659; padding-top: 16px; display: flex; flex-direction: column; gap: 8px"><span class="mono" style="font-size: 13px; color: #574b7d">01</span><h3 style="font-size: 22px">Subes de 1 a 5 fotos</h3><p>Guardamos solo el recorte del animal. La foto original se descarta.</p></li>
+<li style="border-top: 2px solid #2d1659; padding-top: 16px; display: flex; flex-direction: column; gap: 8px"><span class="mono" style="font-size: 13px; color: #574b7d">02</span><h3 style="font-size: 22px">Filtramos antes de comparar</h3><p>Misma especie, a menos de 15 km y de los últimos 60 días.</p></li>
+<li style="border-top: 2px solid #2d1659; padding-top: 16px; display: flex; flex-direction: column; gap: 8px"><span class="mono" style="font-size: 13px; color: #574b7d">03</span><h3 style="font-size: 22px">Revisas cinco candidatos</h3><p>En orden de parecido, sin porcentajes. Descartas los que no son.</p></li>
+<li style="border-top: 2px solid #2d1659; padding-top: 16px; display: flex; flex-direction: column; gap: 8px"><span class="mono" style="font-size: 13px; color: #574b7d">04</span><h3 style="font-size: 22px">Los dos aceptan el contacto</h3><p>Hasta entonces, ningún número aparece en pantalla.</p></li>
+</ol>
+</section>
+
+<section class="wrap" style="padding-top: 88px">
+<h2 style="font-size: clamp(28px, 1.4vw + 20px, 42px); margin-bottom: 28px">Información para cuidar a tu animal</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+<a href="Web-Guias.dc.html" class="card" style="padding: 24px; text-decoration: none; display: flex; flex-direction: column; gap: 10px"><svg class="ico ico-l"><use href="#book"></use></svg><h3 style="font-size: 24px">Guías y trámites</h3><p>Tenencia, vacunas, viajes y transporte, cada guía con su fuente oficial y fecha de actualización.</p></a>
+<a href="Web-Adopcion.dc.html" class="card" style="padding: 24px; text-decoration: none; display: flex; flex-direction: column; gap: 10px"><svg class="ico ico-l"><use href="#heart"></use></svg><h3 style="font-size: 24px">Adopción</h3><p>Animales publicados por fundaciones verificadas, con sus requisitos a la vista.</p></a>
+<a href="Web-Servicios.dc.html" class="card" style="padding: 24px; text-decoration: none; display: flex; flex-direction: column; gap: 10px"><svg class="ico ico-l"><use href="#clock"></use></svg><h3 style="font-size: 24px">Servicios cercanos</h3><p>Veterinarias, guarderías y paseadores con sello de verificación, y urgencias 24 horas.</p></a>
+</div>
+</section>
+</main>
+
+<footer class="ftr">
+<div class="ftr-in">
+<span>PawConnect · PawTeam S.A.S. · 2026</span>
+<a class="link" href="Main.dc.html">Política de tratamiento de datos</a>
+<a class="link" href="Main.dc.html">Términos de uso</a>
+<span>Complementa al IDPYBA; no lo reemplaza.</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1480}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

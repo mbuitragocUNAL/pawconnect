@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Adopción (móvil)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div class="phone" style="font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+<symbol id="sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></symbol>
+</svg>
+<div class="appbar">
+<a class="icon-btn" href="Movil-Mas.dc.html" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></a>
+<span class="title">Adopción</span>
+<button class="icon-btn" type="button" aria-label="Más filtros"><svg class="ico"><use href="#sliders"></use></svg></button>
+</div>
+<div class="body" style="gap: 12px">
+<div style="display: flex; gap: 6px; overflow: hidden" role="group" aria-label="Filtros">
+<button class="chip chip-on" type="button" style="height: 32px; font-size: 13px; padding: 0 12px">Todos</button>
+<button class="chip" type="button" style="height: 32px; font-size: 13px; padding: 0 12px">Perros</button>
+<button class="chip" type="button" style="height: 32px; font-size: 13px; padding: 0 12px">Gatos</button>
+<button class="chip" type="button" style="height: 32px; font-size: 13px; padding: 0 12px">Cachorros</button>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<a href="Movil-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column"><img src="/_blob/5f487a2104dbfd039514b7d404beb41c" alt="Rocky, perro blanco con manchas cafés" style="width: 100%; aspect-ratio: 1; object-fit: cover"><span style="padding: 10px; display: flex; flex-direction: column; gap: 2px"><span style="font: 400 18px/1.15 'Funnel Display', sans-serif">Rocky</span><span class="meta" style="font-size: 13px">Perro · 2 años</span><span style="display: inline-flex; gap: 4px; align-items: center; font: 500 12.5px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Cerro Verde</span></span></a>
+<a href="Movil-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column"><img src="/_blob/117c64946619f4ebc57f4c6c31f06292" alt="Pepa, gatita blanca con manchas negras" style="width: 100%; aspect-ratio: 1; object-fit: cover"><span style="padding: 10px; display: flex; flex-direction: column; gap: 2px"><span style="font: 400 18px/1.15 'Funnel Display', sans-serif">Pepa</span><span class="meta" style="font-size: 13px">Gata · 4 meses</span><span style="display: inline-flex; gap: 4px; align-items: center; font: 500 12.5px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Calle 80</span></span></a>
+<a href="Movil-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column"><img src="/_blob/e3e69a171a8c4ba82f38af456e22dcf9" alt="Nube, gato de ojos azules" style="width: 100%; aspect-ratio: 1; object-fit: cover"><span style="padding: 10px; display: flex; flex-direction: column; gap: 2px"><span style="font: 400 18px/1.15 'Funnel Display', sans-serif">Nube</span><span class="meta" style="font-size: 13px">Gato · 1 año</span><span style="display: inline-flex; gap: 4px; align-items: center; font: 500 12.5px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Calle 80</span></span></a>
+<a href="Movil-Animal.dc.html" class="card" style="overflow: hidden; text-decoration: none; display: flex; flex-direction: column"><img src="/_blob/3624a9f4e5dbd04ab02d0fb6a942e606" alt="Lupe, perra clara mirando por una reja" style="width: 100%; aspect-ratio: 1; object-fit: cover"><span style="padding: 10px; display: flex; flex-direction: column; gap: 2px"><span style="font: 400 18px/1.15 'Funnel Display', sans-serif">Lupe</span><span class="meta" style="font-size: 13px">Perra · 4 años</span><span style="display: inline-flex; gap: 4px; align-items: center; font: 500 12.5px/1.3 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#seal"></use></svg>Cerro Verde</span></span></a>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

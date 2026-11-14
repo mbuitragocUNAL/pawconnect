@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Prototipo: carga masiva de una fundación</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="sheet" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M4 10h16M10 4v16"></path></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v5.2M12 16.3h.01"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<span class="label hide-phone" style="padding-left: 16px; border-left: 1px solid rgba(45,22,89,.28)">Panel de fundación</span>
+<div class="hdr-end"><a class="btn btn-tonal hide-phone" href="Web-Fundacion.dc.html">Volver al panel</a><img src="/_blob/47e6d46339b7a778c067bbfcf73540e3" alt="Refugio Cerro Verde" style="width: 40px; height: 40px; border-radius: 12px; object-fit: cover"></div>
+</div>
+</header>
+
+<div class="wrap" style="padding-top: 32px; padding-bottom: 56px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start">
+<ol style="flex: 1 1 220px; max-width: 260px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px" aria-label="Pasos">
+<sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+<li style="{{ st.style }}"><span style="{{ st.dot }}">{{ st.n }}</span>{{ st.label }}</li>
+</sc-for>
+</ol>
+
+<main style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+
+<sc-if value="{{ isSubir }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Publica varios animales a la vez</h1><p style="font-size: 18px; max-width: 38em">Sube todas las fotos juntas. Las agrupamos por animal con el mismo reconocimiento de la búsqueda; tú solo revisas y completas lo mínimo.</p></div>
+<button type="button" onClick="{{ upload }}" class="slot" style="min-height: 280px; cursor: pointer; background: #fff; border-radius: 24px; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: center; font-size: 16px">
+<span style="width: 64px; height: 64px; border-radius: 20px; background: #efedef; display: grid; place-items: center; color: #2d1659"><svg class="ico ico-l"><use href="#upload"></use></svg></span>
+<strong style="font: 400 24px/1.2 'Funnel Display', sans-serif; color: #2d1659">Arrastra aquí las fotos o toca para elegirlas</strong>
+<span>Hasta 100 fotos, JPG o PNG. Este prototipo carga 7 de ejemplo.</span>
+</button>
+<div class="card" style="padding: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+<svg class="ico ico-l"><use href="#sheet"></use></svg>
+<span style="flex: 1 1 260px"><strong style="font-weight: 500; display: block">¿Ya tienes una hoja de cálculo?</strong><span class="meta">Importa un CSV con nombre, especie, edad y tamaño, y luego une las fotos a cada fila.</span></span>
+<a class="btn btn-tonal" href="Flujo-Fundacion-Carga.dc.html">Descargar la plantilla</a>
+</div>
+</sc-if>
+
+<sc-if value="{{ isProc }}" hint-placeholder-val="{{ false }}">
+<h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Revisando 7 fotos</h1>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px">
+<sc-for list="{{ raw }}" as="r" hint-placeholder-count="7"><span class="crop" style="aspect-ratio: 1; border-radius: 14px"><img src="{{ r.img }}" alt="{{ r.alt }}" style="{{ r.pos }}"><span class="frame" style="--c: 10px"></span></span></sc-for>
+</div>
+<p class="meta">Detectando perros y gatos y comparando las fotos entre sí.</p>
+</sc-if>
+
+<sc-if value="{{ isAgrupar }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Encontramos {{ animalCount }} animales</h1><p style="font-size: 17px">Revisa que cada grupo sea un solo animal. Puedes separar un grupo si juntamos dos.</p></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px">
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+<div class="card" style="{{ g.cardStyle }}">
+<div style="display: flex; gap: 8px"><sc-for list="{{ g.photos }}" as="p" hint-placeholder-count="2"><span class="crop" style="width: 100px; height: 100px; border-radius: 14px"><img src="{{ p.img }}" alt="{{ p.alt }}" style="{{ p.pos }}"><span class="frame" style="--c: 9px"></span></span></sc-for></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><strong style="font-weight: 500">{{ g.title }}</strong><span class="label">{{ g.kind }}</span></div>
+<sc-if value="{{ g.doubt }}" hint-placeholder-val="{{ false }}">
+<div class="notice notice-plain" style="padding: 10px"><svg class="ico"><use href="#alert"></use></svg><div><strong>¿Son el mismo animal?</strong><p>Se parecen, pero no estamos seguros.</p></div></div>
+<div style="display: flex; gap: 8px"><button class="btn btn-tonal" type="button" onClick="{{ keepTogether }}" style="min-height: 40px; font-size: 14px">Sí, es uno</button><button class="btn btn-primary" type="button" onClick="{{ split }}" style="min-height: 40px; font-size: 14px">Son dos</button></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap"><button class="btn btn-primary" type="button" onClick="{{ toCompletar }}" style="{{ groupsNextStyle }}">Seguir con {{ animalCount }} animales</button><button class="btn btn-tonal" type="button" onClick="{{ restart }}">Cambiar las fotos</button></div>
+</sc-if>
+
+<sc-if value="{{ isCompletar }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Completa lo mínimo</h1><p style="font-size: 17px">Especie y tamaño ya vienen de la foto; corrígelos si hace falta. Lo demás lo puedes llenar después.</p></div>
+<div class="card" style="padding: 8px 20px 12px; overflow-x: auto">
+<table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px">
+<thead><tr style="text-align: left"><th class="label" style="padding: 12px 8px 12px 0; font-weight: 500">Foto</th><th class="label" style="padding: 12px 8px; font-weight: 500">Nombre</th><th class="label" style="padding: 12px 8px; font-weight: 500">Especie</th><th class="label" style="padding: 12px 8px; font-weight: 500">Edad</th><th class="label" style="padding: 12px 8px; font-weight: 500">Tamaño</th></tr></thead>
+<tbody>
+<sc-for list="{{ rows }}" as="row" hint-placeholder-count="4">
+<tr style="border-top: 1px solid rgba(45,22,89,.14)">
+<td style="padding: 10px 8px 10px 0"><span class="crop" style="width: 56px; height: 56px; border-radius: 12px"><img src="{{ row.img }}" alt="{{ row.alt }}" style="{{ row.pos }}"><span class="frame" style="--c: 7px"></span></span></td>
+<td style="padding: 10px 8px"><input class="input" value="{{ row.name }}" aria-label="{{ row.nameLabel }}" style="height: 44px; min-width: 120px"></td>
+<td style="padding: 10px 8px"><span class="chip chip-on" style="height: 32px; font-size: 13px">{{ row.species }}</span></td>
+<td style="padding: 10px 8px"><select class="input" aria-label="{{ row.ageLabel }}" style="height: 44px"><option>{{ row.age }}</option><option>Cachorro</option><option>Adulto</option><option>Mayor</option></select></td>
+<td style="padding: 10px 8px"><select class="input" aria-label="{{ row.sizeLabel }}" style="height: 44px"><option>{{ row.size }}</option><option>Pequeño</option><option>Mediano</option><option>Grande</option></select></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<label class="consent" style="max-width: 640px"><input type="checkbox" checked="{{ useReqs }}" onChange="{{ toggleReqs }}"><span><strong>Usar los requisitos del refugio para todos</strong><small>Mayor de edad, visita al hogar y contrato. Los cambias por animal cuando quieras.</small></span></label>
+<div style="display: flex; gap: 10px; flex-wrap: wrap"><button class="btn btn-primary" type="button" onClick="{{ publishAll }}">Publicar {{ animalCount }} animales</button><button class="btn btn-tonal" type="button" onClick="{{ toAgrupar }}">Volver a los grupos</button></div>
+</sc-if>
+
+<sc-if value="{{ isListo }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><span class="seal" style="align-self: flex-start"><svg class="ico ico-s"><use href="#seal"></use></svg>Fundación verificada</span><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Publicamos {{ animalCount }} animales</h1><p style="font-size: 17px">Ya aparecen en Adopción con el sello del refugio. Te avisamos cuando llegue una solicitud.</p></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px">
+<sc-for list="{{ rows }}" as="row" hint-placeholder-count="4"><div class="card" style="overflow: hidden"><img src="{{ row.img }}" alt="{{ row.alt }}" style="width: 100%; aspect-ratio: 1; object-fit: cover"><div style="padding: 12px; display: flex; flex-direction: column; gap: 6px"><span style="font: 400 19px/1.2 'Funnel Display', sans-serif">{{ row.name }}</span><span class="state st-active" style="align-self: flex-start">Disponible</span></div></div></sc-for>
+</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap"><a class="btn btn-primary" href="Web-Adopcion.dc.html">Ver en Adopción</a><button class="btn btn-tonal" type="button" onClick="{{ restart }}">Subir más fotos</button></div>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { step: 'subir', decided: false, split: false, useReqs: true };
+}
+componentWillUnmount() { if (this.timer) clearTimeout(this.timer); }
+renderVals() {
+const s = this.state;
+const set = (p) => () => this.setState(p);
+const P = {
+rockyA: { img: '/_blob/5f487a2104dbfd039514b7d404beb41c', alt: 'Rocky, de frente', pos: '' },
+nube: { img: '/_blob/e3e69a171a8c4ba82f38af456e22dcf9', alt: 'Nube, gato de ojos azules', pos: '' },
+lupeA: { img: '/_blob/3624a9f4e5dbd04ab02d0fb6a942e606', alt: 'Lupe tras la reja', pos: '' },
+canela: { img: '/_blob/44539f12698e28e46591211167d4e413', alt: 'Canela, gata atigrada en el pasto', pos: '' },
+pepa: { img: '/_blob/117c64946619f4ebc57f4c6c31f06292', alt: 'Pepa, gatita blanca con manchas', pos: '' },
+mostaza: { img: '/_blob/ed97afb3f7ec55a8031baf6edd216c66', alt: 'Mostaza, gatita tricolor', pos: '' },
+sombra: { img: '/_blob/dd1481024cc93e5b2bbca321edb3e59c', alt: 'Sombra, gato negro', pos: '' }
+};
+const order = ['subir', 'agrupar', 'completar', 'listo'];
+const labels = ['Subir fotos', 'Revisar grupos', 'Completar datos', 'Publicado'];
+const cur = s.step === 'procesando' ? 0 : order.indexOf(s.step);
+const steps = labels.map((l, i) => ({
+n: i < cur ? '✓' : String(i + 1), label: l,
+style: 'display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; ' + (i === cur ? 'background: #efedef; font-weight: 500' : (i < cur ? '' : 'color: #574b7d')),
+dot: 'width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: 500 13px/1 \'DM Mono\', monospace; flex: none; ' + (i <= cur ? 'background: #2d1659; color: #fbf9f7' : 'box-shadow: inset 0 0 0 1.5px rgba(45,22,89,.28)')
+}));
+const base = 'padding: 14px; display: flex; flex-direction: column; gap: 12px; ';
+const doubtOpen = !s.decided;
+let groups = [
+{ title: 'Rocky', kind: 'Perro · 1 foto', photos: [P.rockyA], doubt: false },
+{ title: 'Lupe', kind: 'Perra · 1 foto', photos: [P.lupeA], doubt: false }
+];
+if (s.split) {
+groups = groups.concat([{ title: 'Pepa', kind: 'Gata · 1 foto', photos: [P.pepa], doubt: false }, { title: 'Mostaza', kind: 'Gata · 1 foto', photos: [P.mostaza], doubt: false }]);
+} else {
+groups = groups.concat([{ title: 'Gata blanca y tricolor', kind: 'Gata · 2 fotos', photos: [P.pepa, P.mostaza], doubt: doubtOpen }]);
+}
+groups = groups.concat([{ title: 'Sombra', kind: 'Gato · 1 foto', photos: [P.sombra], doubt: false }, { title: 'Nube', kind: 'Gato · 1 foto', photos: [P.nube], doubt: false }, { title: 'Canela', kind: 'Gata · 1 foto', photos: [P.canela], doubt: false }]);
+groups = groups.map((g) => Object.assign({}, g, { cardStyle: base + (g.doubt ? 'border-color: #7a4f00; box-shadow: 0 0 0 1px #7a4f00' : '') }));
+const rowsData = [
+{ p: P.rockyA, name: 'Rocky', species: 'Perro', age: 'Adulto', size: 'Mediano' },
+{ p: P.lupeA, name: 'Lupe', species: 'Perro', age: 'Adulto', size: 'Grande' }
+].concat(s.split
+? [{ p: P.pepa, name: 'Pepa', species: 'Gato', age: 'Cachorro', size: 'Pequeño' }, { p: P.mostaza, name: 'Mostaza', species: 'Gato', age: 'Cachorro', size: 'Pequeño' }]
+: [{ p: P.pepa, name: 'Pepa', species: 'Gato', age: 'Cachorro', size: 'Pequeño' }])
+.concat([{ p: P.sombra, name: 'Sombra', species: 'Gato', age: 'Adulto', size: 'Mediano' }, { p: P.nube, name: 'Nube', species: 'Gato', age: 'Adulto', size: 'Mediano' }, { p: P.canela, name: 'Canela', species: 'Gato', age: 'Adulto', size: 'Mediano' }]);
+const rows = rowsData.map((r) => ({ img: r.p.img, alt: r.p.alt, pos: r.p.pos, name: r.name, species: r.species, age: r.age, size: r.size, nameLabel: 'Nombre de ' + r.name, ageLabel: 'Edad de ' + r.name, sizeLabel: 'Tamaño de ' + r.name }));
+return {
+steps: steps,
+isSubir: s.step === 'subir', isProc: s.step === 'procesando', isAgrupar: s.step === 'agrupar', isCompletar: s.step === 'completar', isListo: s.step === 'listo',
+upload: () => { this.setState({ step: 'procesando' }); this.timer = setTimeout(() => this.setState({ step: 'agrupar' }), 1500); },
+raw: [P.rockyA, P.lupeA, P.pepa, P.mostaza, P.sombra, P.nube, P.canela],
+groups: groups, animalCount: groups.length,
+keepTogether: set({ decided: true, split: false }), split: set({ decided: true, split: true }),
+groupsNextStyle: doubtOpen && !s.split ? 'opacity: .45; pointer-events: none' : '',
+toCompletar: set({ step: 'completar' }), toAgrupar: set({ step: 'agrupar' }),
+rows: rows,
+useReqs: s.useReqs, toggleReqs: () => this.setState({ useReqs: !s.useReqs }),
+publishAll: set({ step: 'listo' }),
+restart: set({ step: 'subir', decided: false, split: false })
+};
+}
+}
+</script>
+</body>
+</html>

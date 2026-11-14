@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="es" data-type="software" data-radius="round" data-buttons="tonal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PawConnect: lenguaje de diseño de la app de mascotas perdidas</title>
+<meta name="description" content="Colores, tipografía, formas, componentes, voz y pantallas de PawConnect, la app de reportes de perros y gatos perdidos y encontrados en Bogotá y la Sabana.">
+<meta name="page-type" content="software">
+<meta name="site-kind" content="software">
+<meta name="theme-color" content="#fbf9f7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&family=Funnel+Sans:wght@400..600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Tokens: start.mjs brand --ink #2d1659 --accent #cc2f70 --type funnel --radius round */
+:root {
+  --p-bg: #fbf9f7; --p-surface: #efedef; --p-ink: #2d1659; --p-muted: #6d6290;
+  --p-accent: #cc2f70; --p-accent-ink: #fbf9f7; --p-action: #cc2f70; --p-action-ink: #fbf9f7;
+  --p-inv-bg: #2d1659; --p-inv-surface: #382664; --p-inv-ink: #fbf9f7; --p-inv-muted: #a59ebb;
+  --font-display: "Funnel Display", system-ui, sans-serif;
+  --font-text: "Funnel Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+
+  /* Roles de PawConnect */
+  --line: rgba(45, 22, 89, .14);
+  --line-strong: rgba(45, 22, 89, .28);
+  --action-hover: #b8285f;
+  --lost: #cc2f70;          --lost-ink: #fbf9f7;
+  --found: #2d1659;         --found-ink: #fbf9f7;
+  --st-active: #1f4f99;     --st-active-bg: #e6eefa;
+  --st-follow: #7a4f00;     --st-follow-bg: #f8ecd2;
+  --st-solved: #1b6b43;     --st-solved-bg: #e1f0e6;
+  --st-closed: #57525e;     --st-closed-bg: #ebe9ee;
+  --danger: #a8231b;        --danger-bg: #fbe6e3;
+  --zone: rgba(204, 47, 112, .12);
+  --zone-line: rgba(204, 47, 112, .55);
+  --map-ground: #f1eee9;  --map-street: #ffffff;  --map-block: #e7e2db;  --map-park: #dfe8da;
+
+  --r-sm: 10px; --r-md: 16px; --r-lg: 24px; --r-btn: 999px;
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+  --gut: 80px; --nav: 72px; --padt: 120px; --padb: 72px;
+  --t-h1: clamp(38px, 2.7vw + 27px, 72px);
+  --t-h2: clamp(30px, 1.5vw + 24px, 48px);
+  --t-h3: clamp(22px, .5vw + 20px, 28px);
+  --t-lead: clamp(18px, .2vw + 17px, 20px);
+  --t-body: 16px; --t-small: 14px; --t-label: 13px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+@media (max-width: 639px) { :root { --gut: 20px; --nav: 56px; --padt: 72px; --padb: 48px; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-padding-top: calc(var(--nav) + 16px); -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--p-bg); color: var(--p-ink);
+  font: 400 var(--t-body)/1.6 var(--font-text);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); margin: 0; line-height: 1.08; text-wrap: balance; hyphens: manual; }
+h1 { font-size: var(--t-h1); letter-spacing: var(--display-tracking-xl); line-height: 1.02; }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); line-height: 1.15; }
+h3.h4 { font-size: 20px; letter-spacing: -0.01em; line-height: 1.25; }
+p { margin: 0; }
+.muted { color: var(--p-muted); }
+.mono { font-family: var(--font-mono); font-size: .92em; letter-spacing: 0; }
+.label { font: 500 var(--t-label)/1.3 var(--font-text); color: var(--p-muted); }
+.measure { max-width: 62ch; }
+.wrap { width: 100%; max-width: calc(1280px + 2 * var(--gut)); margin: 0 auto; padding: 0 var(--gut); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip-link { position: absolute; left: var(--gut); top: -80px; background: var(--p-ink); color: var(--p-bg); padding: 10px 16px; border-radius: var(--r-sm); z-index: 20; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+:focus-visible { outline: 2px solid var(--p-action); outline-offset: 3px; }
+.ico { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.ico--s { width: 16px; height: 16px; }
+.ico--l { width: 28px; height: 28px; }
+
+/* ---------- Header ---------- */
+header.nav { position: fixed; inset: 0 0 auto; height: var(--nav); background: var(--p-bg); border-bottom: 1px solid var(--line); z-index: 10; }
+header.nav .wrap { height: 100%; display: flex; align-items: center; gap: var(--s-6); min-width: 0; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font: 500 20px/1 var(--font-display); letter-spacing: -0.02em; text-decoration: none; }
+.brand-mark { width: 34px; height: 34px; border-radius: 10px; background: var(--p-ink); color: var(--p-bg); display: grid; place-items: center; }
+.brand-mark .ico { width: 22px; height: 22px; stroke-width: 1.6; }
+.nav-links { display: flex; gap: var(--s-5); margin-left: auto; }
+.nav-links a { font: 500 15px/1 var(--font-text); text-decoration: none; padding: 14px 0; position: relative; white-space: nowrap; }
+.nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
+.nav-links a:hover::after { transform: scaleX(1); }
+.nav-ver { font: 400 13px/1 var(--font-mono); color: var(--p-muted); white-space: nowrap; }
+@media (max-width: 1023px) { .nav-links { display: none; } .nav-ver { margin-left: auto; } }
+
+/* ---------- Sections ---------- */
+main > section { padding: var(--padt) 0 var(--padb); border-top: 1px solid var(--line); }
+main > section:first-child { border-top: 0; padding-top: calc(var(--nav) + 32px); padding-bottom: 48px; }
+.sec-head { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-bottom: var(--s-7); align-items: end; }
+.sec-head h2 { grid-column: 1 / span 7; }
+.sec-head p { grid-column: 8 / span 5; color: var(--p-ink); }
+@media (max-width: 1023px) { .sec-head { grid-template-columns: 1fr; gap: var(--s-4); margin-bottom: var(--s-6); } .sec-head h2, .sec-head p { grid-column: 1; } }
+.band { background: var(--p-inv-bg); color: var(--p-inv-ink); border-top: 0 !important; }
+.band .label, .band .muted { color: var(--p-inv-muted); }
+.band .sec-head p { color: var(--p-inv-ink); }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 24px; border-radius: var(--r-btn); border: 0; font: 500 16px/1 var(--font-text); text-decoration: none; cursor: pointer; transition: transform .18s var(--ease), background-color .18s var(--ease); white-space: nowrap; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn--primary { background: var(--p-action); color: var(--p-action-ink); }
+.btn--primary:hover { background: var(--action-hover); }
+.btn--secondary { background: var(--p-surface); color: var(--p-ink); }
+.btn--secondary:hover { background: #e5e2e6; }
+.btn--block { width: 100%; }
+.btn--sm { height: 40px; padding: 0 16px; font-size: 15px; }
+.btn[disabled] { opacity: .45; pointer-events: none; }
+.btn-row { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+.link { color: var(--p-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--line-strong); transition: text-decoration-color .2s; }
+.link:hover { text-decoration-color: currentColor; }
+
+/* ---------- Tags ---------- */
+.tag { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; font: 500 13px/1 var(--font-text); white-space: nowrap; }
+.tag--lost { background: var(--lost); color: var(--lost-ink); }
+.tag--found { background: var(--found); color: var(--found-ink); }
+.state { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 10px; border-radius: 999px; font: 500 13px/1 var(--font-text); white-space: nowrap; }
+.state::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.state--active { color: var(--st-active); background: var(--st-active-bg); }
+.state--follow { color: var(--st-follow); background: var(--st-follow-bg); }
+.state--solved { color: var(--st-solved); background: var(--st-solved-bg); }
+.state--closed { color: var(--st-closed); background: var(--st-closed-bg); }
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; color: var(--p-ink); font: 500 14px/1 var(--font-text); white-space: nowrap; }
+.chip[aria-pressed="true"] { background: var(--p-ink); color: var(--p-bg); border-color: var(--p-ink); }
+
+/* ---------- Motifs ---------- */
+/* Marco de recorte: cuatro esquinas, el animal detectado */
+.crop { position: relative; overflow: hidden; border-radius: var(--r-md); background: var(--map-block); }
+.crop img { width: 100%; height: 100%; object-fit: cover; }
+/* Si una foto no carga: queda el recuadro neutro, nunca el texto alternativo ni el icono roto */
+.crop img { color: transparent; font-size: 0; }
+img.is-broken { visibility: hidden; }
+.crop .frame { position: absolute; inset: var(--fi, 14%) ; color: #fff; pointer-events: none;
+  --c: 18px; --w: 2px;
+  background:
+    linear-gradient(currentColor, currentColor) top left / var(--c) var(--w),
+    linear-gradient(currentColor, currentColor) top left / var(--w) var(--c),
+    linear-gradient(currentColor, currentColor) top right / var(--c) var(--w),
+    linear-gradient(currentColor, currentColor) top right / var(--w) var(--c),
+    linear-gradient(currentColor, currentColor) bottom left / var(--c) var(--w),
+    linear-gradient(currentColor, currentColor) bottom left / var(--w) var(--c),
+    linear-gradient(currentColor, currentColor) bottom right / var(--c) var(--w),
+    linear-gradient(currentColor, currentColor) bottom right / var(--w) var(--c);
+  background-repeat: no-repeat; filter: drop-shadow(0 0 1px rgba(0,0,0,.5)); }
+.crop--out img { filter: grayscale(.6) brightness(.85); }
+.crop--out .frame { color: #ffd9d4; }
+.crop .badge { position: absolute; left: 8px; bottom: 8px; }
+.pill-on-photo { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 999px; background: var(--p-bg); color: var(--p-ink); font: 500 13px/1 var(--font-text); }
+.pill-on-photo--bad { background: var(--danger); color: #fff; }
+
+/* Teléfono enmascarado */
+.masked { display: inline-flex; align-items: center; gap: 8px; font: 500 16px/1 var(--font-mono); letter-spacing: .02em; }
+
+/* Mapa con zonas */
+.map { position: relative; background: var(--map-ground); overflow: hidden; }
+.map > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ---------- Principles ---------- */
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.principle { border-top: 2px solid var(--p-ink); padding-top: var(--s-4); display: flex; flex-direction: column; gap: var(--s-3); }
+.principle .num { font: 500 13px/1 var(--font-mono); color: var(--p-muted); }
+.principle p { font-size: 16px; line-height: 1.6; }
+.principle .reqs { margin-top: auto; font: 400 13px/1.4 var(--font-mono); color: var(--p-muted); }
+@media (max-width: 1023px) { .principles { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 639px) { .principles { grid-template-columns: 1fr; gap: var(--s-6); } }
+
+/* ---------- Hero ---------- */
+.hero { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: center; min-height: calc(100vh - var(--nav)); }
+.hero-copy { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: var(--s-5); }
+.hero-copy .lead { font-size: var(--t-lead); line-height: 1.55; }
+.hero-fact { display: flex; gap: var(--s-6); padding-top: var(--s-5); border-top: 1px solid var(--line); }
+.hero-fact div { display: flex; flex-direction: column; gap: 4px; }
+.hero-fact strong { font: 400 clamp(28px, 1.5vw + 22px, 38px)/1 var(--font-display); letter-spacing: -0.03em; }
+.hero-phones { grid-column: 8 / span 5; display: flex; justify-content: center; }
+.hero > * { min-width: 0; }
+@media (max-width: 1023px) { .hero { grid-template-columns: minmax(0, 1fr); min-height: 0; } .hero-copy, .hero-phones { grid-column: 1; } .hero-phones { justify-content: flex-start; } }
+
+/* ---------- Colour ---------- */
+.swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.swatch { border-radius: var(--r-md); border: 1px solid var(--line); overflow: hidden; background: var(--p-bg); }
+.swatch .chip-c { height: 104px; }
+.swatch div:last-child { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 2px; }
+.swatch strong { font-weight: 500; font-size: 15px; }
+.swatch span { font: 400 13px/1.4 var(--font-mono); color: var(--p-muted); }
+@media (max-width: 1023px) { .swatches { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 639px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+.roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: var(--s-7); }
+.role { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-4); }
+.role h3 { font-size: 22px; }
+.role p { font-size: 16px; }
+.role .row { display: flex; flex-wrap: wrap; gap: 8px; }
+.ratio { font: 400 13px/1.4 var(--font-mono); color: var(--p-muted); }
+@media (max-width: 1023px) { .roles { grid-template-columns: 1fr; } }
+.share { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin-top: var(--s-6); }
+.share span { display: block; height: 100%; }
+.share-legend { display: flex; flex-wrap: wrap; gap: var(--s-5); margin-top: var(--s-3); }
+
+/* ---------- Type ---------- */
+.type-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.type-faces { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: var(--s-5); }
+.face { border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); background: #fff; display: flex; flex-direction: column; gap: 8px; }
+.face .big { font-size: 44px; line-height: 1; letter-spacing: -0.04em; }
+.type-scale { grid-column: 6 / span 7; display: flex; flex-direction: column; }
+.ts-row { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-5); align-items: baseline; padding: var(--s-4) 0; border-bottom: 1px solid var(--line); }
+.ts-row:first-child { border-top: 1px solid var(--line); }
+.ts-row .label { font-family: var(--font-mono); font-weight: 400; }
+@media (max-width: 1023px) { .type-faces, .type-scale { grid-column: 1 / -1; } }
+@media (max-width: 639px) { .ts-row { grid-template-columns: 1fr; gap: 6px; } .face .big { font-size: 30px; } }
+
+/* ---------- Motifs section ---------- */
+.motifs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.motif { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; display: grid; grid-template-rows: 280px auto; }
+.motif-vis { position: relative; background: var(--p-surface); display: grid; place-items: center; overflow: hidden; }
+.motif-copy { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); }
+.motif-copy .reqs { font: 400 13px/1.4 var(--font-mono); color: var(--p-muted); }
+@media (max-width: 1023px) { .motifs { grid-template-columns: 1fr; } }
+.crop-pair { display: flex; gap: 16px; }
+.crop-pair .crop { width: 168px; height: 200px; }
+.seals { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.seal { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 6px; border-radius: 999px; background: var(--p-bg); border: 1px solid var(--line); font: 500 14px/1 var(--font-text); }
+.seal svg { width: 22px; height: 22px; }
+.seal--off { color: var(--p-muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+.seal small { font: 400 12.5px/1 var(--font-mono); color: var(--p-muted); text-decoration: none; display: inline-block; }
+.contact-keys { display: flex; flex-direction: column; gap: 14px; width: min(320px, 86%); }
+.key-row { display: flex; align-items: center; gap: 12px; background: var(--p-bg); border-radius: var(--r-md); padding: 12px 14px; border: 1px solid var(--line); }
+.key-dot { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.key-dot--on { background: var(--p-ink); color: var(--p-bg); }
+.key-dot--wait { border: 1.5px dashed var(--line-strong); color: var(--p-muted); }
+
+/* ---------- Components ---------- */
+.comp-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.comp { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-4); }
+.comp > .label { font-family: var(--font-mono); font-weight: 400; }
+.c-4 { grid-column: span 4; } .c-5 { grid-column: span 5; } .c-6 { grid-column: span 6; } .c-7 { grid-column: span 7; } .c-8 { grid-column: span 8; } .c-12 { grid-column: span 12; }
+@media (max-width: 1023px) { .comp-grid > * { grid-column: span 12; } }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label, .field .flabel { font: 500 14px/1.3 var(--font-text); }
+.field input, .field select, .field textarea { height: 48px; padding: 0 14px; border-radius: var(--r-sm); border: 1px solid var(--line-strong); background: #fff; font: 400 16px/1.4 var(--font-text); color: var(--p-ink); width: 100%; }
+.field textarea { height: 88px; padding: 12px 14px; resize: none; }
+.field .help { font-size: 13px; color: var(--p-muted); }
+.field--error input { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger); }
+.field .err { font-size: 14px; color: var(--danger); display: flex; gap: 6px; align-items: flex-start; }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 639px) { .field-grid { grid-template-columns: 1fr; } .nav-ver { display: none; } }
+.phone-in { display: flex; gap: 8px; }
+.phone-in input { min-width: 0; }
+.phone-in span { height: 48px; display: grid; place-items: center; padding: 0 14px; border-radius: var(--r-sm); background: var(--p-surface); font: 500 16px/1 var(--font-text); }
+.field input.otp-one { font: 500 22px/1 var(--font-mono); letter-spacing: .5em; padding-left: 18px; }
+.otp { display: flex; gap: 8px; }
+.otp input { flex: 1 1 0; min-width: 0; max-width: 48px; height: 52px; text-align: center; font: 500 20px/1 var(--font-mono); padding: 0; }
+
+.consent { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: var(--r-md); border: 1px solid var(--line-strong); background: #fff; }
+.consent input { appearance: none; width: 22px; height: 22px; border: 1.5px solid var(--p-ink); border-radius: 6px; margin: 1px 0 0; flex: none; background: #fff; display: grid; place-items: center; cursor: pointer; }
+.consent input:checked { background: var(--p-ink); }
+.consent input:checked::after { content: ""; width: 10px; height: 6px; border: 2px solid var(--p-bg); border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+.consent strong { font-weight: 500; display: block; }
+.consent small { display: block; font-size: 14px; color: var(--p-muted); line-height: 1.45; margin-top: 2px; }
+.consent .mono { font-size: 12.5px; }
+
+.steps { display: flex; flex-direction: column; gap: 8px; }
+.steps-bar { display: flex; gap: 4px; }
+.steps-bar span { flex: 1; height: 4px; border-radius: 4px; background: var(--line); }
+.steps-bar span.on { background: var(--p-ink); }
+.steps-txt { display: flex; justify-content: space-between; font-size: 13px; color: var(--p-muted); font-weight: 500; }
+
+.report-card { display: grid; grid-template-columns: 88px 1fr; gap: 14px; align-items: center; padding: 10px; border-radius: var(--r-md); border: 1px solid var(--line); background: #fff; text-decoration: none; transition: transform .2s var(--ease), border-color .2s; }
+a.report-card:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+.report-card .crop { width: 88px; height: 88px; border-radius: 12px; }
+.report-card .crop img { transition: transform .4s var(--ease); }
+a.report-card:hover .crop img { transform: scale(1.03); }
+.rc-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rc-body .h4 { font-size: 18px; }
+.rc-meta { font-size: 14px; color: var(--p-muted); display: flex; align-items: center; gap: 6px; }
+
+.cand { display: grid; grid-template-columns: 30px 64px 1fr 20px; gap: 10px; align-items: center; padding: 8px 8px 8px 2px; border-bottom: 1px solid var(--line); text-decoration: none; transition: background-color .2s; }
+.cand:hover { background: rgba(45, 22, 89, .03); }
+.cand .pos { font: 500 20px/1 var(--font-mono); color: var(--p-ink); text-align: center; }
+.cand .crop { width: 64px; height: 64px; border-radius: 12px; }
+.cand .rc-meta { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cand .h4 { font-size: 17px; }
+.cand .ico { color: var(--p-muted); }
+
+.decision { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; padding: 12px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--line); box-shadow: 0 -1px 0 var(--line); }
+.decision p { grid-column: 1 / -1; font-size: 14px; color: var(--p-muted); }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.timeline li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; padding-bottom: 16px; position: relative; }
+.timeline li::before { content: ""; position: absolute; left: 8px; top: 18px; bottom: 0; width: 1px; background: var(--line-strong); }
+.timeline li:last-child::before { display: none; }
+.timeline .dot { width: 17px; height: 17px; border-radius: 50%; border: 2px solid currentColor; background: var(--p-bg); margin-top: 3px; }
+.timeline .dot.fill { background: currentColor; }
+.timeline strong { font-weight: 500; display: block; font-size: 15px; }
+.timeline time { font: 400 13px/1.4 var(--font-mono); color: #574b7d; }
+
+.notice { display: flex; gap: 12px; padding: 14px; border-radius: var(--r-md); font-size: 15px; line-height: 1.5; }
+.notice strong { font-weight: 500; display: block; }
+.notice--danger { background: var(--danger-bg); color: var(--danger); }
+.notice--danger p { color: var(--p-ink); }
+.notice--plain { background: var(--p-surface); }
+.notice .ico { margin-top: 2px; }
+
+.tabbar { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); background: var(--p-bg); }
+.tabbar a { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0 10px; font: 500 12.5px/1 var(--font-text); color: var(--p-muted); text-decoration: none; min-height: 56px; justify-content: center; }
+.tabbar a[aria-current] { color: var(--p-ink); }
+.tabbar a[aria-current] .ico { stroke-width: 2.2; }
+
+/* ---------- Voice ---------- */
+.voice { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
+.voice-card { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 0; }
+.voice-card dl { margin: 0; }
+.voice-card div { display: grid; grid-template-columns: 110px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(251, 249, 247, .16); }
+.voice-card dt { font: 400 13px/1.6 var(--font-mono); color: var(--p-inv-muted); }
+.voice-card dd { margin: 0; font-size: 16px; }
+.voice-table { grid-column: 7 / span 6; }
+.vt-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(251, 249, 247, .16); }
+.vt-row.head { font: 400 13px/1.4 var(--font-mono); color: var(--p-inv-muted); padding-top: 0; }
+.vt-row .ctx { grid-column: 1 / -1; font: 400 13px/1.4 var(--font-mono); color: var(--p-inv-muted); margin-bottom: -6px; }
+.vt-row .no { color: var(--p-inv-muted); text-decoration: line-through; text-decoration-color: rgba(251, 249, 247, .4); }
+.words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--s-5); }
+.words span { height: 32px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 999px; background: var(--p-inv-surface); font-size: 14px; }
+@media (max-width: 1023px) { .voice-card, .voice-table { grid-column: 1 / -1; } }
+@media (max-width: 639px) { .voice-card div { grid-template-columns: 1fr; gap: 4px; } .vt-row { grid-template-columns: 1fr; gap: 6px; } }
+
+/* ---------- Phones ---------- */
+.screens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 24px; justify-items: center; }
+.screen { display: flex; flex-direction: column; gap: var(--s-4); width: 360px; max-width: 100%; }
+.screen-cap { display: flex; flex-direction: column; gap: 4px; }
+.screen-cap strong { font: 400 22px/1.2 var(--font-display); letter-spacing: -0.02em; }
+.screen-cap span { font-size: 16px; color: var(--p-ink); line-height: 1.5; }
+.screen-cap .reqs { color: var(--p-muted); }
+.screen-cap .reqs { font: 400 13px/1.4 var(--font-mono); }
+@media (max-width: 1240px) { .screens { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 920px) { .screens { grid-template-columns: minmax(0, 1fr); } }
+.screen { min-width: 0; }
+
+.ph { width: 360px; max-width: 100%; height: 740px; border-radius: 40px; border: 1px solid var(--line-strong); background: var(--p-bg); overflow: hidden; display: flex; flex-direction: column; position: relative; box-shadow: 0 1px 0 rgba(45,22,89,.04), 0 24px 48px -24px rgba(45,22,89,.25); }
+.ph-status { height: 40px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 26px; font: 500 14px/1 var(--font-text); }
+.ph-status i { display: inline-block; width: 64px; height: 6px; }
+.ph-top { flex: none; display: flex; align-items: center; gap: 10px; padding: 6px 16px 10px; min-height: 52px; }
+.ph-top .back { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--p-surface); flex: none; }
+.ph-top .title { font: 500 16px/1.2 var(--font-text); }
+.ph-top .grow { flex: 1; }
+.ph-body { flex: 1; overflow: hidden; padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 14px; }
+.ph-foot { flex: none; padding: 12px 16px 22px; border-top: 1px solid var(--line); background: var(--p-bg); display: flex; flex-direction: column; gap: 8px; }
+.ph h3 { font-size: 26px; letter-spacing: -0.03em; line-height: 1.1; }
+.ph .ph-title { font: 400 26px/1.1 var(--font-display); letter-spacing: -0.03em; }
+p.h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; line-height: 1.2; }
+.ph .lead-s { font-size: 15px; line-height: 1.5; color: var(--p-ink); }
+.ph .small { font-size: 14px; color: var(--p-muted); line-height: 1.45; }
+.ph .btn { height: 48px; }
+
+.choice { display: grid; grid-template-columns: 52px 1fr 20px; align-items: center; gap: 14px; padding: 16px; border-radius: var(--r-lg); border: 1px solid var(--line-strong); background: #fff; text-decoration: none; transition: transform .2s var(--ease), border-color .2s; }
+.choice:hover { transform: translateY(-2px); border-color: var(--p-ink); }
+.choice .ci { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; }
+.choice strong { display: block; font: 400 21px/1.15 var(--font-display); letter-spacing: -0.02em; }
+.choice small { display: block; font-size: 14px; color: var(--p-muted); margin-top: 4px; line-height: 1.4; }
+
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.photo-grid .crop { aspect-ratio: 1; border-radius: 14px; --fi: 12%; }
+.photo-grid .crop .frame { --c: 12px; }
+.slot { aspect-ratio: 1; border-radius: 14px; border: 1.5px dashed var(--line-strong); display: grid; place-items: center; color: var(--p-muted); font: 500 13px/1.3 var(--font-text); text-align: center; }
+.slot .ico { margin: 0 auto 4px; }
+
+.zone-map { height: 210px; border-radius: var(--r-lg); }
+.zone-label { position: absolute; left: 12px; bottom: 12px; }
+
+.analyze { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; padding-top: 18px; }
+.analyze .crop { width: 150px; height: 150px; border-radius: 24px; --fi: 10%; }
+.analyze h3 { font-size: 24px; }
+.analyze .crop .frame { color: #fff; }
+.checklist { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.checklist li { display: flex; align-items: center; gap: 12px; padding: 13px 4px; border-bottom: 1px solid var(--line); font-size: 15px; text-align: left; }
+.checklist .tick { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.checklist .tick.done { background: var(--p-ink); color: var(--p-bg); }
+.checklist .tick.now { border: 2px solid var(--p-ink); border-right-color: transparent; animation: spin 1s linear infinite; }
+.checklist .tick.wait { border: 1.5px dashed var(--line-strong); }
+.checklist .t { white-space: nowrap; margin-left: auto; font: 400 13px/1 var(--font-mono); color: var(--p-muted); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.filters { display: flex; gap: 6px; overflow: hidden; }
+.filters .chip { height: 32px; padding: 0 12px; font-size: 13px; }
+.order-axis { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--p-muted); font-weight: 500; }
+.order-axis span.l { flex: 1; height: 1px; background: linear-gradient(90deg, var(--p-ink), var(--line)); }
+
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.compare .crop { aspect-ratio: 4/5; border-radius: 18px; }
+.compare figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.compare figcaption { font: 500 13px/1.2 var(--font-text); color: var(--p-muted); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--line); }
+.facts div { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; }
+.facts div:nth-child(odd) { padding-right: 10px; }
+.facts dt { font: 500 12.5px/1.2 var(--font-text); color: var(--p-muted); }
+.facts dd { margin: 0; font-size: 15px; line-height: 1.35; }
+
+.party { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: center; gap: 6px; padding: 16px 12px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--line); }
+.party .p { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.party .av { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font: 500 16px/1 var(--font-text); }
+.party .p strong { font-weight: 500; font-size: 14px; }
+.party .p small { font-size: 13px; color: var(--p-muted); line-height: 1.3; }
+.party .link-line { height: 2px; background: repeating-linear-gradient(90deg, var(--p-ink) 0 4px, transparent 4px 8px); }
+
+.case-head { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: center; }
+.case-head .crop { width: 92px; height: 92px; border-radius: 18px; }
+.case-head h3 { font-size: 26px; }
+
+.mapfull { flex: 1; position: relative; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--p-bg); border-radius: 24px 24px 0 0; padding: 10px 16px 0; box-shadow: 0 -12px 32px -16px rgba(45,22,89,.3); display: flex; flex-direction: column; gap: 10px; }
+.sheet .grab { width: 40px; height: 4px; border-radius: 4px; background: var(--line-strong); margin: 0 auto 4px; }
+.map-search { position: absolute; top: 10px; left: 12px; right: 12px; display: flex; gap: 8px; }
+.map-search .s { flex: 1; height: 44px; border-radius: 999px; background: var(--p-bg); display: flex; align-items: center; gap: 8px; padding: 0 14px; font-size: 15px; color: var(--p-muted); box-shadow: 0 4px 16px -6px rgba(45,22,89,.3); }
+.map-search .f { width: 44px; height: 44px; border-radius: 50%; background: var(--p-bg); display: grid; place-items: center; box-shadow: 0 4px 16px -6px rgba(45,22,89,.3); }
+
+/* ---------- Footer ---------- */
+footer.closing { border-top: 1px solid var(--line); padding: var(--s-8) 0 var(--s-6); }
+footer .row1 { display: flex; justify-content: space-between; gap: var(--s-6); flex-wrap: wrap; align-items: flex-start; }
+footer .next { max-width: 560px; display: flex; flex-direction: column; gap: var(--s-3); }
+footer .legal { margin-top: var(--s-7); padding-top: var(--s-4); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: var(--s-4) var(--s-6); font-size: 13px; color: var(--p-muted); }
+footer details summary { cursor: pointer; }
+footer details p { margin-top: 8px; max-width: 900px; line-height: 1.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<!-- Deal: kind software · palette = client brand (ink #2d1659, magenta #cc2f70; violet #6d3bad and lavender ground dropped) · type funnel · radius round · buttons tonal · mark: client's paw -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"/><circle cx="17" cy="8.5" r="1.8"/><circle cx="4.6" cy="13.2" r="1.5"/><circle cx="19.4" cy="13.2" r="1.5"/><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"/><circle cx="12" cy="12" r="2.2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1Z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5.2M12 16.3h.01"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"/><path d="m8.8 12.2 2.2 2.2 4.3-4.4"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="skip-link" href="#top">Saltar al contenido</a>
+    <a class="brand" href="#top" aria-label="PawConnect, inicio de la guía">
+      <span class="brand-mark"><svg class="ico"><use href="#i-paw"/></svg></span>
+      PawConnect
+    </a>
+    <nav class="nav-links" aria-label="Secciones">
+      <a href="#principios">Principios</a>
+      <a href="#color">Color</a>
+      <a href="#tipografia">Tipografía</a>
+      <a href="#formas">Formas</a>
+      <a href="#componentes">Componentes</a>
+      <a href="#voz">Voz</a>
+      <a href="#pantallas">Pantallas</a>
+    </nav>
+    <span class="nav-ver">v0.1 · nov 2026</span>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section aria-labelledby="h-hero">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="label">Lenguaje de diseño · Módulo 1 primero</span>
+      <h1 id="h-hero">La app de perros y gatos perdidos en Bogotá, diseñada para quien busca con prisa</h1>
+      <p class="lead measure">PawConnect reúne los reportes de mascotas perdidas y encontradas de Bogotá y la Sabana y los compara por foto. El sistema propone cinco candidatos; una persona decide si es su animal. Esta guía fija cómo se ve y cómo habla todo eso.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="#pantallas">Ver las pantallas <svg class="ico"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--secondary" href="#principios">Leer los principios</a>
+      </div>
+      <div class="hero-fact">
+        <div><strong>671</strong><span class="label">casos en el portal del IDPYBA, ago 2025 a mar 2026</span></div>
+        <div><strong>114</strong><span class="label">reencuentros en el mismo periodo</span></div>
+      </div>
+    </div>
+    <div class="hero-phones">
+      <!-- Phone: resultados (same as screen 05) -->
+      <div class="ph" role="img" aria-label="Pantalla de resultados: cinco posibles coincidencias ordenadas, sin porcentajes">
+        <div class="ph-status"><span>9:41</span><i></i></div>
+        <div class="ph-top">
+          <span class="back"><svg class="ico"><use href="#i-back"/></svg></span>
+          <span class="title grow">Toby · caso <span class="mono">PC-2048</span></span>
+        </div>
+        <div class="ph-body">
+          <div>
+            <p class="ph-title">5 posibles coincidencias</p>
+            <p class="small" style="margin-top:6px">Perros encontrados a menos de 15 km de Suba en los últimos 60 días.</p>
+          </div>
+          <div class="order-axis">Más parecido <span class="l"></span> menos</div>
+          <div style="margin:0 -4px">
+            <a class="cand" href="#s-candidato"><span class="pos">01</span><span class="crop"><img src="assets/img/photo-f2253341-400.jpg" alt="Perro mestizo de pelo largo, dorado, sobre pasto"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><p class="h4">Sin nombre</p><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Engativá · hace 2 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            <a class="cand" href="#s-candidato"><span class="pos">02</span><span class="crop"><img src="assets/img/photo-f77734291-400.jpg" alt="Perra mestiza color canela, sentada"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><p class="h4">Sin nombre</p><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Suba Rincón · hace 4 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            <a class="cand" href="#s-candidato"><span class="pos">03</span><span class="crop"><img src="assets/img/photo-f18351088-400.jpg" alt="Perro callejero canela caminando por una calle"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><p class="h4">Lucas</p><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Niza · hace 6 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            <a class="cand" href="#s-candidato"><span class="pos">04</span><span class="crop"><img src="assets/img/photo-f489921-400.jpg" alt="Perro joven mestizo acostado en el pasto"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><p class="h4">Sin nombre</p><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Cota · hace 9 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            <a class="cand" href="#s-candidato"><span class="pos">05</span><span class="crop"><img src="assets/img/photo-f148610959-400.jpg" alt="Perro blanco con manchas oscuras en un parque"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><p class="h4">Sin nombre</p><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Usaquén · hace 12 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRINCIPLES ============ -->
+<section id="principios" aria-labelledby="h-principios">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-principios">Seis principios que salen de los requisitos</h2>
+      <p>Cada decisión visual de abajo vuelve a una de estas reglas. Si una pantalla nueva no encaja con ninguna, la pantalla está mal o falta una regla.</p>
+    </div>
+    <div class="principles">
+      <article class="principle">
+        <span class="num">01</span>
+        <h3>La zona es un círculo, nunca un punto</h3>
+        <p>Toda ubicación pública se dibuja como un área de 500 m. No usamos el pin de mapa en ninguna pantalla, ni siquiera como icono.</p>
+        <span class="reqs">RF-15 · RNF-03 · HU-16</span>
+      </article>
+      <article class="principle">
+        <span class="num">02</span>
+        <h3>Guardamos el recorte, no la foto</h3>
+        <p>Las cuatro esquinas del marco de recorte muestran lo que el sistema vio y lo que conserva. Si no ve un perro o un gato, lo dice ahí mismo.</p>
+        <span class="reqs">RF-03 · RN-04 · HU-03</span>
+      </article>
+      <article class="principle">
+        <span class="num">03</span>
+        <h3>El orden es la única señal</h3>
+        <p>Los candidatos van numerados del 01 al 05. Sin porcentajes, barras, estrellas ni colores de «alta coincidencia».</p>
+        <span class="reqs">RF-04 · RN-02 · HU-04</span>
+      </article>
+      <article class="principle">
+        <span class="num">04</span>
+        <h3>La persona decide, en la misma pantalla</h3>
+        <p>«No es» y «Sí, puede ser» quedan fijos abajo, al alcance del pulgar. Un caso solo pasa a resuelto cuando alguien lo marca.</p>
+        <span class="reqs">RF-05 · RF-06 · RN-01</span>
+      </article>
+      <article class="principle">
+        <span class="num">05</span>
+        <h3>Dos llaves para el contacto</h3>
+        <p>El número aparece enmascarado hasta que las dos personas aceptan. Las dos llaves se dibujan siempre, para que se vea qué falta.</p>
+        <span class="reqs">RF-07 · RN-05 · HU-08</span>
+      </article>
+      <article class="principle">
+        <span class="num">06</span>
+        <h3>Nada viene marcado</h3>
+        <p>Consentimiento y ubicación se piden con casillas vacías, cada una por separado, con la versión del texto a la vista.</p>
+        <span class="reqs">RF-13 · RNF-04 · Ley 1581 de 2012</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOUR ============ -->
+<section id="color" aria-labelledby="h-color">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-color">Color: la tinta y el magenta del pitch, sobre blanco cálido</h2>
+      <p>La interfaz es casi neutra; el color lo ponen las fotos de los animales. El magenta marca la acción principal y los reportes de pérdida. El violeta y el fondo lavanda del prototipo salen.</p>
+    </div>
+    <div class="swatches">
+      <div class="swatch"><div class="chip-c" style="background:#fbf9f7"></div><div><strong>Fondo</strong><span>#fbf9f7</span></div></div>
+      <div class="swatch"><div class="chip-c" style="background:#efedef"></div><div><strong>Superficie</strong><span>#efedef</span></div></div>
+      <div class="swatch"><div class="chip-c" style="background:#2d1659"></div><div><strong>Tinta</strong><span>#2d1659 · 14,6:1</span></div></div>
+      <div class="swatch"><div class="chip-c" style="background:#6d6290"></div><div><strong>Texto secundario</strong><span>#6d6290 · 5,3:1</span></div></div>
+      <div class="swatch"><div class="chip-c" style="background:#cc2f70"></div><div><strong>Acción</strong><span>#cc2f70 · 4,8:1</span></div></div>
+      <div class="swatch"><div class="chip-c" style="background:rgba(45,22,89,.14)"></div><div><strong>Línea</strong><span>tinta al 14 %</span></div></div>
+    </div>
+
+    <div class="share" aria-hidden="true">
+      <span style="width:72%;background:#fbf9f7;border:1px solid var(--line);border-radius:999px 0 0 999px"></span>
+      <span style="width:14%;background:#efedef"></span>
+      <span style="width:10%;background:#2d1659"></span>
+      <span style="width:3%;background:#cc2f70"></span>
+      <span style="width:1%;background:#1b6b43"></span>
+    </div>
+    <div class="share-legend label">
+      <span>Reparto aproximado en una pantalla: fondo 72 %</span><span>superficie 14 %</span><span>tinta 10 %</span><span>magenta 3 % o menos</span><span>estados 1 %</span>
+    </div>
+
+    <div class="roles">
+      <article class="role">
+        <span class="label">Tipo de reporte</span>
+        <h3>Perdido en magenta, encontrado en tinta</h3>
+        <div class="row"><span class="tag tag--lost">Perdido</span><span class="tag tag--found">Encontrado</span></div>
+        <p>Es lo primero que alguien necesita saber de una foto. Va siempre como etiqueta llena, con la palabra escrita. Nunca usa los colores de estado.</p>
+        <span class="ratio">blanco sobre magenta 4,8:1 · sobre tinta 14,6:1</span>
+      </article>
+      <article class="role">
+        <span class="label">Estado del caso</span>
+        <h3>Cuatro estados, cuatro tonos, siempre con su palabra</h3>
+        <div class="row"><span class="state state--active">Activo</span><span class="state state--follow">En seguimiento</span><span class="state state--solved">Resuelto</span><span class="state state--closed">Cerrado</span></div>
+        <p>Punto más palabra sobre un fondo suave. El verde solo significa «resuelto»: no lo usamos para privacidad ni para éxito genérico.</p>
+        <span class="ratio">6,8 · 6,1 · 5,5 · 6,3 : 1</span>
+      </article>
+      <article class="role">
+        <span class="label">Alarma real</span>
+        <h3>Rojo solo para errores y urgencias 24 horas</h3>
+        <div class="row"><span class="state" style="color:var(--danger);background:var(--danger-bg)">Urgencias 24 h</span><span class="state" style="color:var(--danger);background:var(--danger-bg)">Foto rechazada</span></div>
+        <p>Quien perdió a su animal ya está alarmado. La interfaz no suma alarma: el rojo aparece cuando algo falló o cuando hay una veterinaria abierta ahora.</p>
+        <span class="ratio">#a8231b · 6,0:1 sobre su fondo</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section id="tipografia" aria-labelledby="h-tipo">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-tipo">Tipografía: Funnel para hablar, DM Mono para los datos</h2>
+      <p>Funnel Display en los títulos, Funnel Sans en el texto. DM Mono para lo que alguien copia o dicta: número de caso, código SMS, fechas, distancias, la posición del candidato. Sin mayúsculas espaciadas: todo en tipo oración.</p>
+    </div>
+    <div class="type-grid">
+      <div class="type-faces">
+        <div class="face"><span class="big" style="font-family:var(--font-display)">Aa</span><strong style="font-weight:500">Funnel Display 400</strong><span class="label">Títulos · interletra −3 % a −4 %</span></div>
+        <div class="face"><span class="big" style="font-family:var(--font-text)">Aa</span><strong style="font-weight:500">Funnel Sans 400 y 500</strong><span class="label">Texto, botones, etiquetas</span></div>
+        <div class="face"><span class="big" style="font-family:var(--font-mono);letter-spacing:0">PC-2048</span><strong style="font-weight:500">DM Mono 400 y 500</strong><span class="label">Datos que se copian o se dictan</span></div>
+      </div>
+      <div class="type-scale">
+        <div class="ts-row"><span class="label">Título 1 · 72/38</span><span style="font:400 clamp(32px,3vw,52px)/1.05 var(--font-display);letter-spacing:-.04em">¿Perdiste o encontraste un animal?</span></div>
+        <div class="ts-row"><span class="label">Título 2 · 48/30</span><span style="font:400 clamp(26px,2vw,36px)/1.1 var(--font-display);letter-spacing:-.03em">5 posibles coincidencias</span></div>
+        <div class="ts-row"><span class="label">Pantalla · 26</span><span style="font:400 26px/1.1 var(--font-display);letter-spacing:-.03em">Cuéntanos dónde lo viste por última vez</span></div>
+        <div class="ts-row"><span class="label">Tarjeta · 18</span><span style="font:400 18px/1.25 var(--font-display);letter-spacing:-.01em">Toby, mestizo de pelo largo</span></div>
+        <div class="ts-row"><span class="label">Texto · 16/26</span><span>Usa una foto donde se vean la cara y el pelaje. Puedes subir hasta cinco.</span></div>
+        <div class="ts-row"><span class="label">Pequeño · 14</span><span style="font-size:14px;color:var(--p-muted)">Engativá · hace 2 días</span></div>
+        <div class="ts-row"><span class="label">Etiqueta · 13/500</span><span class="label" style="font-family:var(--font-text);color:var(--p-ink)">Zona aproximada</span></div>
+        <div class="ts-row"><span class="label">Dato · Mono 16</span><span class="mono" style="font-size:16px">PC-2048 · 9 nov 2026 · 15 km</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOTIFS ============ -->
+<section id="formas" aria-labelledby="h-formas">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-formas">Cuatro formas propias que se repiten en toda la app</h2>
+      <p>No son decoración: cada una dibuja una regla del documento técnico. Radios redondeados de 10, 16 y 24 px; botones en píldora; iconos de trazo de 1,75 px.</p>
+    </div>
+    <div class="motifs">
+      <article class="motif">
+        <div class="motif-vis map">
+          <svg viewBox="0 0 560 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="560" height="280" fill="#f1eee9"/>
+            <g fill="#e7e2db"><rect x="20" y="20" width="110" height="70" rx="4"/><rect x="150" y="20" width="120" height="70" rx="4"/><rect x="290" y="20" width="100" height="70" rx="4"/><rect x="410" y="20" width="130" height="70" rx="4"/><rect x="20" y="110" width="110" height="60" rx="4"/><rect x="290" y="110" width="100" height="60" rx="4"/><rect x="410" y="110" width="130" height="60" rx="4"/><rect x="20" y="190" width="110" height="70" rx="4"/><rect x="150" y="190" width="120" height="70" rx="4"/><rect x="290" y="190" width="100" height="70" rx="4"/><rect x="410" y="190" width="130" height="70" rx="4"/></g>
+            <rect x="150" y="110" width="120" height="60" rx="4" fill="#dfe8da"/>
+            <path d="M0 250 L560 60" stroke="#fff" stroke-width="10"/>
+            <circle cx="268" cy="140" r="96" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)" stroke-width="1.5" stroke-dasharray="5 5"/>
+            <circle cx="268" cy="140" r="5" fill="#cc2f70"/>
+          </svg>
+          <span class="pill-on-photo zone-label"><svg class="ico ico--s"><use href="#i-zone"/></svg>Suba · zona de 500 m</span>
+        </div>
+        <div class="motif-copy">
+          <h3>El círculo de zona</h3>
+          <p>Borde punteado en magenta y un relleno al 12 %. El centro que se dibuja es el del círculo, no el sitio exacto: el servidor ya lo movió antes de mandarlo. Los radios de búsqueda (15 km) y de alertas (5 km) usan el mismo dibujo, más grande.</p>
+          <span class="reqs">RF-15 · RF-19 · RNF-03</span>
+        </div>
+      </article>
+
+      <article class="motif">
+        <div class="motif-vis">
+          <div class="crop-pair">
+            <span class="crop"><img src="assets/img/photo-f2293634-400.jpg" alt="Perro mestizo de pelo largo y dorado parado sobre el andén"><span class="frame" style="--fi:10% 8% 6% 14%"></span><span class="badge pill-on-photo"><svg class="ico ico--s"><use href="#i-check"/></svg>Perro</span></span>
+            <span class="crop crop--out"><img src="assets/img/photo-f146003284-400.jpg" alt="Foto oscura de un patio en sombra donde no se distingue el animal"><span class="frame"></span><span class="badge pill-on-photo pill-on-photo--bad"><svg class="ico ico--s"><use href="#i-x"/></svg>No se ve</span></span>
+          </div>
+        </div>
+        <div class="motif-copy">
+          <h3>El marco de recorte</h3>
+          <p>Cuatro esquinas blancas alrededor del animal que el detector encontró. Es lo que se guarda; el resto de la foto se descarta. Cuando no hay perro ni gato visible, la foto se apaga y la etiqueta roja dice por qué.</p>
+          <span class="reqs">RF-03 · RN-04</span>
+        </div>
+      </article>
+
+      <article class="motif">
+        <div class="motif-vis">
+          <div class="contact-keys">
+            <div class="key-row"><span class="key-dot key-dot--on"><svg class="ico ico--s"><use href="#i-check"/></svg></span><span style="flex:1"><strong style="font-weight:500;display:block">Tú aceptaste</strong><span class="small muted" style="font-size:13px">hoy, 10:12</span></span></div>
+            <div class="key-row"><span class="key-dot key-dot--wait"><svg class="ico ico--s"><use href="#i-clock"/></svg></span><span style="flex:1"><strong style="font-weight:500;display:block">Quien lo encontró</strong><span class="small muted" style="font-size:13px">todavía no responde</span></span></div>
+            <div class="key-row" style="justify-content:center"><span class="masked"><svg class="ico ico--s"><use href="#i-lock"/></svg>+57 3•• ••• ••41</span></div>
+          </div>
+        </div>
+        <div class="motif-copy">
+          <h3>Las dos llaves</h3>
+          <p>Una fila por persona: llena cuando aceptó, punteada mientras espera. Debajo, el número en DM Mono con candado, enmascarado salvo los dos últimos dígitos, que solo confirman que hay un número.</p>
+          <span class="reqs">RF-07 · RN-05</span>
+        </div>
+      </article>
+
+      <article class="motif">
+        <div class="motif-vis">
+          <div class="seals">
+            <span class="seal"><svg class="ico"><use href="#i-check"/></svg>Celular verificado <small>nivel 1</small></span>
+            <span class="seal"><svg class="ico" style="color:var(--p-ink)"><use href="#i-seal"/></svg>Fundación verificada <small>nivel 2</small></span>
+            <span class="seal"><svg class="ico" style="color:var(--p-ink)"><use href="#i-seal"/></svg>Prestador verificado <small>nivel 3</small></span>
+            <span class="seal" style="border-style:dashed"><svg class="ico" style="color:var(--p-muted)"><use href="#i-clock"/></svg>Verificación en revisión</span>
+            <span class="seal seal--off"><svg class="ico"><use href="#i-seal"/></svg>Sello retirado <small>19 oct 2026</small></span>
+          </div>
+        </div>
+        <div class="motif-copy">
+          <h3>El sello</h3>
+          <p>Un solo dibujo en tinta para fundaciones y prestadores, con el nivel escrito. Nunca dorado ni de colores: se gana con documentos, no con diseño. Retirado queda tachado y con fecha, para que la retirada también se vea.</p>
+          <span class="reqs">RF-14 · RF-16 · HU-10</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPONENTS ============ -->
+<section id="componentes" aria-labelledby="h-comp">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-comp">Componentes base del Módulo 1</h2>
+      <p>Un botón lleno por vista y uno tonal; campos de 48 px con la etiqueta arriba y el error abajo; tarjetas con una sola línea de borde. Todo cabe a 360 px.</p>
+    </div>
+    <div class="comp-grid">
+      <div class="comp c-5">
+        <span class="label">Botones</span>
+        <button class="btn btn--primary btn--block" type="button">Publicar el reporte</button>
+        <button class="btn btn--secondary btn--block" type="button">Guardar como borrador</button>
+        <div class="btn-row"><button class="btn btn--primary" type="button">Revisar candidatos</button><a class="link" href="#componentes" style="align-self:center">Cambiar número</a></div>
+        <p style="font-size:16px">Lleno: la acción que avanza. Tonal: la alternativa. Enlace subrayado: lo que no es una acción del flujo.</p>
+      </div>
+
+      <div class="comp c-7">
+        <span class="label">Campos</span>
+        <div class="field-grid">
+          <div class="field"><label for="f-nombre">Nombre de la mascota</label><input id="f-nombre" value="Toby"><span class="help">Si no lo sabes, déjalo vacío.</span></div>
+          <div class="field"><label for="f-especie">Especie</label><select id="f-especie"><option>Perro</option><option>Gato</option></select></div>
+          <div class="field"><label for="f-cel">Número de celular</label><div class="phone-in"><span>+57</span><input id="f-cel" type="tel" inputmode="tel" autocomplete="tel-national" value="300 555 0141"></div></div>
+          <div class="field field--error"><label for="f-otp">Código de 6 dígitos</label><input id="f-otp" class="otp-one" inputmode="numeric" autocomplete="one-time-code" maxlength="6" value="284910" aria-invalid="true" aria-describedby="e-otp"><span class="err" id="e-otp"><svg class="ico ico--s"><use href="#i-alert"/></svg>Ese código no coincide. Revisa el último SMS o pide uno nuevo.</span></div>
+        </div>
+      </div>
+
+      <div class="comp c-6">
+        <span class="label">Consentimiento, siempre vacío al llegar</span>
+        <label class="consent"><input type="checkbox"><span><strong>Acepto el tratamiento de mis datos</strong><small>Celular y mensajes, para publicar reportes y contactarte. <a class="link" href="#componentes">Leer la política</a> <span class="mono">· versión 1.2 · 3 nov 2026</span></small></span></label>
+        <label class="consent"><input type="checkbox"><span><strong>Mostrar una zona aproximada del reporte</strong><small>Un círculo de 500 m. El punto exacto no sale del servidor y se borra 30 días después de cerrar el caso.</small></span></label>
+      </div>
+
+      <div class="comp c-6">
+        <span class="label">Progreso y avisos</span>
+        <div class="steps"><div class="steps-bar"><span class="on"></span><span class="on"></span><span></span><span></span></div><div class="steps-txt"><span>Paso 2 de 4 · Fotos</span><span>Sigue: zona</span></div></div>
+        <div class="notice notice--danger"><svg class="ico"><use href="#i-alert"/></svg><div><strong>No vemos un perro ni un gato en esta foto</strong><p>Prueba con una más cerca, con luz de día, donde se vea la cara.</p></div></div>
+        <div class="notice notice--plain"><svg class="ico"><use href="#i-clock"/></svg><div><strong>Ya publicaste 3 reportes hoy</strong><p>Es el máximo por cuenta. Puedes publicar otro mañana desde las 00:00.</p></div></div>
+      </div>
+
+      <div class="comp c-4">
+        <span class="label">Tarjeta de reporte</span>
+        <a class="report-card" href="#s-mapa"><span class="crop"><img src="assets/img/photo-f41926788-400.jpg" alt="Perro dormido sobre un andén con la cabeza en una piedra"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><span><span class="tag tag--found">Encontrado</span></span><h3 class="h4">Perro café, collar negro</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Chapinero · hace 1 día</span></span></a>
+        <a class="report-card" href="#s-mapa"><span class="crop"><img src="assets/img/photo-f136377929-400.jpg" alt="Gato atigrado echado sobre adoquines"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><span><span class="tag tag--lost">Perdido</span></span><h3 class="h4">Mora, gata atigrada</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Usaquén · hace 3 días</span></span></a>
+      </div>
+
+      <div class="comp c-4">
+        <span class="label">Fila de candidato y decisión</span>
+        <div style="margin:0 -8px"><a class="cand" href="#s-candidato"><span class="pos">01</span><span class="crop"><img src="assets/img/photo-f2253341-400.jpg" alt="Perro mestizo de pelo largo, dorado"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><h3 class="h4">Sin nombre</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Engativá · hace 2 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a></div>
+        <div class="decision"><p>¿Es Toby?</p><button class="btn btn--secondary" type="button">No es</button><button class="btn btn--primary" type="button">Sí, puede ser</button></div>
+      </div>
+
+      <div class="comp c-4">
+        <span class="label">Historial del caso</span>
+        <ol class="timeline">
+          <li style="color:var(--st-follow)"><span class="dot fill"></span><div style="color:var(--p-ink)"><strong>En seguimiento</strong><time>11 nov 2026 · 10:12</time><p style="font-size:16px">Pediste contacto con quien encontró al candidato 01.</p></div></li>
+          <li style="color:var(--st-active)"><span class="dot fill"></span><div style="color:var(--p-ink)"><strong>Activo</strong><time>9 nov 2026 · 19:40</time></div></li>
+          <li style="color:var(--p-muted)"><span class="dot"></span><div><strong>Reporte publicado</strong><time>9 nov 2026 · 19:38</time></div></li>
+        </ol>
+        <div class="tabbar" style="border:1px solid var(--line);border-radius:16px;margin-top:auto">
+          <a href="#componentes"><svg class="ico"><use href="#i-home"/></svg>Inicio</a>
+          <a href="#componentes" aria-current="page"><svg class="ico"><use href="#i-paw"/></svg>Mis casos</a>
+          <a href="#componentes"><svg class="ico"><use href="#i-zone"/></svg>Mapa</a>
+          <a href="#componentes"><svg class="ico"><use href="#i-user"/></svg>Perfil</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VOICE ============ -->
+<section id="voz" class="band" aria-labelledby="h-voz">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-voz">Voz: directa con quien busca, honesta con lo que el sistema no sabe</h2>
+      <p>Hablamos con alguien que tiene miedo y poco tiempo. Frases cortas, el siguiente paso siempre claro, cifras con su fuente. Nunca prometemos encontrar al animal.</p>
+    </div>
+    <div class="voice">
+      <dl class="voice-card">
+        <div><dt>Registro</dt><dd>Activista llano en lo público, sencillo y práctico dentro de la app.</dd></div>
+        <div><dt>Persona</dt><dd>Tuteamos. «Tú» para quien usa la app, «nosotros» solo para lo que hace PawConnect.</dd></div>
+        <div><dt>Frases</dt><dd>De 6 a 14 palabras. Una idea por frase; la acción va en el botón, no en el párrafo.</dd></div>
+        <div><dt>Humor</dt><dd>Ninguno en reportes, resultados, contacto ni errores.</dd></div>
+        <div><dt>Cifras</dt><dd>Solo con fuente y fecha (IDPYBA, ago 2025 a mar 2026). Nunca inventadas, nunca de certeza.</dd></div>
+        <div><dt>Nunca</dt><dd>«Match», «100 %», «IA», «garantizado», «¡No te preocupes!», signos de exclamación en errores.</dd></div>
+      </dl>
+      <div class="voice-table">
+        <div class="vt-row head"><span>Decimos</span><span>No decimos</span></div>
+        <div class="vt-row"><span class="ctx">Resultados</span><span>5 posibles coincidencias</span><span class="no">¡Encontramos a tu mascota! 87 % de coincidencia</span></div>
+        <div class="vt-row"><span class="ctx">Candidato</span><span>¿Es Toby?</span><span class="no">¿Confirmas el match?</span></div>
+        <div class="vt-row"><span class="ctx">Foto rechazada</span><span>No vemos un perro ni un gato en esta foto.</span><span class="no">Error 422: imagen no válida</span></div>
+        <div class="vt-row"><span class="ctx">Ubicación</span><span>Zona aproximada de 500 m</span><span class="no">Ubicación exacta</span></div>
+        <div class="vt-row"><span class="ctx">Contacto</span><span>Tu número sigue oculto hasta que los dos acepten.</span><span class="no">Te ponemos en contacto de inmediato</span></div>
+        <div class="vt-row"><span class="ctx">Caso cerrado</span><span>Marcaste a Toby como reencontrado. Bienvenido a casa, Toby.</span><span class="no">¡Caso exitoso! 🎉</span></div>
+      </div>
+    </div>
+    <div class="words" aria-label="Palabras de la casa">
+      <span>reporte</span><span>caso</span><span>posible coincidencia</span><span>candidato</span><span>reencuentro</span><span>zona aproximada</span><span>recorte</span><span>solicitud de contacto</span><span>sello</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCREENS ============ -->
+<section id="pantallas" aria-labelledby="h-pantallas">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="h-pantallas">Pantallas del Módulo 1 a 360 px</h2>
+      <p>El camino de quien perdió a Toby, de la primera pregunta a la ficha del caso, más el mapa público. Dibujadas al ancho mínimo que exige RNF-08: si funcionan aquí, funcionan en cualquier celular.</p>
+    </div>
+    <div class="screens">
+
+      <!-- 01 Inicio -->
+      <div class="screen" id="s-inicio">
+        <div class="ph" role="img" aria-label="Inicio de la app: pregunta si perdiste o encontraste un animal">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="brand" style="font-size:18px"><span class="brand-mark" style="width:30px;height:30px;border-radius:9px"><svg class="ico" style="width:19px;height:19px"><use href="#i-paw"/></svg></span>PawConnect</span><span class="grow"></span><span class="back"><svg class="ico"><use href="#i-bell"/></svg></span></div>
+          <div class="ph-body" style="gap:16px">
+            <h3 style="font-size:32px;margin-top:6px">¿Perdiste o encontraste un perro o un gato?</h3>
+            <a class="choice" href="#s-fotos"><span class="ci" style="background:var(--lost);color:#fff"><svg class="ico ico--l"><use href="#i-search"/></svg></span><span><strong>Perdí a mi mascota</strong><small>Publica su foto y la comparamos con los animales encontrados.</small></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            <a class="choice" href="#s-fotos"><span class="ci" style="background:var(--found);color:#fff"><svg class="ico ico--l"><use href="#i-heart"/></svg></span><span><strong>Encontré un animal</strong><small>Sube una foto y buscamos si alguien lo está buscando.</small></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px"><span style="font:400 18px/1.2 var(--font-display)">Cerca de Suba</span><a class="link" href="#s-mapa" style="font-size:14px">Ver en el mapa</a></div>
+            <a class="report-card" href="#s-mapa"><span class="crop"><img src="assets/img/photo-f41926788-400.jpg" alt="Perro dormido sobre un andén con la cabeza en una piedra"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><span><span class="tag tag--found">Encontrado</span></span><h3 class="h4">Perro café, collar negro</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Chapinero · hace 1 día</span></span></a>
+          </div>
+          <div class="tabbar">
+            <a href="#s-inicio" aria-current="page"><svg class="ico"><use href="#i-home"/></svg>Inicio</a>
+            <a href="#s-caso"><svg class="ico"><use href="#i-paw"/></svg>Mis casos</a>
+            <a href="#s-mapa"><svg class="ico"><use href="#i-zone"/></svg>Mapa</a>
+            <a href="#s-inicio"><svg class="ico"><use href="#i-user"/></svg>Perfil</a>
+          </div>
+        </div>
+        <div class="screen-cap"><strong>01 · Una pregunta</strong><span>Dos caminos grandes, codificados con el color de su tipo de reporte. Visitantes ven lo mismo; publicar pide el celular.</span><span class="reqs muted">HU-02 · HU-03 · RNF-07</span></div>
+      </div>
+
+      <!-- 02 Fotos -->
+      <div class="screen" id="s-fotos">
+        <div class="ph" role="img" aria-label="Paso de fotos: tres fotos aceptadas con su recorte y una rechazada">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="back"><svg class="ico"><use href="#i-back"/></svg></span><span class="title grow">Reporte de pérdida</span></div>
+          <div class="ph-body">
+            <div class="steps"><div class="steps-bar"><span class="on"></span><span class="on"></span><span></span><span></span></div><div class="steps-txt"><span>Paso 2 de 4 · Fotos</span><span>Sigue: zona</span></div></div>
+            <h3>Fotos de Toby</h3>
+            <p class="lead-s">De 1 a 5. Sirven más las que muestran la cara y el pelaje de cerca.</p>
+            <div class="photo-grid">
+              <span class="crop"><img src="assets/img/photo-f2293634-400.jpg" alt="Toby parado en el andén"><span class="frame" style="--fi:8% 10% 4% 16%"></span></span>
+              <span class="crop"><img src="assets/img/photo-f2253341-400.jpg" alt="Perro dorado de pelo largo en el pasto"><span class="frame"></span></span>
+              <span class="crop crop--out"><img src="assets/img/photo-f146003284-400.jpg" alt="Foto oscura sin animal visible"><span class="frame"></span></span>
+              <span class="slot"><span><svg class="ico"><use href="#i-camera"/></svg>Agregar</span></span>
+              <span class="slot"><span><svg class="ico"><use href="#i-camera"/></svg>Agregar</span></span>
+            </div>
+            <div class="notice notice--danger"><svg class="ico"><use href="#i-alert"/></svg><div><strong>La tercera foto no sirve</strong><p>No vemos un perro ni un gato. La quitamos; puedes cambiarla por otra.</p></div></div>
+          </div>
+          <div class="ph-foot"><button class="btn btn--primary btn--block" type="button">Seguir con 2 fotos</button></div>
+        </div>
+        <div class="screen-cap"><strong>02 · Fotos con recorte</strong><span>Cada foto muestra su marco en cuanto termina de procesarse. La rechazada se apaga y explica qué hacer.</span><span class="reqs muted">RF-02 · RF-03 · RN-04</span></div>
+      </div>
+
+      <!-- 03 Zona -->
+      <div class="screen" id="s-zona">
+        <div class="ph" role="img" aria-label="Paso de zona: mapa con un círculo de 500 metros y casilla de autorización sin marcar">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="back"><svg class="ico"><use href="#i-back"/></svg></span><span class="title grow">Reporte de pérdida</span></div>
+          <div class="ph-body">
+            <div class="steps"><div class="steps-bar"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><div class="steps-txt"><span>Paso 3 de 4 · Zona</span><span>Sigue: datos</span></div></div>
+            <h3>¿Dónde lo viste por última vez?</h3>
+            <div class="map zone-map">
+              <svg viewBox="0 0 330 210" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="330" height="210" fill="#f1eee9"/>
+                <g fill="#e7e2db"><rect x="10" y="10" width="70" height="50" rx="3"/><rect x="92" y="10" width="80" height="50" rx="3"/><rect x="184" y="10" width="60" height="50" rx="3"/><rect x="256" y="10" width="64" height="50" rx="3"/><rect x="10" y="72" width="70" height="60" rx="3"/><rect x="184" y="72" width="60" height="60" rx="3"/><rect x="256" y="72" width="64" height="60" rx="3"/><rect x="10" y="144" width="70" height="56" rx="3"/><rect x="92" y="144" width="80" height="56" rx="3"/><rect x="184" y="144" width="60" height="56" rx="3"/><rect x="256" y="144" width="64" height="56" rx="3"/></g>
+                <rect x="92" y="72" width="80" height="60" rx="3" fill="#dfe8da"/>
+                <path d="M0 190 L330 40" stroke="#fff" stroke-width="8"/>
+                <circle cx="160" cy="104" r="70" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)" stroke-width="1.5" stroke-dasharray="5 5"/>
+                <circle cx="160" cy="104" r="4" fill="#cc2f70"/>
+              </svg>
+              <span class="pill-on-photo zone-label"><svg class="ico ico--s"><use href="#i-zone"/></svg>Suba, cerca de la Av. Ciudad de Cali</span>
+            </div>
+            <label class="consent"><input type="checkbox"><span><strong>Mostrar esta zona en el reporte</strong><small>Otros verán un círculo de 500 m, nunca el punto. Sin esta autorización el reporte sale sin mapa.</small></span></label>
+          </div>
+          <div class="ph-foot"><button class="btn btn--primary btn--block" type="button">Seguir a los datos</button></div>
+        </div>
+        <div class="screen-cap"><strong>03 · Zona con permiso aparte</strong><span>El círculo se ve antes de autorizar, así la persona sabe qué va a compartir. La casilla llega vacía.</span><span class="reqs muted">HU-02 · RF-15 · sección 4.1</span></div>
+      </div>
+
+      <!-- 04 Analizando -->
+      <div class="screen" id="s-analiza">
+        <div class="ph" role="img" aria-label="Comparando la foto: pasos con su tiempo">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="grow"></span><span class="back"><svg class="ico"><use href="#i-x"/></svg></span></div>
+          <div class="ph-body">
+            <div class="analyze">
+              <span class="crop"><img src="assets/img/photo-f2293634-400.jpg" alt="Recorte de Toby"><span class="frame" style="--fi:8% 10% 4% 16%"></span></span>
+              <h3>Comparando a Toby con los perros encontrados</h3>
+              <p class="small">Solo perros, a menos de 15 km de Suba, reportados en los últimos 60 días.</p>
+              <ul class="checklist">
+                <li><span class="tick done"><svg class="ico ico--s"><use href="#i-check"/></svg></span>Perro detectado y recortado<span class="t">0,8 s</span></li>
+                <li><span class="tick done"><svg class="ico ico--s"><use href="#i-check"/></svg></span>412 reportes dentro de la zona y las fechas<span class="t">0,3 s</span></li>
+                <li><span class="tick now"></span>Ordenando por parecido</li>
+                <li><span class="tick wait"></span>Cinco candidatos</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ph-foot"><span class="small" style="text-align:center">Suele tardar menos de 5 segundos.</span></div>
+        </div>
+        <div class="screen-cap"><strong>04 · Lo que pasa mientras espera</strong><span>Los pasos reales del documento, con su tiempo. Los filtros se nombran antes de mostrar resultados.</span><span class="reqs muted">RF-19 · RNF-02 · sección 6</span></div>
+      </div>
+
+      <!-- 05 Resultados -->
+      <div class="screen" id="s-resultados">
+        <div class="ph" role="img" aria-label="Resultados: cinco candidatos numerados del 01 al 05 y filtros visibles">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="back"><svg class="ico"><use href="#i-back"/></svg></span><span class="title grow">Toby · caso <span class="mono">PC-2048</span></span></div>
+          <div class="ph-body" style="gap:12px">
+            <h3>5 posibles coincidencias</h3>
+            <div class="filters"><span class="chip" aria-pressed="true">Perros</span><span class="chip">15 km</span><span class="chip">60 días</span><span class="chip">Encontrados</span></div>
+            <div class="order-axis">Más parecido <span class="l"></span> menos</div>
+            <div style="margin:0 -4px">
+              <a class="cand" href="#s-candidato"><span class="pos">01</span><span class="crop"><img src="assets/img/photo-f2253341-400.jpg" alt="Perro mestizo de pelo largo, dorado"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><h3 class="h4">Sin nombre</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Engativá · hace 2 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+              <a class="cand" href="#s-candidato"><span class="pos">02</span><span class="crop"><img src="assets/img/photo-f77734291-400.jpg" alt="Perra mestiza color canela"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><h3 class="h4">Sin nombre</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Suba Rincón · hace 4 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+              <a class="cand" href="#s-candidato"><span class="pos">03</span><span class="crop"><img src="assets/img/photo-f18351088-400.jpg" alt="Perro canela en la calle"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><h3 class="h4">Lucas</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Niza · hace 6 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+              <a class="cand" href="#s-candidato"><span class="pos">04</span><span class="crop"><img src="assets/img/photo-f489921-400.jpg" alt="Perro joven mestizo en el pasto"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><h3 class="h4">Sin nombre</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Cota · hace 9 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+              <a class="cand" href="#s-candidato"><span class="pos">05</span><span class="crop"><img src="assets/img/photo-f148610959-400.jpg" alt="Perro blanco con manchas oscuras en un parque"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><h3 class="h4">Sin nombre</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Usaquén · hace 12 días</span></span><svg class="ico"><use href="#i-chev"/></svg></a>
+            </div>
+          </div>
+          <div class="ph-foot"><span class="small">Revisaste 0 de 5. Los que descartes salen de la lista.</span></div>
+        </div>
+        <div class="screen-cap"><strong>05 · Cinco, en orden y nada más</strong><span>Posición en DM Mono, mismo tamaño para todos. Los filtros quedan a la vista y se pueden ajustar.</span><span class="reqs muted">RF-04 · RN-02 · RN-03 · HU-05</span></div>
+      </div>
+
+      <!-- 06 Candidato -->
+      <div class="screen" id="s-candidato">
+        <div class="ph" role="img" aria-label="Candidato 01 junto a la foto de Toby, con la decisión fija abajo">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="back"><svg class="ico"><use href="#i-back"/></svg></span><span class="title grow">Candidato <span class="mono">01</span> de 5</span></div>
+          <div class="ph-body" style="gap:12px">
+            <div class="compare">
+              <figure><span class="crop"><img src="assets/img/photo-f2293634-400.jpg" alt="Toby, la foto del reporte"><span class="frame" style="--fi:8% 10% 4% 16%"></span></span><figcaption>Toby</figcaption></figure>
+              <figure><span class="crop"><img src="assets/img/photo-f2253341-400.jpg" alt="Perro encontrado en Engativá"><span class="frame"></span></span><figcaption><span class="tag tag--found" style="height:22px;font-size:12.5px">Encontrado</span></figcaption></figure>
+            </div>
+            <dl class="facts">
+              <div><dt>Zona</dt><dd>Engativá, 500 m</dd></div>
+              <div><dt>Fecha</dt><dd><span class="mono">10 nov 2026</span></dd></div>
+              <div><dt>Tamaño</dt><dd>Mediano</dd></div>
+              <div><dt>Rasgos</dt><dd>Pelo largo dorado, sin collar</dd></div>
+            </dl>
+            <p class="small">Lo reportó una persona con celular verificado. Está en un hogar temporal.</p>
+          </div>
+          <div class="ph-foot"><div class="decision" style="border:0;padding:0;box-shadow:none;background:transparent"><p>¿Es Toby?</p><button class="btn btn--secondary" type="button">No es</button><button class="btn btn--primary" type="button">Sí, puede ser</button></div></div>
+        </div>
+        <div class="screen-cap"><strong>06 · Comparar lado a lado</strong><span>Las dos fotos al mismo tamaño, los datos en dos columnas y la decisión siempre visible, sin desplazarse.</span><span class="reqs muted">RF-05 · RN-01 · HU-05</span></div>
+      </div>
+
+      <!-- 07 Contacto -->
+      <div class="screen" id="s-contacto">
+        <div class="ph" role="img" aria-label="Solicitud de contacto con dos llaves: una aceptada y otra en espera">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="back"><svg class="ico"><use href="#i-back"/></svg></span><span class="title grow">Solicitud de contacto</span></div>
+          <div class="ph-body">
+            <h3>Le avisamos a quien lo encontró</h3>
+            <p class="lead-s">Tu número sigue oculto hasta que los dos acepten. Puedes mandarle un mensaje corto mientras tanto.</p>
+            <div class="party">
+              <div class="p"><span class="av" style="background:var(--p-ink);color:var(--p-bg)">SM</span><strong>Tú</strong><small>Aceptaste<br><span class="mono">10:12</span></small></div>
+              <span class="link-line"></span>
+              <div class="p"><span class="av" style="border:1.5px dashed var(--line-strong);color:var(--p-muted)"><svg class="ico"><use href="#i-clock"/></svg></span><strong>Quien lo encontró</strong><small>Sin responder</small></div>
+            </div>
+            <div class="key-row" style="justify-content:space-between"><span class="masked"><svg class="ico ico--s"><use href="#i-lock"/></svg>+57 3•• ••• ••41</span><span class="small">oculto</span></div>
+            <div class="field"><label for="f-msg">Mensaje</label><textarea id="f-msg">Hola, creo que es mi perro Toby. Se perdió el 9 de noviembre en Suba. ¿Tiene una mancha blanca en el pecho?</textarea></div>
+          </div>
+          <div class="ph-foot"><button class="btn btn--primary btn--block" type="button">Enviar el mensaje</button></div>
+        </div>
+        <div class="screen-cap"><strong>07 · Dos llaves</strong><span>Lo que falta se ve: la otra llave punteada y el número con candado. El mensaje ayuda a confirmar sin dar datos.</span><span class="reqs muted">RF-07 · RN-05 · HU-08</span></div>
+      </div>
+
+      <!-- 08 Caso -->
+      <div class="screen" id="s-caso">
+        <div class="ph" role="img" aria-label="Ficha del caso de Toby con su estado e historial">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="ph-top"><span class="back"><svg class="ico"><use href="#i-back"/></svg></span><span class="title grow">Caso <span class="mono">PC-2048</span></span></div>
+          <div class="ph-body">
+            <div class="case-head"><span class="crop"><img src="assets/img/photo-f2293634-400.jpg" alt="Toby"><span class="frame" style="--c:10px;--fi:8% 10% 4% 16%"></span></span><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span class="tag tag--lost">Perdido</span><h3>Toby</h3><span class="state state--follow">En seguimiento</span></div></div>
+            <ol class="timeline">
+              <li style="color:var(--st-follow)"><span class="dot fill"></span><div style="color:var(--p-ink)"><strong>Pediste contacto por el candidato 01</strong><time>11 nov · 10:12</time></div></li>
+              <li style="color:var(--p-muted)"><span class="dot"></span><div style="color:var(--p-ink)"><strong>Descartaste 2 candidatos</strong><time>11 nov · 10:05</time></div></li>
+              <li style="color:var(--st-active)"><span class="dot fill"></span><div style="color:var(--p-ink)"><strong>Caso activo, 5 candidatos</strong><time>9 nov · 19:40</time></div></li>
+              <li style="color:var(--p-muted)"><span class="dot"></span><div style="color:var(--p-ink)"><strong>Reporte publicado con 2 fotos</strong><time>9 nov · 19:38</time></div></li>
+            </ol>
+          </div>
+          <div class="ph-foot"><button class="btn btn--primary btn--block" type="button">Marcar a Toby como reencontrado</button><button class="btn btn--secondary btn--block" type="button">Cerrar el caso sin reencuentro</button></div>
+        </div>
+        <div class="screen-cap"><strong>08 · El caso tiene memoria</strong><span>Cada cambio queda con fecha. Resuelto solo existe como acción de la persona, nunca automática.</span><span class="reqs muted">RF-06 · RN-01 · HU-06</span></div>
+      </div>
+
+      <!-- 09 Mapa -->
+      <div class="screen" id="s-mapa">
+        <div class="ph" role="img" aria-label="Mapa público con reportes dibujados como círculos y una hoja inferior con la lista">
+          <div class="ph-status"><span>9:41</span><i></i></div>
+          <div class="mapfull map">
+            <svg viewBox="0 0 360 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="360" height="700" fill="#f1eee9"/>
+              <g fill="#e7e2db">
+                <rect x="12" y="12" width="90" height="70" rx="3"/><rect x="114" y="12" width="110" height="70" rx="3"/><rect x="236" y="12" width="112" height="70" rx="3"/>
+                <rect x="12" y="94" width="90" height="90" rx="3"/><rect x="236" y="94" width="112" height="90" rx="3"/>
+                <rect x="12" y="196" width="90" height="80" rx="3"/><rect x="114" y="196" width="110" height="80" rx="3"/><rect x="236" y="196" width="112" height="80" rx="3"/>
+                <rect x="12" y="288" width="90" height="90" rx="3"/><rect x="114" y="288" width="110" height="90" rx="3"/>
+                <rect x="12" y="390" width="90" height="80" rx="3"/><rect x="114" y="390" width="110" height="80" rx="3"/><rect x="236" y="390" width="112" height="80" rx="3"/>
+              </g>
+              <rect x="114" y="94" width="110" height="90" rx="3" fill="#dfe8da"/>
+              <rect x="236" y="288" width="112" height="90" rx="3" fill="#dfe8da"/>
+              <path d="M0 470 L360 150" stroke="#fff" stroke-width="12"/>
+              <path d="M180 0 V700" stroke="#fff" stroke-width="7"/>
+              <g stroke-width="1.5" stroke-dasharray="5 5">
+                <circle cx="96" cy="150" r="44" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)"/>
+                <circle cx="268" cy="240" r="44" fill="rgba(45,22,89,.10)" stroke="rgba(45,22,89,.5)"/>
+                <circle cx="150" cy="330" r="44" fill="rgba(45,22,89,.10)" stroke="rgba(45,22,89,.5)"/>
+                <circle cx="300" cy="96" r="44" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)"/>
+              </g>
+              <g fill="#cc2f70"><circle cx="96" cy="150" r="4"/><circle cx="300" cy="96" r="4"/></g>
+              <g fill="#2d1659"><circle cx="268" cy="240" r="4"/><circle cx="150" cy="330" r="4"/></g>
+            </svg>
+            <div class="map-search"><span class="s"><svg class="ico ico--s"><use href="#i-search"/></svg>Barrio o localidad</span><span class="f" aria-label="Filtros"><svg class="ico"><use href="#i-sliders"/></svg></span></div>
+            <div class="sheet">
+              <span class="grab"></span>
+              <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:400 20px/1.2 var(--font-display);letter-spacing:-.02em">4 reportes en esta zona</span><span class="small">7 días</span></div>
+              <div class="filters"><span class="chip" aria-pressed="true">Todos</span><span class="chip">Perdidos</span><span class="chip">Encontrados</span><span class="chip">Gatos</span></div>
+              <a class="report-card" href="#s-mapa"><span class="crop"><img src="assets/img/photo-f32440856-400.jpg" alt="Gato blanco y negro sentado en la calle"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><span><span class="tag tag--found">Encontrado</span></span><h3 class="h4">Gato blanco y negro</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Teusaquillo · hace 5 h</span></span></a>
+              <a class="report-card" href="#s-mapa"><span class="crop"><img src="assets/img/photo-f148640249-400.jpg" alt="Perro negro caminando por el asfalto"><span class="frame" style="--c:10px"></span></span><span class="rc-body"><span><span class="tag tag--lost">Perdido</span></span><h3 class="h4">Negra, perra mestiza</h3><span class="rc-meta"><svg class="ico ico--s"><use href="#i-zone"/></svg>Galerías · hace 1 día</span></span></a>
+              <div style="height:8px"></div>
+            </div>
+          </div>
+          <div class="tabbar">
+            <a href="#s-inicio"><svg class="ico"><use href="#i-home"/></svg>Inicio</a>
+            <a href="#s-caso"><svg class="ico"><use href="#i-paw"/></svg>Mis casos</a>
+            <a href="#s-mapa" aria-current="page"><svg class="ico"><use href="#i-zone"/></svg>Mapa</a>
+            <a href="#s-inicio"><svg class="ico"><use href="#i-user"/></svg>Perfil</a>
+          </div>
+        </div>
+        <div class="screen-cap"><strong>09 · El mapa público</strong><span>Lo que ve un visitante sin cuenta: círculos magenta para pérdidas, tinta para hallazgos, nunca un pin. La lista va en la hoja inferior.</span><span class="reqs muted">RF-15 · HU-16 · Visitante, nivel 0</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="closing">
+  <div class="wrap">
+    <div class="row1">
+      <a class="brand" href="#top"><span class="brand-mark"><svg class="ico"><use href="#i-paw"/></svg></span>PawConnect</a>
+      <div class="next">
+        <h3 style="font-size:24px">Lo que sigue en esta guía</h3>
+        <p>Las pantallas de los módulos 2, 3 y 4 (guías, adopción, mapa de servicios), los paneles de fundación, prestador y administrador, el tema oscuro y la página pública con la ruta completa del skill.</p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>PawConnect · PawTeam · 2026</span>
+      <span>Documento de trabajo, Edificio 3</span>
+      <details class="credits"><summary>Créditos de las fotos</summary><p id="credits-line">Fotos de Wikimedia Commons, usadas como muestra hasta tener fotos propias: Peter Angritt (CC BY-SA 4.0); rikkis_refuge (CC BY 2.0); Zoepa (CC BY 4.0); Slyronit (CC BY-SA 4.0); Tokumeigakarinoaoshima (CC0); André Karwath (CC BY-SA 2.5); Maciek Godlewski (CC BY 2.5); Olga Ernst (CC BY-SA 4.0); Chris Barber (CC BY 2.0); Андрей Романенко (CC BY-SA 4.0).</p></details>
+    </div>
+  </div>
+</footer>
+<script>
+  // Marca las fotos que no cargan para ocultar el icono roto (build.mjs evita que pase en la versión publicada)
+  for (const img of document.images) {
+    const mark = () => img.classList.add('is-broken');
+    if (img.complete && img.naturalWidth === 0) mark(); else img.addEventListener('error', mark);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Fotos del reporte (móvil)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div class="phone" style="font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v5.2M12 16.3h.01"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+</svg>
+<div class="appbar">
+<a class="icon-btn" href="Movil-Inicio.dc.html" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></a>
+<span class="title">Reporte de pérdida</span>
+</div>
+<div class="body">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="steps" aria-hidden="true"><span class="on"></span><span></span><span></span></div>
+<div style="display: flex; justify-content: space-between" class="label"><span>Paso 1 de 3 · Fotos</span><span>Sigue: zona</span></div>
+</div>
+<h1 style="font-size: 28px">Fotos de Toby</h1>
+<p style="font-size: 15px">De 1 a 5. Sirven más las que muestran la cara y el pelaje de cerca.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<span class="crop" style="aspect-ratio: 1; border-radius: 14px"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby parado en el andén"><span class="frame" style="--c: 11px"></span></span>
+<span class="crop" style="aspect-ratio: 1; border-radius: 14px"><img src="/_blob/926df80318826a21ae1262cbed0be175" alt="Toby en el pasto"><span class="frame" style="--c: 11px"></span></span>
+<span class="crop crop-out" style="aspect-ratio: 1; border-radius: 14px"><img src="/_blob/4da1104e5a2ab3938529f5a055e6b73c" alt="Foto oscura sin animal visible"><span class="frame" style="--c: 11px"></span></span>
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 4px"><svg class="ico"><use href="#camera"></use></svg>Agregar</span></button>
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 4px"><svg class="ico"><use href="#camera"></use></svg>Agregar</span></button>
+</div>
+<div class="notice notice-danger"><svg class="ico"><use href="#alert"></use></svg><div><strong>La tercera foto no sirve</strong><p>No vemos un perro ni un gato. La quitamos; puedes cambiarla por otra.</p></div></div>
+<p class="meta">Guardamos solo el recorte del animal; la foto original se descarta.</p>
+</div>
+<div class="foot">
+<a class="btn btn-primary btn-block" href="Movil-Zona.dc.html">Seguir con 2 fotos</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

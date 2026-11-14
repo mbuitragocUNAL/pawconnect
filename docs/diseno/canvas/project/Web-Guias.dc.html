@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Guías y trámites (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+<symbol id="out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></symbol>
+<symbol id="doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a class="here" href="Web-Guias.dc.html" aria-current="page">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="btn btn-tonal hide-phone" href="Movil-Ingreso.dc.html">Ingresar</a>
+<a class="btn btn-primary" href="Web-Publicar.dc.html">Publicar reporte</a>
+</div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 40px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 8px; max-width: 640px">
+<h1 style="font-size: clamp(32px, 1.6vw + 22px, 52px)">Guías y trámites para perros y gatos en Bogotá</h1>
+<p style="font-size: 18px">Cada guía dice de dónde sale y cuándo la revisamos por última vez. Si una norma cambió, manda la fuente oficial.</p>
+</div>
+<div class="field" style="flex: 0 1 360px"><label for="q">Buscar una guía</label><div style="position: relative"><svg class="ico" style="position: absolute; left: 14px; top: 14px; color: #574b7d"><use href="#search"></use></svg><input class="input" id="q" placeholder="Vacunas, viajes, razas…" style="padding-left: 44px"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Temas">
+<button class="chip chip-on" type="button" aria-pressed="true">Todas</button>
+<button class="chip" type="button">Tenencia</button>
+<button class="chip" type="button">Vacunación y salud</button>
+<button class="chip" type="button">Viajes y transporte</button>
+<button class="chip" type="button">Maltrato animal</button>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<nav style="flex: 1 1 340px; max-width: 460px; min-width: 0; display: flex; flex-direction: column" aria-label="Guías">
+<a href="Web-Guias.dc.html" aria-current="page" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-radius: 16px; background: #fff; border: 1px solid #2d1659; text-decoration: none; box-shadow: 0 0 0 1px #2d1659"><svg class="ico" style="margin-top: 2px"><use href="#doc"></use></svg><span style="flex: 1"><strong style="display: block; font: 400 19px/1.25 'Funnel Display', sans-serif">Vacunación antirrábica gratuita</strong><span class="meta">Secretaría Distrital de Salud · revisada el 3 nov 2026</span></span></a>
+<a href="Web-Guias.dc.html" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><svg class="ico" style="margin-top: 2px"><use href="#doc"></use></svg><span style="flex: 1"><strong style="display: block; font: 400 19px/1.25 'Funnel Display', sans-serif">Perros de manejo especial: bozal, traílla y póliza</strong><span class="meta">Ley 1801 de 2016 · revisada el 28 oct 2026</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a href="Web-Guias.dc.html" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><svg class="ico" style="margin-top: 2px"><use href="#doc"></use></svg><span style="flex: 1"><strong style="display: block; font: 400 19px/1.25 'Funnel Display', sans-serif">Sacar a tu mascota del país</strong><span class="meta">ICA · revisada el 20 oct 2026</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a href="Web-Guias.dc.html" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><svg class="ico" style="margin-top: 2px"><use href="#doc"></use></svg><span style="flex: 1"><strong style="display: block; font: 400 19px/1.25 'Funnel Display', sans-serif">Cómo denunciar maltrato animal</strong><span class="meta">Ley 1774 de 2016 · revisada el 15 oct 2026</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+<a href="Web-Guias.dc.html" style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; text-decoration: none"><svg class="ico" style="margin-top: 2px"><use href="#doc"></use></svg><span style="flex: 1"><strong style="display: block; font: 400 19px/1.25 'Funnel Display', sans-serif">Tenencia responsable en Bogotá</strong><span class="meta">IDPYBA · revisada el 10 oct 2026</span></span><svg class="ico"><use href="#chev"></use></svg></a>
+</nav>
+
+<article class="card" style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 20px" aria-labelledby="h-guia">
+<span class="label">Vacunación y salud</span>
+<h2 id="h-guia" style="font-size: clamp(28px, 1.2vw + 20px, 38px)">Vacunación antirrábica gratuita</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 20px; padding: 14px 16px; border-radius: 16px; background: #efedef">
+<span style="display: inline-flex; gap: 8px; align-items: center; font-weight: 500"><svg class="ico ico-s"><use href="#doc"></use></svg>Fuente: Secretaría Distrital de Salud de Bogotá</span>
+<span style="display: inline-flex; gap: 8px; align-items: center"><svg class="ico ico-s"><use href="#clock"></use></svg>Revisada el <span class="mono">3 nov 2026</span></span>
+<a class="link" href="Web-Guias.dc.html" style="display: inline-flex; gap: 6px; align-items: center; font-weight: 500">Ver la fuente oficial<svg class="ico ico-s"><use href="#out"></use></svg></a>
+</div>
+<p style="font-size: 18px; max-width: 40em">La vacuna contra la rabia protege a tu perro o gato y a las personas con las que vive. En Bogotá hay jornadas gratuitas durante el año.</p>
+<h3 style="font-size: 22px">Qué necesitas</h3>
+<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 10px; max-width: 40em">
+<li>Llevar a tu perro o gato con collar y traílla, o en guacal si es gato.</li>
+<li>Llevar el carné de vacunas si lo tienes, para que anoten la nueva dosis.</li>
+<li>Consultar los puntos y fechas de la jornada en la página de la Secretaría.</li>
+</ol>
+<h3 style="font-size: 22px">Cada cuánto</h3>
+<p style="max-width: 40em">Una vez al año, desde la edad que indique el veterinario. Si no sabes cuándo fue la última dosis, pregunta en el punto de vacunación.</p>
+<p class="meta" style="border-top: 1px solid rgba(45,22,89,.14); padding-top: 14px">¿Algo cambió? <a class="link" href="Web-Guias.dc.html">Avísanos con el enlace de la fuente</a> y revisamos la guía.</p>
+</article>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

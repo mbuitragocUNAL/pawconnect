@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Prototipo: encontré o vi un animal</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659; background: #fbf9f7">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"></path></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"></path></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v5.2M12 16.3h.01"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"></rect><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"></path></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+</svg>
+
+<sc-if value="{{ isTipo }}" hint-placeholder-val="{{ true }}">
+<div class="phone">
+<div class="appbar"><a class="icon-btn" href="Movil-Inicio.dc.html" aria-label="Volver al inicio"><svg class="ico"><use href="#back"></use></svg></a><span class="title">Reportar un animal</span></div>
+<div class="body" style="gap: 14px">
+<h1 style="font-size: 30px; margin-top: 4px">¿Qué pasó con el animal?</h1>
+<p style="font-size: 15px">Los dos casos ayudan. Los comparamos con los perros y gatos que sus familias reportaron perdidos.</p>
+<button type="button" onClick="{{ chooseConmigo }}" class="card" style="display: flex; gap: 14px; align-items: center; padding: 16px; text-align: left; cursor: pointer; font: inherit; color: inherit">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #2d1659; color: #fff; display: grid; place-items: center; flex: none"><svg class="ico ico-l"><use href="#heart"></use></svg></span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font: 400 21px/1.15 'Funnel Display', sans-serif">Lo tengo conmigo</strong><span class="meta">Está a salvo en mi casa, mi trabajo o un refugio.</span></span>
+<svg class="ico"><use href="#chev"></use></svg>
+</button>
+<button type="button" onClick="{{ chooseCalle }}" class="card" style="display: flex; gap: 14px; align-items: center; padding: 16px; text-align: left; cursor: pointer; font: inherit; color: inherit">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #fbf9f7; box-shadow: inset 0 0 0 1.5px #2d1659; display: grid; place-items: center; flex: none"><svg class="ico ico-l"><use href="#eye"></use></svg></span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font: 400 21px/1.15 'Funnel Display', sans-serif">Lo vi solo en la calle</strong><span class="meta">No lo pude agarrar, pero sé dónde y cuándo lo vi.</span></span>
+<svg class="ico"><use href="#chev"></use></svg>
+</button>
+<a class="link" href="Flujo-Perdi.dc.html" style="font-size: 15px; font-weight: 500; align-self: flex-start">¿Es tuyo y se perdió? Reportar una pérdida</a>
+<div class="notice notice-danger" style="margin-top: 4px"><svg class="ico"><use href="#alert"></use></svg><div><strong>¿Está herido?</strong><p><a class="link" href="Movil-Servicios.dc.html">Ver urgencias 24 horas cerca</a> antes de seguir.</p></div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isFoto }}" hint-placeholder-val="{{ false }}">
+<div class="phone">
+<div class="appbar"><button class="icon-btn" type="button" onClick="{{ toTipo }}" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></button><span class="title">{{ flowTitle }}</span></div>
+<div class="body">
+<div style="display: flex; flex-direction: column; gap: 8px"><div class="steps" aria-hidden="true"><span class="on"></span><span></span><span></span></div><span class="label">Paso 1 de 3 · Foto</span></div>
+<h1 style="font-size: 28px">{{ fotoTitle }}</h1>
+<p style="font-size: 15px">{{ fotoLead }}</p>
+<sc-if value="{{ hasPhoto }}" hint-placeholder-val="{{ false }}">
+<span class="crop" style="height: 300px; border-radius: 22px"><img src="{{ petImg }}" alt="{{ petAlt }}"><span class="frame frame-l"></span><span class="on-photo"><svg class="ico ico-s"><use href="#check"></use></svg>Perro detectado</span></span>
+</sc-if>
+<sc-if value="{{ noPhoto }}" hint-placeholder-val="{{ true }}">
+<button class="slot" type="button" onClick="{{ takePhoto }}" style="height: 300px; cursor: pointer"><span style="display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 15px"><svg class="ico ico-l"><use href="#camera"></use></svg>Tomar o elegir una foto</span></button>
+</sc-if>
+</div>
+<div class="foot">
+<button class="btn btn-primary btn-block" type="button" onClick="{{ toLugar }}" style="{{ fotoNextStyle }}">Seguir</button>
+<sc-if value="{{ canSkipPhoto }}" hint-placeholder-val="{{ false }}"><button class="btn btn-tonal btn-block" type="button" onClick="{{ toLugar }}">Seguir sin foto</button></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLugar }}" hint-placeholder-val="{{ false }}">
+<div class="phone">
+<div class="appbar"><button class="icon-btn" type="button" onClick="{{ toFoto }}" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></button><span class="title">{{ flowTitle }}</span></div>
+<div class="body" style="gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 8px"><div class="steps" aria-hidden="true"><span class="on"></span><span class="on"></span><span></span></div><span class="label">Paso 2 de 3 · Dónde y cuándo</span></div>
+<h1 style="font-size: 26px">{{ lugarTitle }}</h1>
+<div class="map" style="height: 150px; border-radius: 20px">
+<svg viewBox="0 0 360 150" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="360" height="150" fill="#f1eee9"></rect><g fill="#e7e2db"><rect x="10" y="10" width="76" height="56" rx="3"></rect><rect x="98" y="10" width="88" height="56" rx="3"></rect><rect x="198" y="10" width="68" height="56" rx="3"></rect><rect x="278" y="10" width="72" height="56" rx="3"></rect><rect x="10" y="78" width="76" height="62" rx="3"></rect><rect x="198" y="78" width="68" height="62" rx="3"></rect><rect x="278" y="78" width="72" height="62" rx="3"></rect></g><rect x="98" y="78" width="88" height="62" rx="3" fill="#dfe8da"></rect><path d="M0 140 L360 30" stroke="#fff" stroke-width="8"></path><circle cx="180" cy="76" r="52" fill="rgba(45,22,89,.10)" stroke="rgba(45,22,89,.5)" stroke-width="1.5" stroke-dasharray="5 5"></circle><circle cx="180" cy="76" r="4" fill="#2d1659"></circle></svg>
+<span style="position: absolute; left: 10px; bottom: 10px; display: inline-flex; gap: 6px; align-items: center; height: 28px; padding: 0 10px; border-radius: 999px; background: #fbf9f7; font: 500 13px/1 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#zone"></use></svg>Engativá, Calle 72</span>
+</div>
+<sc-if value="{{ calle }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Cuándo lo viste?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ whens }}" as="w" hint-placeholder-count="3"><button type="button" class="{{ w.cls }}" onClick="{{ w.pick }}" style="height: 34px; font-size: 13px">{{ w.label }}</button></sc-for></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Hacia dónde iba?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ dirs }}" as="d" hint-placeholder-count="5"><button type="button" class="{{ d.cls }}" onClick="{{ d.pick }}" style="height: 34px; font-size: 13px">{{ d.label }}</button></sc-for></div></div>
+</sc-if>
+<sc-if value="{{ conmigo }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">¿Cuánto tiempo puedes cuidarlo?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{ cares }}" as="c" hint-placeholder-count="3"><button type="button" class="{{ c.cls }}" onClick="{{ c.pick }}" style="height: 34px; font-size: 13px">{{ c.label }}</button></sc-for></div></div>
+</sc-if>
+<label class="consent" style="padding: 12px"><input type="checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}"><span><strong>Mostrar esta zona en el reporte</strong><small>Un círculo de 500 m, nunca el punto exacto.</small></span></label>
+</div>
+<div class="foot"><button class="btn btn-primary btn-block" type="button" onClick="{{ publish }}">{{ publishLabel }}</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBuscando }}" hint-placeholder-val="{{ false }}">
+<div class="phone">
+<div class="body" style="align-items: center; justify-content: center; text-align: center; gap: 18px">
+<span class="crop" style="width: 160px; height: 160px; border-radius: 24px"><img src="{{ petImg }}" alt="{{ petAlt }}"><span class="frame"></span></span>
+<h1 style="font-size: 26px">Comparando con perros perdidos</h1>
+<p class="meta">Misma especie, a menos de 15 km, perdidos en los últimos 60 días.</p>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRes }}" hint-placeholder-val="{{ false }}">
+<div class="phone">
+<div class="appbar"><button class="icon-btn" type="button" onClick="{{ toLugar }}" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></button><span class="title">Reporte publicado</span><span class="{{ typeTagCls }}">{{ typeTag }}</span></div>
+<div class="body" style="gap: 12px">
+<h1 style="font-size: 26px">{{ resTitle }}</h1>
+<p class="meta">Ordenados por parecido, sin porcentajes. Si reconoces a uno, avisamos a su familia.</p>
+<sc-for list="{{ cands }}" as="c" hint-placeholder-count="3">
+<div class="card" style="display: flex; gap: 12px; align-items: center; padding: 10px">
+<span class="pos">{{ c.pos }}</span>
+<span class="crop" style="width: 64px; height: 64px; border-radius: 12px"><img src="{{ c.img }}" alt="{{ c.alt }}"><span class="frame" style="--c: 9px"></span></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font: 400 17px/1.2 'Funnel Display', sans-serif">{{ c.name }}</span><span class="zone-meta" style="font-size: 13px">{{ c.meta }}</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><button class="btn btn-primary" type="button" onClick="{{ c.pick }}" style="min-height: 36px; padding: 0 14px; font-size: 14px">Es este</button><button class="btn btn-tonal" type="button" onClick="{{ c.drop }}" style="min-height: 36px; padding: 0 14px; font-size: 14px">No es</button></span>
+</div>
+</sc-for>
+<sc-if value="{{ noneLeft }}" hint-placeholder-val="{{ false }}">
+<div class="notice notice-plain"><svg class="ico"><use href="#bell"></use></svg><div><strong>Ninguno es</strong><p>Tu reporte sigue publicado. Si alguien reporta una pérdida parecida, te avisamos.</p></div></div>
+</sc-if>
+</div>
+<div class="foot"><button class="btn btn-tonal btn-block" type="button" onClick="{{ toAviso }}">Ninguno se parece</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isContacto }}" hint-placeholder-val="{{ false }}">
+<div class="phone">
+<div class="appbar"><button class="icon-btn" type="button" onClick="{{ toRes }}" aria-label="Volver"><svg class="ico"><use href="#back"></use></svg></button><span class="title">Contacto con la familia de {{ picked }}</span></div>
+<div class="body">
+<h1 style="font-size: 26px">{{ contactoTitle }}</h1>
+<div class="keyrow"><span class="key-on"><svg class="ico ico-s"><use href="#check"></use></svg></span><span style="flex: 1"><strong style="font-weight: 500; display: block">Tú aceptaste</strong><span class="meta">Ahora</span></span></div>
+<sc-if value="{{ ownerWaiting }}" hint-placeholder-val="{{ true }}">
+<div class="keyrow"><span class="key-wait"><svg class="ico ico-s"><use href="#clock"></use></svg></span><span style="flex: 1"><strong style="font-weight: 500; display: block">La familia de {{ picked }}</strong><span class="meta">Le llegó la solicitud</span></span></div>
+<div class="keyrow" style="justify-content: space-between; background: #efedef; border-color: transparent"><span class="masked"><svg class="ico ico-s"><use href="#lock"></use></svg>+57 3•• ••• ••18</span><span class="meta">oculto</span></div>
+<button class="btn btn-tonal btn-block" type="button" onClick="{{ ownerAccepts }}">Simular: la familia acepta</button>
+</sc-if>
+<sc-if value="{{ ownerOk }}" hint-placeholder-val="{{ false }}">
+<div class="keyrow"><span class="key-on"><svg class="ico ico-s"><use href="#check"></use></svg></span><span style="flex: 1"><strong style="font-weight: 500; display: block">La familia de {{ picked }} aceptó</strong><span class="meta">Ahora</span></span></div>
+<div class="notice" style="background: #e1f0e6; color: #1b6b43"><svg class="ico"><use href="#check"></use></svg><div><strong>Ya pueden hablar</strong><p style="color: #2d1659">Acuerden un lugar público para el reencuentro. Pide que muestre otra foto de {{ picked }}.</p></div></div>
+</sc-if>
+</div>
+<div class="foot">
+<sc-if value="{{ ownerOk }}" hint-placeholder-val="{{ false }}"><a class="btn btn-primary btn-block" href="Flujo-Encontre.dc.html">Llamar a la familia</a></sc-if>
+<button class="btn btn-tonal btn-block" type="button" onClick="{{ restart }}">Volver a empezar</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isAviso }}" hint-placeholder-val="{{ false }}">
+<div class="phone">
+<div class="appbar"><span class="title">Reporte publicado</span><span class="{{ typeTagCls }}">{{ typeTag }}</span></div>
+<div class="body" style="gap: 14px">
+<span class="crop" style="height: 220px; border-radius: 22px"><img src="{{ petImg }}" alt="{{ petAlt }}"><span class="frame frame-l"></span></span>
+<h1 style="font-size: 26px">{{ avisoTitle }}</h1>
+<div class="keyrow"><svg class="ico"><use href="#bell"></use></svg><span style="flex: 1; font-size: 15px">Avisamos a quienes tienen alertas activas a menos de 5 km.</span></div>
+<div class="keyrow"><svg class="ico"><use href="#clock"></use></svg><span style="flex: 1; font-size: 15px">{{ avisoTime }}</span></div>
+<p class="meta">Si alguien reporta una pérdida parecida, te avisamos para que revises si es el mismo animal.</p>
+</div>
+<div class="foot"><a class="btn btn-primary btn-block" href="Movil-Caso.dc.html">Ver mi reporte</a><button class="btn btn-tonal btn-block" type="button" onClick="{{ restart }}">Volver a empezar</button></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { step: 'tipo', mode: 'conmigo', photo: false, consent: false, when: 'Ahora', dir: 'No sé', care: 'Unos días', gone: [], picked: '', ownerOk: false };
+}
+componentWillUnmount() { if (this.timer) clearTimeout(this.timer); }
+renderVals() {
+const s = this.state;
+const set = (patch) => () => this.setState(patch);
+const calle = s.mode === 'calle';
+const pet = calle
+? { img: '/_blob/6cfd1ed8d9b828e5c68726fc06fc0e71', alt: 'Perro canela caminando solo por la calle' }
+: { img: '/_blob/926df80318826a21ae1262cbed0be175', alt: 'Perro dorado de pelo largo, encontrado' };
+const chips = (list, key) => list.map((label) => ({ label: label, cls: s[key] === label ? 'chip chip-on' : 'chip', pick: set({ [key]: label }) }));
+const all = [
+{ id: 'toby', name: 'Toby', img: '/_blob/44c91048247fbc9a360c786f01d57fa0', alt: 'Toby, perro dorado de pelo largo', meta: 'Perdido en Suba · hace 2 días' },
+{ id: 'kira', name: 'Kira', img: '/_blob/ae93aa3ac3a828b66a652dc464d2da95', alt: 'Kira, perra canela', meta: 'Perdida en Engativá · hace 5 días' },
+{ id: 'negra', name: 'Negra', img: '/_blob/ccd8b36ec1dcc0dfeacab45f3f506ae7', alt: 'Negra, perra negra', meta: 'Perdida en Galerías · hace 1 día' }
+];
+const cands = all.filter((c) => s.gone.indexOf(c.id) < 0).map((c, i) => Object.assign({}, c, {
+pos: '0' + (i + 1),
+pick: set({ step: 'contacto', picked: c.name, ownerOk: false }),
+drop: () => this.setState({ gone: s.gone.concat([c.id]) })
+}));
+return {
+isTipo: s.step === 'tipo', isFoto: s.step === 'foto', isLugar: s.step === 'lugar', isBuscando: s.step === 'buscando',
+isRes: s.step === 'res', isContacto: s.step === 'contacto', isAviso: s.step === 'aviso',
+calle: calle, conmigo: !calle,
+chooseConmigo: set({ step: 'foto', mode: 'conmigo' }),
+chooseCalle: set({ step: 'foto', mode: 'calle' }),
+toTipo: set({ step: 'tipo' }), toFoto: set({ step: 'foto' }), toLugar: set({ step: 'lugar' }), toRes: set({ step: 'res' }), toAviso: set({ step: 'aviso' }),
+flowTitle: calle ? 'Lo vi en la calle' : 'Lo tengo conmigo',
+fotoTitle: calle ? 'Si alcanzaste a tomarle una foto, súbela' : 'Tómale una foto de cerca',
+fotoLead: calle ? 'Aunque sea de lejos. Sin foto avisamos por zona, pero no podemos comparar.' : 'Que se vean la cara y el pelaje. Guardamos solo el recorte del animal.',
+hasPhoto: s.photo, noPhoto: !s.photo, takePhoto: set({ photo: true }),
+canSkipPhoto: calle && !s.photo,
+fotoNextStyle: s.photo ? '' : 'opacity: .45; pointer-events: none',
+petImg: pet.img, petAlt: pet.alt,
+lugarTitle: calle ? '¿Dónde y cuándo lo viste?' : '¿Dónde lo encontraste?',
+whens: chips(['Ahora', 'Hace 1 hora', 'Hoy más temprano'], 'when'),
+dirs: chips(['Norte', 'Sur', 'Oriente', 'Occidente', 'No sé'], 'dir'),
+cares: chips(['Solo hoy', 'Unos días', 'Hasta que aparezca su familia'], 'care'),
+consent: s.consent, toggleConsent: () => this.setState({ consent: !s.consent }),
+publishLabel: s.photo ? 'Publicar y buscar a su familia' : 'Publicar y avisar en la zona',
+publish: () => {
+if (!s.photo) { this.setState({ step: 'aviso' }); return; }
+this.setState({ step: 'buscando' });
+this.timer = setTimeout(() => this.setState({ step: 'res' }), 1600);
+},
+typeTag: calle ? 'Visto en la calle' : 'Encontrado',
+typeTagCls: calle ? 'tag tag-seen' : 'tag tag-found',
+resTitle: cands.length ? (cands.length + (cands.length === 1 ? ' perro perdido se parece' : ' perros perdidos se parecen')) : 'Revisaste todos',
+cands: cands, noneLeft: cands.length === 0,
+picked: s.picked,
+contactoTitle: s.ownerOk ? 'La familia de ' + s.picked + ' aceptó' : 'Le avisamos a la familia de ' + s.picked,
+ownerWaiting: !s.ownerOk, ownerOk: s.ownerOk, ownerAccepts: set({ ownerOk: true }),
+avisoTitle: calle ? 'Gracias por avisar' : 'Su familia puede encontrarlo',
+avisoTime: calle ? 'Visto ' + s.when.toLowerCase() + ', iba hacia: ' + s.dir.toLowerCase() + '. El reporte se ve 7 días y lo puedes renovar.' : 'Puedes cuidarlo: ' + s.care.toLowerCase() + '. Si cambia, actualiza el reporte.',
+restart: set({ step: 'tipo', photo: false, consent: false, gone: [], picked: '', ownerOk: false })
+};
+}
+}
+</script>
+</body>
+</html>

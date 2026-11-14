@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Inicio (móvil)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div class="phone" style="font-family: 'Funnel Sans', system-ui, sans-serif; color: #2d1659">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"></circle><path d="m20 20-4.2-4.2"></path></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.6 12 20 12 20Z"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"></path></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1Z"></path></symbol>
+<symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+<symbol id="dots" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.3"></circle><circle cx="12" cy="12" r="1.3"></circle><circle cx="18.5" cy="12" r="1.3"></circle></symbol>
+</svg>
+<div class="appbar">
+<a class="brand" href="Main.dc.html" style="font-size: 18px; flex: 1"><span class="mark" style="width: 30px; height: 30px; border-radius: 9px"><svg class="ico" style="width: 19px; height: 19px"><use href="#paw"></use></svg></span>PawConnect</a>
+<a class="icon-btn" href="Movil-Caso.dc.html" aria-label="Notificaciones"><svg class="ico"><use href="#bell"></use></svg></a>
+</div>
+<div class="body" style="gap: 16px">
+<h1 style="font-size: 32px; margin-top: 4px">¿Perdiste o encontraste un perro o un gato?</h1>
+<a href="Flujo-Perdi.dc.html" class="card" style="display: flex; gap: 14px; align-items: center; padding: 16px; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #cc2f70; color: #fff; display: grid; place-items: center; flex: none"><svg class="ico ico-l"><use href="#search"></use></svg></span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font: 400 21px/1.15 'Funnel Display', sans-serif; letter-spacing: -0.02em">Perdí a mi mascota</strong><span class="meta">La comparamos con los animales encontrados.</span></span>
+<svg class="ico"><use href="#chev"></use></svg>
+</a>
+<a href="Flujo-Encontre.dc.html" class="card" style="display: flex; gap: 14px; align-items: center; padding: 16px; text-decoration: none">
+<span style="width: 52px; height: 52px; border-radius: 16px; background: #2d1659; color: #fff; display: grid; place-items: center; flex: none"><svg class="ico ico-l"><use href="#heart"></use></svg></span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font: 400 21px/1.15 'Funnel Display', sans-serif; letter-spacing: -0.02em">Encontré un animal</strong><span class="meta">Lo tienes contigo o lo viste solo en la calle.</span></span>
+<svg class="ico"><use href="#chev"></use></svg>
+</a>
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px"><h2 style="font-size: 20px">Cerca de Suba</h2><a class="link" href="Movil-Mapa.dc.html" style="font-size: 14px; font-weight: 500">Ver en el mapa</a></div>
+<a class="report" href="Movil-Candidato.dc.html"><span class="crop"><img src="/_blob/8c63afd3a104dfc07b486089e4ac0d14" alt="Perro dormido en un andén"><span class="frame"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1"><span><span class="tag tag-found">Encontrado</span></span><h3>Perro café, collar negro</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Chapinero · hace 1 día</span></span></a>
+<a class="report" href="Movil-Candidato.dc.html"><span class="crop"><img src="/_blob/ccd8b36ec1dcc0dfeacab45f3f506ae7" alt="Perra negra caminando"><span class="frame"></span></span><span style="display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1"><span><span class="tag tag-lost">Perdido</span></span><h3>Negra, perra mestiza</h3><span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Galerías · hace 1 día</span></span></a>
+</div>
+<nav class="tabs" aria-label="Principal">
+<a class="here" href="Movil-Inicio.dc.html" aria-current="page"><svg class="ico"><use href="#home"></use></svg>Inicio</a>
+<a href="Movil-Mapa.dc.html"><svg class="ico"><use href="#zone"></use></svg>Mapa</a>
+<a href="Movil-Fotos.dc.html" aria-label="Publicar reporte"><span class="plus"><svg class="ico"><use href="#plus"></use></svg></span></a>
+<a href="Movil-Caso.dc.html"><svg class="ico"><use href="#paw"></use></svg>Mis casos</a>
+<a href="Movil-Mas.dc.html"><svg class="ico"><use href="#dots"></use></svg>Más</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

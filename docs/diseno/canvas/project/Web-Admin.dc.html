@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Panel de administración (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="seal" viewBox="0 0 24 24"><path d="M12 2.8l2.2 1.6 2.7-.2.9 2.6 2.3 1.4-.6 2.7 1.1 2.5-2 1.9-.3 2.7-2.7.6-1.7 2.1-2.6-1-2.6 1-1.7-2.1-2.7-.6-.3-2.7-2-1.9 1.1-2.5-.6-2.7 2.3-1.4.9-2.6 2.7.2Z"></path><path d="m8.8 12.2 2.2 2.2 4.3-4.4"></path></symbol>
+<symbol id="flag" viewBox="0 0 24 24"><path d="M5 21V4M5 4h11l-2 4 2 4H5"></path></symbol>
+<symbol id="trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></symbol>
+<symbol id="list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"></path></symbol>
+<symbol id="doc" viewBox="0 0 24 24"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path><path d="M14 3v5h5M9 13h6M9 17h6"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<span class="label hide-phone" style="padding-left: 16px; border-left: 1px solid rgba(45,22,89,.28)">Administración · PawTeam</span>
+<div class="hdr-end"><span class="avatar" aria-label="Administrador, Samuel C.">SC</span></div>
+</div>
+</header>
+
+<div class="wrap" style="padding-top: 28px; padding-bottom: 48px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+<nav style="flex: 1 1 220px; max-width: 250px; display: flex; flex-direction: column; gap: 4px" aria-label="Administración">
+<a href="Web-Admin.dc.html" aria-current="page" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; background: #efedef; font-weight: 500; text-decoration: none"><svg class="ico"><use href="#seal"></use></svg>Verificaciones<span class="mono" style="margin-left: auto">4</span></a>
+<a href="Web-Admin.dc.html" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; text-decoration: none"><svg class="ico"><use href="#flag"></use></svg>Perfiles reportados<span class="mono" style="margin-left: auto; color: #574b7d">2</span></a>
+<a href="Web-Admin.dc.html" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; text-decoration: none"><svg class="ico"><use href="#trash"></use></svg>Borrado de datos<span class="mono" style="margin-left: auto; color: #574b7d">1</span></a>
+<a href="Web-Admin.dc.html" style="display: flex; gap: 10px; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 12px; text-decoration: none"><svg class="ico"><use href="#list"></use></svg>Registro de auditoría</a>
+</nav>
+
+<main style="flex: 999 1 760px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 6px"><h1 style="font-size: clamp(30px, 1.4vw + 22px, 44px)">Verificaciones pendientes</h1><p class="meta">Revisión manual de documentos. El sello solo aparece cuando lo apruebas.</p></div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="card" style="flex: 1 1 340px; max-width: 420px; min-width: 0; padding: 8px" aria-label="Cola de verificación">
+<a href="Web-Admin.dc.html" aria-current="true" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 16px; background: rgba(204,47,112,.06); box-shadow: inset 3px 0 0 #cc2f70; text-decoration: none"><span style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-weight: 500">Consultorio Patitas del Norte</strong><span class="label nowrap">Prestador · nivel 3</span></span><span class="meta">RUES y RUT · llegó el <span class="mono">9 nov</span></span></a>
+<a href="Web-Admin.dc.html" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><span style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-weight: 500">Hogar Gatuno Chía</strong><span class="label nowrap">Fundación · nivel 2</span></span><span class="meta">Certificado de existencia y aval · <span class="mono">8 nov</span></span></a>
+<a href="Web-Admin.dc.html" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-bottom: 1px solid rgba(45,22,89,.14); text-decoration: none"><span style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-weight: 500">Paseos Diana M.</strong><span class="label nowrap">Persona natural · nivel 3</span></span><span class="meta">RUT y referencia · <span class="mono">7 nov</span></span></a>
+<a href="Web-Admin.dc.html" style="display: flex; flex-direction: column; gap: 6px; padding: 14px; text-decoration: none"><span style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-weight: 500">Guardería Huellas de Cota</strong><span class="label nowrap">Prestador · nivel 3</span></span><span class="meta">Falta el RUT · <span class="mono">5 nov</span></span></a>
+</section>
+
+<section class="card" style="flex: 999 1 400px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-rev">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: baseline"><h2 id="h-rev" style="font-size: 26px">Consultorio Patitas del Norte</h2><span class="seal" style="border-style: dashed; color: #574b7d"><svg class="ico ico-s"><use href="#clock"></use></svg>En revisión</span></div>
+<dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); border-top: 1px solid rgba(45,22,89,.14)">
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Tipo</dt><dd style="margin: 4px 0 0">Veterinaria</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Zona</dt><dd style="margin: 4px 0 0">Calle 127 · Usaquén</dd></div>
+<div style="padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><dt class="label">Cuenta creada</dt><dd class="mono" style="margin: 4px 0 0">2 nov 2026</dd></div>
+</dl>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font: 500 14px/1.3 'Funnel Sans', sans-serif">Documentos</span>
+<div class="keyrow" style="justify-content: space-between"><span style="display: inline-flex; gap: 10px; align-items: center"><svg class="ico"><use href="#doc"></use></svg>Matrícula mercantil (RUES)</span><a class="link" href="Web-Admin.dc.html" style="display: inline-flex; gap: 6px; align-items: center; font-weight: 500"><svg class="ico ico-s"><use href="#eye"></use></svg>Abrir</a></div>
+<div class="keyrow" style="justify-content: space-between"><span style="display: inline-flex; gap: 10px; align-items: center"><svg class="ico"><use href="#doc"></use></svg>RUT</span><a class="link" href="Web-Admin.dc.html" style="display: inline-flex; gap: 6px; align-items: center; font-weight: 500"><svg class="ico ico-s"><use href="#eye"></use></svg>Abrir</a></div>
+<p class="meta">Cada vez que abres un documento queda en el registro. Los archivos se borran al cerrar la revisión; se guardan solo el resultado y la fecha.</p>
+</div>
+<div class="field"><label for="motivo">Nota para el prestador</label><textarea class="input" id="motivo" style="height: 80px">La dirección del RUT no coincide con la del perfil. ¿Cambiaron de sede?</textarea></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><a class="btn btn-primary" href="Web-Admin.dc.html"><svg class="ico"><use href="#check"></use></svg>Aprobar el sello</a><a class="btn btn-tonal" href="Web-Admin.dc.html">Pedir corrección</a><a class="btn btn-tonal" href="Web-Admin.dc.html" style="color: #a8231b">Rechazar</a></div>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section class="card" style="flex: 1 1 320px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 10px" aria-labelledby="h-borrado">
+<h2 id="h-borrado" style="font-size: 20px">Solicitud de borrado</h2>
+<p><strong style="font-weight: 500">Cuenta terminada en ••67</strong> pidió eliminar su cuenta y sus datos.</p>
+<p style="display: flex; gap: 8px; align-items: center"><span class="state st-follow">Vence el 2 dic 2026</span><span class="meta">15 días hábiles</span></p>
+<a class="btn btn-tonal" href="Web-Admin.dc.html" style="align-self: flex-start">Revisar y borrar</a>
+</section>
+<section class="card" style="flex: 999 1 420px; min-width: 0; padding: 20px; display: flex; flex-direction: column; gap: 10px" aria-labelledby="h-aud">
+<h2 id="h-aud" style="font-size: 20px">Registro de auditoría</h2>
+<ol style="list-style: none; margin: 0; padding: 0; font-size: 14px">
+<li style="display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><span class="mono" style="color: #574b7d; flex: none">11 nov 10:41</span><span>SC abrió el RUT de Consultorio Patitas del Norte</span></li>
+<li style="display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><span class="mono" style="color: #574b7d; flex: none">11 nov 10:39</span><span>SC abrió la matrícula de Consultorio Patitas del Norte</span></li>
+<li style="display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid rgba(45,22,89,.14)"><span class="mono" style="color: #574b7d; flex: none">10 nov 16:02</span><span>MB retiró el sello de Paseos El Lago tras 3 reportes fundados</span></li>
+<li style="display: flex; gap: 16px; padding: 8px 0"><span class="mono" style="color: #574b7d; flex: none">10 nov 09:15</span><span>SC aprobó el sello de Fundación Calle 80</span></li>
+</ol>
+</section>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>PawConnect · Publicar reporte (web)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..700&amp;family=Funnel+Sans:wght@400..600&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2d1659}a:hover{color:#2d1659}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #fbf9f7; color: #2d1659; font-family: 'Funnel Sans', system-ui, sans-serif">
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+<symbol id="paw" viewBox="0 0 24 24"><circle cx="7" cy="8.5" r="1.8"></circle><circle cx="17" cy="8.5" r="1.8"></circle><circle cx="4.6" cy="13.2" r="1.5"></circle><circle cx="19.4" cy="13.2" r="1.5"></circle><path d="M12 11.2c-2.9 0-5.2 2.9-5.2 5 0 1.9 1.5 3.1 3.2 2.5a6 6 0 0 1 4 0c1.7.6 3.2-.6 3.2-2.5 0-2.1-2.3-5-5.2-5Z"></path></symbol>
+<symbol id="zone" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" stroke-dasharray="2.4 2.6"></circle><circle cx="12" cy="12" r="2.2"></circle></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol>
+<symbol id="alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v5.2M12 16.3h.01"></path></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7"></path></symbol>
+<symbol id="x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
+<symbol id="bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 6.5-2.5 7.5-2.5 7.5h17S18 16 18 9.5ZM10 20.5h4"></path></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></symbol>
+</svg>
+
+<header class="hdr">
+<div class="hdr-in">
+<a class="brand" href="Main.dc.html"><span class="mark"><svg class="ico" style="width: 22px; height: 22px"><use href="#paw"></use></svg></span>PawConnect</a>
+<nav class="nav" aria-label="Principal">
+<a href="Web-Reportes.dc.html">Reportes</a>
+<a href="Web-Coincidencias.dc.html">Buscar por foto</a>
+<a href="Web-Adopcion.dc.html">Adopción</a>
+<a href="Web-Guias.dc.html">Guías</a>
+<a href="Web-Servicios.dc.html">Servicios</a>
+</nav>
+<div class="hdr-end">
+<a class="icon-btn" href="Web-Caso.dc.html" aria-label="Notificaciones"><svg class="ico"><use href="#bell"></use></svg></a>
+<a class="avatar" href="Web-Caso.dc.html" aria-label="Mi cuenta, Sofía M.">SM</a>
+</div>
+</div>
+</header>
+
+<main class="wrap" style="padding-top: 40px; padding-bottom: 56px; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<a class="link meta" href="Main.dc.html">Inicio</a>
+<h1 style="font-size: clamp(32px, 1.6vw + 22px, 48px)">Reporte de pérdida</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Tipo de reporte">
+<button class="chip chip-on" type="button" aria-pressed="true">Perdí a mi mascota</button>
+<a class="chip" href="Web-Encontre.dc.html" style="text-decoration: none">Encontré o vi un animal</a>
+</div>
+<div class="steps" aria-hidden="true" style="max-width: 520px"><span class="on"></span><span class="on"></span><span></span></div>
+<span class="label">Tres partes: fotos, zona y datos. Unos 3 minutos.</span>
+</div>
+
+<section class="card" style="padding: 28px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-fotos">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap"><h2 id="h-fotos" style="font-size: 26px">1 · Fotos de Toby</h2><span class="label">2 de 5 listas</span></div>
+<p>De 1 a 5. Sirven más las que muestran la cara y el pelaje de cerca. Guardamos solo el recorte del animal.</p>
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+<span class="crop" style="aspect-ratio: 1; border-radius: 16px"><img src="/_blob/44c91048247fbc9a360c786f01d57fa0" alt="Toby parado en el andén"><span class="frame"></span><span class="on-photo"><svg class="ico ico-s"><use href="#check"></use></svg>Perro</span></span>
+<span class="crop" style="aspect-ratio: 1; border-radius: 16px"><img src="/_blob/926df80318826a21ae1262cbed0be175" alt="Toby en el pasto"><span class="frame"></span><span class="on-photo"><svg class="ico ico-s"><use href="#check"></use></svg>Perro</span></span>
+<span class="crop crop-out" style="aspect-ratio: 1; border-radius: 16px"><img src="/_blob/4da1104e5a2ab3938529f5a055e6b73c" alt="Foto oscura donde no se distingue el animal"><span class="frame"></span><span class="on-photo on-photo-bad"><svg class="ico ico-s"><use href="#x"></use></svg>No se ve</span></span>
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 6px"><svg class="ico"><use href="#camera"></use></svg>Agregar foto</span></button>
+<button class="slot" type="button" style="aspect-ratio: 1"><span style="display: flex; flex-direction: column; align-items: center; gap: 6px"><svg class="ico"><use href="#camera"></use></svg>Agregar foto</span></button>
+</div>
+<div class="notice notice-danger"><svg class="ico"><use href="#alert"></use></svg><div><strong>La tercera foto no sirve</strong><p>No vemos un perro ni un gato. La quitamos; puedes cambiarla por otra con luz de día.</p></div></div>
+</section>
+
+<section class="card" style="padding: 28px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-zona">
+<h2 id="h-zona" style="font-size: 26px">2 · ¿Dónde lo viste por última vez?</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+<div class="map" style="flex: 1 1 340px; min-height: 240px; border-radius: 20px">
+<svg viewBox="0 0 500 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+<rect width="500" height="300" fill="#f1eee9"></rect>
+<g fill="#e7e2db"><rect x="12" y="12" width="100" height="70" rx="3"></rect><rect x="126" y="12" width="120" height="70" rx="3"></rect><rect x="260" y="12" width="100" height="70" rx="3"></rect><rect x="374" y="12" width="114" height="70" rx="3"></rect><rect x="12" y="96" width="100" height="90" rx="3"></rect><rect x="260" y="96" width="100" height="90" rx="3"></rect><rect x="374" y="96" width="114" height="90" rx="3"></rect><rect x="12" y="200" width="100" height="88" rx="3"></rect><rect x="126" y="200" width="120" height="88" rx="3"></rect><rect x="260" y="200" width="100" height="88" rx="3"></rect><rect x="374" y="200" width="114" height="88" rx="3"></rect></g>
+<rect x="126" y="96" width="120" height="90" rx="3" fill="#dfe8da"></rect>
+<path d="M0 280 L500 60" stroke="#fff" stroke-width="10"></path>
+<circle cx="240" cy="150" r="88" fill="rgba(204,47,112,.12)" stroke="rgba(204,47,112,.55)" stroke-width="1.5" stroke-dasharray="5 5"></circle>
+<circle cx="240" cy="150" r="5" fill="#cc2f70"></circle>
+</svg>
+<span style="position: absolute; left: 12px; bottom: 12px; display: inline-flex; gap: 6px; align-items: center; height: 30px; padding: 0 12px; border-radius: 999px; background: #fbf9f7; font: 500 13px/1 'Funnel Sans', sans-serif"><svg class="ico ico-s"><use href="#zone"></use></svg>Zona de 500 m</span>
+</div>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 14px; min-width: 0">
+<div class="field"><label for="zona">Barrio o referencia</label><input class="input" id="zona" value="Suba, cerca de la Av. Ciudad de Cali"><span class="help">Mueve el círculo en el mapa si hace falta.</span></div>
+<label class="consent"><input type="checkbox"><span><strong>Mostrar esta zona en el reporte</strong><small>Otros verán un círculo de 500 m, nunca el punto. El punto exacto se borra 30 días después de cerrar el caso.</small></span></label>
+</div>
+</div>
+</section>
+
+<section class="card" style="padding: 28px; display: flex; flex-direction: column; gap: 16px" aria-labelledby="h-datos">
+<h2 id="h-datos" style="font-size: 26px">3 · Datos de Toby</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<div class="field"><label for="nombre">Nombre</label><input class="input" id="nombre" value="Toby"></div>
+<div class="field"><label for="especie">Especie</label><select class="input" id="especie"><option>Perro</option><option>Gato</option></select></div>
+<div class="field"><label for="fecha">Fecha en que se perdió</label><input class="input" id="fecha" value="9 de noviembre de 2026"></div>
+<div class="field"><label for="tam">Tamaño</label><select class="input" id="tam"><option>Mediano</option><option>Pequeño</option><option>Grande</option></select></div>
+</div>
+<div class="field"><label for="rasgos">Rasgos que lo distinguen</label><textarea class="input" id="rasgos">Mestizo, pelo largo dorado, mancha blanca en el pecho, collar rojo.</textarea></div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<a class="btn btn-primary" href="Web-Coincidencias.dc.html">Publicar y buscar coincidencias</a>
+<a class="btn btn-tonal" href="Web-Caso.dc.html">Guardar borrador</a>
+<span class="meta" style="display: inline-flex; gap: 6px; align-items: center"><svg class="ico ico-s"><use href="#clock"></use></svg>Puedes publicar hasta 3 reportes al día.</span>
+</div>
+</div>
+
+<aside style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px" aria-label="Vista previa del reporte">
+<span class="label">Así lo verán otras personas</span>
+<div class="card" style="overflow: hidden">
+<span class="crop" style="height: 240px; border-radius: 0"><img src="/_blob/67613a4f6ef8ef51204d5dae0f572ee0" alt="Toby, recorte de la foto principal"><span class="frame frame-l"></span></span>
+<div style="padding: 18px; display: flex; flex-direction: column; gap: 8px">
+<span><span class="tag tag-lost">Perdido</span></span>
+<h3 style="font-size: 24px">Toby, mestizo dorado</h3>
+<span class="zone-meta"><svg class="ico ico-s"><use href="#zone"></use></svg>Suba, zona de 500 m · 9 nov 2026</span>
+<p style="font-size: 15px">Pelo largo dorado, mancha blanca en el pecho, collar rojo.</p>
+<p class="meta">Sin teléfono a la vista: el contacto se pide desde PawConnect.</p>
+</div>
+</div>
+<div class="notice notice-plain"><svg class="ico"><use href="#zone"></use></svg><div><strong>Sin el permiso de zona</strong><p>El reporte se publica igual, pero sin mapa. La búsqueda por foto sigue funcionando.</p></div></div>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

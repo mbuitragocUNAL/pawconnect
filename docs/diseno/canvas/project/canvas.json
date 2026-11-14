@@ -1,0 +1,473 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-11T21:40:00Z"
+ },
+ "title": "PawConnect · Diseño de la app",
+ "launch": {
+  "view": "canvas",
+  "page": "perdi"
+ },
+ "pages": [
+  {
+   "id": "visitante",
+   "name": "Visitante"
+  },
+  {
+   "id": "perdi",
+   "name": "Perdí mi mascota"
+  },
+  {
+   "id": "encontre",
+   "name": "Encontré o vi un animal"
+  },
+  {
+   "id": "cuenta",
+   "name": "Mi cuenta"
+  },
+  {
+   "id": "fundacion",
+   "name": "Fundación o refugio"
+  },
+  {
+   "id": "prestador",
+   "name": "Prestador"
+  },
+  {
+   "id": "admin",
+   "name": "Administración"
+  }
+ ],
+ "boards": {
+  "Movil-Inicio.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Inicio",
+   "page": "visitante"
+  },
+  "Movil-Mapa.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Mapa público",
+   "page": "visitante"
+  },
+  "Movil-Guia.dc.html": {
+   "x": 940,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Guía",
+   "page": "visitante"
+  },
+  "Movil-Adopcion.dc.html": {
+   "x": 1410,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Adopción",
+   "page": "visitante"
+  },
+  "Movil-Animal.dc.html": {
+   "x": 1880,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Animal en adopción",
+   "page": "visitante"
+  },
+  "Movil-Servicios.dc.html": {
+   "x": 2350,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Servicios",
+   "page": "visitante"
+  },
+  "Main.dc.html": {
+   "x": 0,
+   "y": 1264,
+   "w": 1440,
+   "h": 1880,
+   "title": "Web · Inicio",
+   "page": "visitante",
+   "expand": "fill"
+  },
+  "Web-Reportes.dc.html": {
+   "x": 1520,
+   "y": 1264,
+   "w": 1440,
+   "h": 930,
+   "title": "Web · Reportes en el mapa",
+   "page": "visitante",
+   "expand": "fill"
+  },
+  "Web-Guias.dc.html": {
+   "x": 3040,
+   "y": 1264,
+   "w": 1440,
+   "h": 1080,
+   "title": "Web · Guías y trámites",
+   "page": "visitante",
+   "expand": "fill"
+  },
+  "Web-Adopcion.dc.html": {
+   "x": 4560,
+   "y": 1264,
+   "w": 1440,
+   "h": 1120,
+   "title": "Web · Adopción",
+   "page": "visitante",
+   "expand": "fill"
+  },
+  "Web-Animal.dc.html": {
+   "x": 6080,
+   "y": 1264,
+   "w": 1440,
+   "h": 1030,
+   "title": "Web · Animal en adopción",
+   "page": "visitante",
+   "expand": "fill"
+  },
+  "Web-Servicios.dc.html": {
+   "x": 7600,
+   "y": 1264,
+   "w": 1440,
+   "h": 960,
+   "title": "Web · Mapa de servicios",
+   "page": "visitante",
+   "expand": "fill"
+  },
+  "Flujo-Perdi.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Prototipo perdí (interactivo)",
+   "page": "perdi",
+   "is_interactive": true
+  },
+  "Movil-Fotos.dc.html": {
+   "x": 600,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · 1 Fotos",
+   "page": "perdi"
+  },
+  "Movil-Zona.dc.html": {
+   "x": 1070,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · 2 Zona",
+   "page": "perdi"
+  },
+  "Movil-Datos.dc.html": {
+   "x": 1540,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · 3 Datos",
+   "page": "perdi"
+  },
+  "Movil-Resultados.dc.html": {
+   "x": 2010,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Coincidencias",
+   "page": "perdi"
+  },
+  "Movil-Candidato.dc.html": {
+   "x": 2480,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Candidato",
+   "page": "perdi"
+  },
+  "Movil-Contacto.dc.html": {
+   "x": 2950,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Contacto",
+   "page": "perdi"
+  },
+  "Movil-Caso.dc.html": {
+   "x": 3420,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Caso",
+   "page": "perdi"
+  },
+  "Web-Publicar.dc.html": {
+   "x": 0,
+   "y": 1264,
+   "w": 1440,
+   "h": 1660,
+   "title": "Web · Publicar pérdida",
+   "page": "perdi",
+   "expand": "fill"
+  },
+  "Web-Coincidencias.dc.html": {
+   "x": 1520,
+   "y": 1264,
+   "w": 1440,
+   "h": 1130,
+   "title": "Web · Coincidencias y decisión",
+   "page": "perdi",
+   "expand": "fill"
+  },
+  "Web-Caso.dc.html": {
+   "x": 3040,
+   "y": 1264,
+   "w": 1440,
+   "h": 960,
+   "title": "Web · Caso y contacto",
+   "page": "perdi",
+   "expand": "fill"
+  },
+  "Flujo-Encontre.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Prototipo encontré o vi (interactivo)",
+   "page": "encontre",
+   "is_interactive": true
+  },
+  "Web-Encontre.dc.html": {
+   "x": 600,
+   "y": 0,
+   "w": 1440,
+   "h": 1250,
+   "title": "Web · Encontré o vi (interactivo)",
+   "page": "encontre",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Movil-Ingreso.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Crear cuenta",
+   "page": "cuenta"
+  },
+  "Movil-Mas.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Más y perfil",
+   "page": "cuenta"
+  },
+  "Flujo-Fundacion-Carga.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1000,
+   "title": "Web · Carga masiva (interactivo)",
+   "page": "fundacion",
+   "expand": "fill",
+   "is_interactive": true
+  },
+  "Web-Fundacion.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 1340,
+   "title": "Web · Panel de fundación",
+   "page": "fundacion",
+   "expand": "fill"
+  },
+  "Movil-Prestador.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · Prestador",
+   "page": "prestador"
+  },
+  "Web-Prestador.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 1440,
+   "h": 1230,
+   "title": "Web · Perfil de prestador",
+   "page": "prestador",
+   "expand": "fill"
+  },
+  "Web-Admin.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 1060,
+   "title": "Web · Panel de administración",
+   "page": "admin",
+   "expand": "fill"
+  }
+ },
+ "order": [
+  "Movil-Inicio.dc.html",
+  "Movil-Mapa.dc.html",
+  "Movil-Guia.dc.html",
+  "Movil-Adopcion.dc.html",
+  "Movil-Animal.dc.html",
+  "Movil-Servicios.dc.html",
+  "Main.dc.html",
+  "Web-Reportes.dc.html",
+  "Web-Guias.dc.html",
+  "Web-Adopcion.dc.html",
+  "Web-Animal.dc.html",
+  "Web-Servicios.dc.html",
+  "Flujo-Perdi.dc.html",
+  "Movil-Fotos.dc.html",
+  "Movil-Zona.dc.html",
+  "Movil-Datos.dc.html",
+  "Movil-Resultados.dc.html",
+  "Movil-Candidato.dc.html",
+  "Movil-Contacto.dc.html",
+  "Movil-Caso.dc.html",
+  "Web-Publicar.dc.html",
+  "Web-Coincidencias.dc.html",
+  "Web-Caso.dc.html",
+  "Flujo-Encontre.dc.html",
+  "Web-Encontre.dc.html",
+  "Movil-Ingreso.dc.html",
+  "Movil-Mas.dc.html",
+  "Flujo-Fundacion-Carga.dc.html",
+  "Web-Fundacion.dc.html",
+  "Movil-Prestador.dc.html",
+  "Web-Prestador.dc.html",
+  "Web-Admin.dc.html"
+ ],
+ "notes": {
+  "t-vis-m": {
+   "x": 0,
+   "y": -300,
+   "text": "Visitante sin cuenta · móvil",
+   "kind": "title1",
+   "maxW": 2740,
+   "page": "visitante"
+  },
+  "t-vis-w": {
+   "x": 0,
+   "y": 964,
+   "text": "Visitante sin cuenta · web",
+   "kind": "title1",
+   "maxW": 9040,
+   "page": "visitante"
+  },
+  "s-vis": {
+   "x": -440,
+   "y": 0,
+   "text": "Ve reportes como círculos de 500 m, guías, adopción y servicios. Publicar o pedir contacto le pide crear una cuenta con su celular.",
+   "w": 360,
+   "size": "m",
+   "fill": "gray",
+   "page": "visitante"
+  },
+  "t-perdi-m": {
+   "x": 0,
+   "y": -300,
+   "text": "Perdí a mi mascota · prototipo y pantallas móviles",
+   "kind": "title1",
+   "maxW": 3810,
+   "page": "perdi"
+  },
+  "t-perdi-w": {
+   "x": 0,
+   "y": 964,
+   "text": "Perdí a mi mascota · web",
+   "kind": "title1",
+   "maxW": 4480,
+   "page": "perdi"
+  },
+  "s-perdi": {
+   "x": -440,
+   "y": 0,
+   "text": "Prototipo: dale Play al primero. Agrega fotos (la tercera falla a propósito), descarta candidatos, pide contacto y marca a Toby como reencontrado. Las pantallas de la derecha son el detalle editable de cada paso.",
+   "w": 360,
+   "size": "m",
+   "fill": "gray",
+   "page": "perdi"
+  },
+  "t-enc": {
+   "x": 0,
+   "y": -300,
+   "text": "Encontré o vi un animal · prototipo móvil y web",
+   "kind": "title1",
+   "maxW": 2040,
+   "page": "encontre"
+  },
+  "s-enc": {
+   "x": -440,
+   "y": 0,
+   "text": "Dos casos: lo tengo conmigo (Encontrado) o lo vi solo en la calle (Visto en la calle, etiqueta de contorno). Sin foto se avisa por zona; con foto se compara con perros perdidos. Visto en la calle es nuevo: hay que agregarlo al documento de requisitos.",
+   "w": 360,
+   "size": "m",
+   "fill": "gray",
+   "page": "encontre"
+  },
+  "t-cta": {
+   "x": 0,
+   "y": -300,
+   "text": "Mi cuenta · crear cuenta, alertas y borrado",
+   "kind": "title1",
+   "maxW": 860,
+   "page": "cuenta"
+  },
+  "t-fun": {
+   "x": 0,
+   "y": -300,
+   "text": "Fundación o refugio · carga masiva y panel",
+   "kind": "title1",
+   "maxW": 2960,
+   "page": "fundacion"
+  },
+  "s-fun": {
+   "x": -440,
+   "y": 0,
+   "text": "Prototipo: sube 7 fotos de ejemplo, decide si dos gatitas son una o dos, completa la tabla y publica todo de una vez. También se puede importar una hoja de cálculo.",
+   "w": 360,
+   "size": "m",
+   "fill": "gray",
+   "page": "fundacion"
+  },
+  "t-pre": {
+   "x": 0,
+   "y": -300,
+   "text": "Prestador de servicios · perfil público",
+   "kind": "title1",
+   "maxW": 1910,
+   "page": "prestador"
+  },
+  "s-pre": {
+   "x": -440,
+   "y": 0,
+   "text": "Pendiente: el panel del prestador para pedir el sello y editar servicios y horarios.",
+   "w": 360,
+   "size": "m",
+   "fill": "gray",
+   "page": "prestador"
+  },
+  "s-adm": {
+   "x": -440,
+   "y": 0,
+   "text": "Verificación de fundaciones y prestadores, perfiles reportados, solicitudes de borrado y registro de auditoría.",
+   "w": 360,
+   "size": "m",
+   "fill": "gray",
+   "page": "admin"
+  }
+ },
+ "designSystems": []
+}

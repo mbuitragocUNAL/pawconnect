@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.cache-pawmatch/
+# generated reports (re-run `pawmatch evaluar`)
+informe-*.html
+# personal photos of the team's pets: never in git
+fotos/
+fotos-equipo/
+varias-mascotas/
