@@ -2,7 +2,6 @@
 
 import { useId } from "react"
 import { cn } from "cn"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Icon } from "./icon"
 
 /** Label + control + help text, stacked. */
@@ -65,11 +64,12 @@ export function Consent({
         className
       )}
     >
-      <Checkbox
+      <input
+        type="checkbox"
         id={id}
         checked={checked}
-        onCheckedChange={(v) => onCheckedChange?.(v)}
-        className="mt-px"
+        onClick={(event) => onCheckedChange?.(event.currentTarget.checked)}
+        className="mt-px size-[22px] shrink-0 accent-[var(--ink)]"
       />
       <span className="min-w-0">
         <strong className="block font-medium">{title}</strong>

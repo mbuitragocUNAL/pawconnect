@@ -24,6 +24,11 @@ class ZonaSerializer(serializers.Serializer):
 
 
 class FotoSerializer(serializers.ModelSerializer):
+    recorte = serializers.SerializerMethodField()
+
+    def get_recorte(self, obj):
+        return f"/api/reportes/{obj.reporte_id}/fotos/{obj.id}/contenido/"
+
     class Meta:
         model = FotoRecorte
         fields = ["id", "orden", "recorte", "especie_detectada"]

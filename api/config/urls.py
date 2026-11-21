@@ -12,6 +12,7 @@ from cuentas import views as cuentas
 from moderacion.views import ReportePerfilViewSet
 from organizaciones.views import AnimalViewSet, OrganizacionViewSet
 from reportes.views import CandidatoViewSet, ReporteViewSet
+from reportes.views import foto_contenido
 
 router = DefaultRouter()
 router.register("reportes", ReporteViewSet, basename="reporte")
@@ -32,6 +33,7 @@ urlpatterns = [
     path("api/cuentas/codigo/", cuentas.pedir_codigo),
     path("api/cuentas/verificar/", cuentas.verificar_codigo),
     path("api/cuentas/yo/", cuentas.yo),
+    path("api/reportes/<uuid:reporte_id>/fotos/<int:foto_id>/contenido/", foto_contenido),
     path("api/", include(router.urls)),
     path("api/esquema/", SpectacularAPIView.as_view(), name="esquema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="esquema"), name="docs"),

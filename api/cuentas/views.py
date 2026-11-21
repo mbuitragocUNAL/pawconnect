@@ -40,7 +40,18 @@ class UsuarioSerializer(serializers.ModelSerializer):
         read_only_fields = ["id", "celular", "rol", "nivel_verificacion"]
 
 
-@extend_schema(request=PedirCodigo, responses={202: inline_serializer("CodigoEnviado", {"enviado": serializers.BooleanField()})})
+@extend_schema(
+    request=PedirCodigo,
+    responses={
+        202: inline_serializer(
+            "CodigoEnviado",
+            {
+                "enviado": serializers.BooleanField(),
+                "cuenta_existente": serializers.BooleanField(),
+            },
+        )
+    },
+)
 @api_view(["POST"])
 @permission_classes([permissions.AllowAny])
 @throttle_classes([CodigoThrottle])
@@ -56,7 +67,11 @@ def pedir_codigo(request):
     if settings.DEBUG:
         log.warning("Código SMS para %s: %s", s.validated_data["celular"], codigo)
     # TODO: enviar por el proveedor de SMS elegido.
-    return Response({"enviado": True}, status=status.HTTP_202_ACCEPTED)
+    cuenta_existente = Usuario.objects.filter(celular=s.validated_data["celular"]).exists()
+    return Response(
+        {"enviado": True, "cuenta_existente": cuenta_existente},
+        status=status.HTTP_202_ACCEPTED,
+    )
 
 
 @extend_schema(

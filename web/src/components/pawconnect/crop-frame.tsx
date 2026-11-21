@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { cn } from "cn"
 import { Icon } from "./icon"
 
@@ -40,13 +39,14 @@ export function CropFrame({
         className
       )}
     >
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={src}
         alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
+        loading="eager"
+        decoding="sync"
         className={cn(
+          "absolute inset-0 size-full",
           "object-cover text-transparent",
           rejected && "brightness-75 grayscale-[.6]"
         )}

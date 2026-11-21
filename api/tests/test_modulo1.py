@@ -255,3 +255,31 @@ def test_codigo_incorrecto_no_entra():  # RF-01
     r = APIClient().post("/api/cuentas/verificar/", {"celular": cel, "codigo": "000000", "acepta_tratamiento": True}, format="json")
     assert r.status_code == 400
     assert not Usuario.objects.filter(celular=cel).exists()
+
+
+def test_mios_devuelve_solo_los_reportes_del_usuario():  # Mis casos
+    autor = usuario()
+    otro = usuario()
+    mio = reporte(autor, tipo="perdido")
+    reporte(otro, tipo="encontrado")
+    r = cliente(autor).get("/api/reportes/mios/")
+    assert r.status_code == 200
+    ids = [item["id"] for item in r.json()]
+    assert str(mio.id) in ids
+
+
+def test_codigo_informa_si_la_cuenta_ya_existe():  # RN-09
+    u = usuario(nombre_publico="Nombre original")
+    r = APIClient().post("/api/cuentas/codigo/", {"celular": u.celular}, format="json")
+    assert r.status_code == 202
+    assert r.json()["cuenta_existente"] is True
+
+    _, codigo = CodigoVerificacion.emitir(u.celular)
+    r = APIClient().post(
+        "/api/cuentas/verificar/",
+        {"celular": u.celular, "codigo": codigo, "nombre_publico": "Nombre distinto", "acepta_tratamiento": False},
+        format="json",
+    )
+    assert r.status_code == 200
+    u.refresh_from_db()
+    assert u.nombre_publico == "Nombre original"

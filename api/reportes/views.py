@@ -1,6 +1,8 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
+from django.http import HttpResponse
+from django.views.decorators.http import require_GET
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import mixins, permissions, serializers, status, viewsets
 from rest_framework.decorators import action
@@ -8,7 +10,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 
-from .models import Candidato, Caso, Reporte
+from .models import Candidato, Caso, FotoRecorte, Reporte
 from .serializers import (
     CambioEstadoSerializer,
     CandidatoSerializer,
@@ -19,6 +21,17 @@ from .serializers import (
     ReportePublicoSerializer,
 )
 from .servicios import FotoRechazada, ReconocimientoNoDisponible, buscar_candidatos, procesar_foto
+
+
+@require_GET
+def foto_contenido(request, reporte_id, foto_id):
+    foto = get_object_or_404(FotoRecorte, id=foto_id, reporte_id=reporte_id)
+    with foto.recorte.open("rb") as archivo:
+        contenido = archivo.read()
+    response = HttpResponse(contenido, content_type="image/jpeg")
+    response["Content-Length"] = str(len(contenido))
+    response["Cache-Control"] = "private, max-age=3600"
+    return response
 
 
 class ReporteViewSet(
@@ -55,6 +68,13 @@ class ReporteViewSet(
         if reporte.autor_id != self.request.user.id:
             raise PermissionDenied("Solo quien publicó el reporte puede hacer esto.")
         return reporte
+
+    @extend_schema(responses=ReportePublicoSerializer(many=True))
+    @action(detail=False, methods=["get"], permission_classes=[permissions.IsAuthenticated])
+    def mios(self, request):
+        """Mis reportes reales. No depende de IDs guardados en el navegador."""
+        reportes = self.get_queryset().filter(autor=request.user)
+        return Response(ReportePublicoSerializer(reportes, many=True, context={"request": request}).data)
 
     @extend_schema(
         request={"multipart/form-data": inline_serializer("SubirFoto", {"foto": serializers.ImageField()})},

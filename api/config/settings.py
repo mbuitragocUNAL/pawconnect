@@ -114,6 +114,7 @@ MEDIA_ROOT = BASE_DIR / "media"
 # si no, disco local. Los recortes nunca son públicos: se sirven con URL firmada
 # y con vencimiento (RNF-06: fotos sin enlaces listables).
 S3_BUCKET = env("S3_BUCKET")
+S3_PUBLIC_ENDPOINT_URL = env("S3_PUBLIC_ENDPOINT_URL", "http://localhost:9000")
 STORAGES = {
     "default": (
         {

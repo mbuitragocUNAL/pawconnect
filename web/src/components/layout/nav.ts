@@ -4,6 +4,7 @@ import type { IconName } from "@/components/pawconnect/icon"
 export const webNav = [
   { href: "/reportes", label: "Reportes" },
   { href: "/buscar", label: "Buscar por foto" },
+  { href: "/mapa", label: "Mapa" },
   { href: "/adopcion", label: "Adopción" },
   { href: "/guias", label: "Guías" },
   { href: "/servicios", label: "Servicios" },
@@ -21,15 +22,9 @@ export const phoneTabs: { href: string; label: string; icon: IconName; action?: 
 /** Routes that exist in the canvas but are not built in React yet. */
 export const pendingRoutes: Record<string, { title: string; canvas: string }> = {
   reportes: { title: "Reportes en el mapa", canvas: "Web-Reportes / Movil-Mapa" },
-  mapa: { title: "Reportes en el mapa", canvas: "Movil-Mapa" },
-  buscar: { title: "Buscar por foto", canvas: "Web-Coincidencias / Movil-Resultados" },
   adopcion: { title: "Adopción", canvas: "Web-Adopcion / Movil-Adopcion" },
   guias: { title: "Guías y trámites", canvas: "Web-Guias / Movil-Guia" },
   servicios: { title: "Servicios cercanos", canvas: "Web-Servicios / Movil-Servicios" },
-  ingresar: { title: "Ingresar", canvas: "Movil-Ingreso" },
-  publicar: { title: "Perdí a mi mascota", canvas: "Flujo-Perdi / Web-Publicar" },
-  encontre: { title: "Encontré o vi un animal", canvas: "Flujo-Encontre / Web-Encontre" },
-  "mis-casos": { title: "Mis casos", canvas: "Movil-Caso / Web-Caso" },
   mas: { title: "Más", canvas: "Movil-Mas" },
   datos: { title: "Política de tratamiento de datos", canvas: "—" },
   terminos: { title: "Términos de uso", canvas: "—" },
