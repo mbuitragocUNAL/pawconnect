@@ -47,17 +47,18 @@ class ReporteViewSet(
 
     def get_queryset(self):
         qs = super().get_queryset()
-        if self.action == "list":
+        if self.action in ("list", "retrieve"):
             qs = qs.filter(oculto_por_moderacion=False, caso__estado__in=["activo", "seguimiento"]).exclude(
                 Q(tipo=Reporte.Tipo.VISTO) & Q(vence_en__lt=timezone.now())
-            )
-            p = self.request.query_params
-            if p.get("tipo"):
-                qs = qs.filter(tipo=p["tipo"])
-            if p.get("especie"):
-                qs = qs.filter(especie=p["especie"])
-            if p.get("zona"):
-                qs = qs.filter(zona_nombre__icontains=p["zona"])
+            ).filter(fotos__isnull=False).distinct()
+            if self.action == "list":
+                p = self.request.query_params
+                if p.get("tipo"):
+                    qs = qs.filter(tipo=p["tipo"])
+                if p.get("especie"):
+                    qs = qs.filter(especie=p["especie"])
+                if p.get("zona"):
+                    qs = qs.filter(zona_nombre__icontains=p["zona"])
         return qs
 
     def get_serializer_class(self):
@@ -68,6 +69,18 @@ class ReporteViewSet(
         if reporte.autor_id != self.request.user.id:
             raise PermissionDenied("Solo quien publicó el reporte puede hacer esto.")
         return reporte
+
+    @action(detail=True, methods=["delete"], permission_classes=[permissions.IsAuthenticated])
+    def cancelar(self, request, pk=None):
+        """Descarta el reporte incompleto cuando ninguna foto fue aceptada."""
+        reporte = self._mio(pk)
+        if reporte.fotos.exists():
+            return Response(
+                {"detail": "No se puede cancelar un reporte que ya tiene fotos."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        reporte.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @extend_schema(responses=ReportePublicoSerializer(many=True))
     @action(detail=False, methods=["get"], permission_classes=[permissions.IsAuthenticated])

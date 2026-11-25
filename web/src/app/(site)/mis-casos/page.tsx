@@ -27,11 +27,24 @@ type ContactRequest = {
   acepto_receptor_en: string | null
   telefono_otra_parte: string
   mensaje_inicial: string
+  reporte: {
+    nombre: string
+    especie: "perro" | "gato"
+    tipo: "perdido" | "encontrado" | "visto"
+    zona: string
+  } | null
 }
 
 type PaginatedReports = { count: number; next: string | null; previous: string | null; results: PublicReport[] }
 
 type Paginated<T> = { count: number; next: string | null; previous: string | null; results: T[] }
+
+function reportLabel(report: NonNullable<ContactRequest["reporte"]>) {
+  const species = report.especie === "perro" ? "Perro" : "Gato"
+  const type =
+    report.tipo === "perdido" ? "perdido" : report.tipo === "encontrado" ? "encontrado" : "visto en la calle"
+  return report.nombre || `${species} ${type}`
+}
 
 export default function MyCasesPage() {
   const router = useRouter()
@@ -172,6 +185,12 @@ export default function MyCasesPage() {
                       ? "Nueva solicitud: decide si aceptas el contacto"
                       : "Esperando la respuesta de la otra parte"}
               </p>
+              {contact.reporte ? (
+                <p className="mt-2 text-sm text-meta">
+                  Reporte relacionado: <strong className="text-ink">{reportLabel(contact.reporte)}</strong>
+                  {contact.reporte.zona ? ` · ${contact.reporte.zona}` : ""}
+                </p>
+              ) : null}
               {contact.mensaje_inicial ? <p className="mt-2">{contact.mensaje_inicial}</p> : null}
               {contact.estado === "abierto" ? (
                 <p className="mt-2 font-mono text-sm">Contacto revelado: {contact.telefono_otra_parte}</p>

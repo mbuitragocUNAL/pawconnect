@@ -105,12 +105,6 @@ export function ReportFlow({ initialType }: { initialType: ReportType }) {
         }),
       })
 
-      const stored = JSON.parse(localStorage.getItem("pawconnect_reportes") || "[]") as string[]
-      localStorage.setItem(
-        "pawconnect_reportes",
-        JSON.stringify([report.id, ...stored.filter((id) => id !== report.id)].slice(0, 20))
-      )
-
       let acceptedPhotoCount = 0
       for (const photo of photos) {
         const form = new FormData()
@@ -132,10 +126,22 @@ export function ReportFlow({ initialType }: { initialType: ReportType }) {
       }
 
       if (acceptedPhotoCount === 0) {
-        setError("Ninguna foto fue aceptada. Toma una fotografía más clara donde se vea el animal.")
-        setBusy(false)
+        try {
+          await apiFetch(`/reportes/${report.id}/cancelar/`, { method: "DELETE" })
+          setError("Ninguna foto fue aceptada y el reporte no se publicó. Toma una foto más clara donde se vea el animal.")
+        } catch (cleanupError) {
+          const message =
+            cleanupError instanceof Error ? cleanupError.message : "No pudimos limpiar el reporte incompleto."
+          setError(`Ninguna foto fue aceptada. No pudimos eliminar el reporte incompleto: ${message}`)
+        }
         return
       }
+
+      const stored = JSON.parse(localStorage.getItem("pawconnect_reportes") || "[]") as string[]
+      localStorage.setItem(
+        "pawconnect_reportes",
+        JSON.stringify([report.id, ...stored.filter((id) => id !== report.id)].slice(0, 20))
+      )
 
       await apiFetch(`/reportes/${report.id}/candidatos/`, { method: "POST" })
       router.push(`/buscar?report=${report.id}`)

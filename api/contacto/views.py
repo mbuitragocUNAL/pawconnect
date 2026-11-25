@@ -29,6 +29,7 @@ class SolicitudSerializer(serializers.ModelSerializer):
     estado = serializers.CharField(read_only=True)
     soy = serializers.SerializerMethodField()
     telefono_otra_parte = serializers.SerializerMethodField()
+    reporte = serializers.SerializerMethodField()
     candidato = serializers.PrimaryKeyRelatedField(queryset=Candidato.objects.all(), write_only=True)
 
     class Meta:
@@ -42,6 +43,7 @@ class SolicitudSerializer(serializers.ModelSerializer):
             "acepto_receptor_en",
             "mensaje_inicial",
             "telefono_otra_parte",
+            "reporte",
             "creada_en",
         ]
         read_only_fields = ["acepto_solicitante_en", "acepto_receptor_en", "creada_en"]
@@ -52,6 +54,17 @@ class SolicitudSerializer(serializers.ModelSerializer):
     def get_telefono_otra_parte(self, obj) -> str:
         return obj.telefono_de(self.context["request"].user)
 
+    def get_reporte(self, obj) -> dict[str, str] | None:
+        if obj.candidato is None:
+            return None
+        reporte = obj.candidato.propuesto
+        return {
+            "nombre": reporte.nombre,
+            "especie": reporte.especie,
+            "tipo": reporte.tipo,
+            "zona": reporte.zona_nombre,
+        }
+
 
 class SolicitudViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     serializer_class = SolicitudSerializer
@@ -59,7 +72,9 @@ class SolicitudViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Re
 
     def get_queryset(self):
         u = self.request.user
-        return SolicitudContacto.objects.filter(Q(solicitante=u) | Q(receptor=u)).select_related("solicitante", "receptor")
+        return SolicitudContacto.objects.filter(Q(solicitante=u) | Q(receptor=u)).select_related(
+            "solicitante", "receptor", "candidato__propuesto"
+        )
 
     def perform_create(self, serializer):
         candidato = serializer.validated_data["candidato"]

@@ -6,6 +6,7 @@ import type { GeoJSONSource, Map as MapLibreMap } from "maplibre-gl"
 import { Button } from "@/components/ui/button"
 import { Notice } from "@/components/pawconnect/form"
 import { apiAssetUrl, apiFetch } from "@/lib/api"
+import { circleGeoJson } from "@/lib/map-geometry"
 
 type ApiReport = {
   id: string
@@ -18,26 +19,6 @@ type ApiReport = {
 }
 
 type Paginated<T> = { count: number; next: string | null; previous: string | null; results: T[] }
-
-function circleGeoJson(lat: number, lng: number, radiusMeters: number) {
-  const coordinates: number[][] = []
-  const earthRadius = 6378137
-  for (let i = 0; i <= 64; i += 1) {
-    const angle = (i / 64) * 2 * Math.PI
-    const dx = (radiusMeters * Math.cos(angle)) / earthRadius
-    const dy = (radiusMeters * Math.sin(angle)) / earthRadius
-    const latRadians = (lat * Math.PI) / 180
-    coordinates.push([
-      lng + (dx * 180) / (Math.PI * Math.cos(latRadians)),
-      lat + (dy * 180) / Math.PI,
-    ])
-  }
-  return {
-    type: "Feature" as const,
-    properties: {},
-    geometry: { type: "Polygon" as const, coordinates: [coordinates] },
-  }
-}
 
 export default function MapPage() {
   const container = useRef<HTMLDivElement>(null)

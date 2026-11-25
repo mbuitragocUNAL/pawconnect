@@ -84,12 +84,72 @@ def test_listado_publico_no_expone_coordenada_exacta():  # RF-15, RNF-03
     u = usuario()
     r = cliente(u).post("/api/reportes/", payload(), format="json")
     assert r.status_code == 201, r.data
+    rep = Reporte.objects.get(pk=r.data["id"])
+    FotoRecorte.objects.create(
+        reporte=rep, recorte=jpeg(), vector=vec(1), modelo="test", especie_detectada="perro", confianza_detector=0.9,
+    )
     publico = APIClient().get("/api/reportes/").json()["results"][0]
     assert "lat_exacta" not in str(publico) and "lng_exacta" not in str(publico)
     z = publico["zona"]
     assert (z["lat"], z["lng"]) != SUBA
     assert z["radio_m"] == 500
     assert distancia_km(SUBA[0], SUBA[1], z["lat"], z["lng"]) <= 0.5
+
+
+def test_reporte_sin_foto_valida_no_se_muestra_publicamente():
+    import base64
+
+    u = usuario()
+    c = cliente(u)
+    publico = APIClient()
+    created = c.post("/api/reportes/", payload(), format="json")
+    assert created.status_code == 201, created.data
+    url = f"/api/reportes/{created.data['id']}/"
+
+    assert publico.get("/api/reportes/").json()["results"] == []
+    assert publico.get(url).status_code == 404
+
+    rejected = mock.Mock(status_code=422)
+    rejected.json.return_value = {"detail": {"codigo": "sin_animal", "mensaje": "No vemos un perro o un gato."}}
+    with mock.patch("reportes.servicios.httpx.post", return_value=rejected):
+        response = c.post(f"{url}fotos/", {"foto": jpeg()}, format="multipart")
+    assert response.status_code == 422
+    assert publico.get("/api/reportes/").json()["results"] == []
+    assert publico.get(url).status_code == 404
+
+    accepted = mock.Mock(status_code=200)
+    accepted.json.return_value = {
+        "especie": "perro", "confianza": 0.6, "modelo": "facebook/dinov2-base", "dimension": 768,
+        "vector": vec(2), "recorte_jpeg": base64.b64encode(jpeg().read()).decode(),
+    }
+    with mock.patch("reportes.servicios.httpx.post", return_value=accepted):
+        response = c.post(f"{url}fotos/", {"foto": jpeg()}, format="multipart")
+    assert response.status_code == 201, response.data
+    assert publico.get("/api/reportes/").json()["results"][0]["id"] == created.data["id"]
+    assert publico.get(url).status_code == 200
+
+
+def test_cancelar_reporte_sin_fotos():
+    c = cliente(usuario())
+    created = c.post("/api/reportes/", payload(), format="json")
+    url = f"/api/reportes/{created.data['id']}/cancelar/"
+
+    assert cliente(usuario()).delete(url).status_code == 403
+    assert c.delete(url).status_code == 204
+    assert not Reporte.objects.filter(pk=created.data["id"]).exists()
+
+
+def test_no_se_puede_cancelar_reporte_con_fotos():
+    c = cliente(usuario())
+    created = c.post("/api/reportes/", payload(), format="json")
+    rep = Reporte.objects.get(pk=created.data["id"])
+    FotoRecorte.objects.create(
+        reporte=rep, recorte=jpeg(), vector=vec(3), modelo="test", especie_detectada="perro", confianza_detector=0.9,
+    )
+
+    response = c.delete(f"/api/reportes/{rep.id}/cancelar/")
+    assert response.status_code == 400
+    assert Reporte.objects.filter(pk=rep.id).exists()
 
 
 def test_publicar_exige_autorizacion_de_ubicacion():  # HU-02, sección 4.1
@@ -213,7 +273,7 @@ def test_telefono_solo_con_las_dos_llaves():  # RN-05, RF-07
     duena, quien = usuario(), usuario()
     base = np.array(vec(50))
     perdido = reporte(duena, tipo="perdido", v=list(base))
-    reporte(quien, v=vec(51, base, 0.02))
+    reporte(quien, nombre="Misu", v=vec(51, base, 0.02))
     cand = buscar_candidatos(perdido)[0]
     cand.decision = Candidato.Decision.CONFIRMADO
     cand.save()
@@ -222,6 +282,12 @@ def test_telefono_solo_con_las_dos_llaves():  # RN-05, RF-07
     r = cd.post("/api/contacto/", {"candidato": cand.id, "mensaje_inicial": "Creo que es Toby"}, format="json")
     assert r.status_code == 201, r.data
     sid = r.json()["id"]
+    assert r.json()["reporte"] == {
+        "nombre": "Misu",
+        "especie": "perro",
+        "tipo": "encontrado",
+        "zona": "Suba",
+    }
     assert quien.celular not in str(r.json())
     assert r.json()["telefono_otra_parte"].endswith(quien.celular[-2:])
 

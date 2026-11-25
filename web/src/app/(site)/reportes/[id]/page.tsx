@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { CropFrame } from "@/components/pawconnect/crop-frame"
 import { ReportTag } from "@/components/pawconnect/tags"
 import { Notice } from "@/components/pawconnect/form"
+import { ReportZoneMap } from "@/components/pawconnect/report-zone-map"
 import { apiAssetUrl, apiFetch } from "@/lib/api"
 
 type ApiReport = {
@@ -15,7 +16,7 @@ type ApiReport = {
   nombre: string
   rasgos: string
   fecha_evento: string
-  zona: { nombre: string; radio_m: number }
+  zona: { nombre: string; lat: number; lng: number; radio_m: number }
   fotos: { recorte: string }[]
   estado: string
 }
@@ -54,8 +55,14 @@ function ReportDetailContent() {
             </p>
             {report.rasgos ? <p className="mt-4">{report.rasgos}</p> : null}
             <Notice tone="privacy" className="mt-5" title="Ubicación protegida">
-              El lugar se muestra como un área aproximada de {report.zona.radio_m} m.
+              El círculo muestra un área aproximada de {report.zona.radio_m} m. No se muestra la ubicación exacta.
             </Notice>
+            <ReportZoneMap
+              lat={report.zona.lat}
+              lng={report.zona.lng}
+              radiusMeters={report.zona.radio_m}
+              type={report.tipo}
+            />
           </div>
         </>
       ) : null}
